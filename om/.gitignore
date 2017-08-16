@@ -116,3 +116,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+node_modules/
+*.sqlite
+*.sqlite3
