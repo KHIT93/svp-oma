@@ -23,3 +23,8 @@ De virtuelle miljøer medtages ikke i versionsstyring og skal derfor genoprettes
 
 Når der installeres pakker i et virtuelt miljø, er det vigtigt at requirements.txt på den enkelte miljø opdateres inden koden afleveres med `git push`.
 Opdatering foregår med `pip freeze > requirements.txt`
+
+Følgende side bruges til opsætning af Django
+```
+https://www.codingforentrepreneurs.com/blog/create-a-blank-django-project/
+```
