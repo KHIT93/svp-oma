@@ -12,10 +12,12 @@
     "devDependencies": {
         "axios": "^0.16.2",
         "cross-env": "^5.0.1",
+        "js-cookie": "^2.1.4",
         "laravel-mix": "^1.0",
+        "stylus": "^0.54.5",
+        "stylus-loader": "^3.0.1",
         "vue": "^2.4",
         "vue-router": "^2.7.0",
-        "js-cookie": "^2.1.4",
         "vuetify": "^0.14"
     }
 }

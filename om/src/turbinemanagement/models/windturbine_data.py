@@ -8,7 +8,7 @@ class WindTurbineData(BaseModel):
     state = models.IntegerField()
     temp_gearbox = models.DecimalField(max_digits=10, decimal_places=2)
     temp_generator = models.DecimalField(max_digits=10, decimal_places=2)
-    rpm_shaft = models.IntegerField()
+    rpm_generator = models.IntegerField()
     wind_speed = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):

@@ -2,80 +2,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-        <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        <link href="{% static 'css/app.css' %}" rel="stylesheet">
         <title>Offshore Monitoring Advanced</title>
     </head>
     <body>
         <div id="app">
-            <v-app>
-                <v-navigation-drawer persistent clipped enable-resize-watcher light v-model="drawer" :mini-variant.sync="mini">
-                    <v-list dense class="pt-0">
-                        <template v-for="(item, i) in menu">
-                        <v-list-group v-if="item.children" v-model="item.model" no-action>
-                            <v-list-item slot="item">
-                                <v-list-tile>
-                                    <v-list-tile-action>
-                                        <v-icon>{% verbatim %} {{ item.icon }} {% endverbatim %}</v-icon>
-                                    </v-list-tile-action>
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>
-                                            {% verbatim %} {{ item.title }} {% endverbatim %}
-                                        </v-list-tile-title>
-                                    </v-list-tile-content>
-                                    <v-list-tile-action>
-                                        <v-icon>{% verbatim %} {{ item.model ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }} {% endverbatim %}</v-icon>
-                                    </v-list-tile-action>
-                                </v-list-tile>
-                            </v-list-item>
-                            <v-list-item v-for="(child, i) in item.children" :key="i">
-                                <v-list-tile :to=child.link router exact ripple>
-                                    <v-list-tile-action v-if="child.icon">
-                                        <v-icon>{% verbatim %} {{ child.icon }} {% endverbatim %}</v-icon>
-                                    </v-list-tile-action>
-                                    <v-list-tile-content>
-                                        <v-list-tile-title>
-                                            {% verbatim %} {{ child.title }} {% endverbatim %}
-                                        </v-list-tile-title>
-                                    </v-list-tile-content>
-                                </v-list-tile>
-                            </v-list-item>
-                        </v-list-group>
-                        <v-list-item v-else>
-                            <v-list-tile :to=item.link router exact ripple>
-                                <v-list-tile-action>
-                                    <v-icon>{% verbatim %} {{ item.icon }} {% endverbatim %}</v-icon>
-                                </v-list-tile-action>
-                                <v-list-tile-content>
-                                    <v-list-tile-title>
-                                        {% verbatim %} {{ item.title }} {% endverbatim %}
-                                    </v-list-tile-title>
-                                </v-list-tile-content>
-                            </v-list-tile>
-                        </v-list-item>
-                    </template>
-                </v-navigation-drawer>
-                <v-toolbar class="red" light>
-                    <v-toolbar-side-icon light @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-                    <v-toolbar-title>Offshore Monitoring Advanced</v-toolbar-title>
-                    <v-toolbar-items>
-                        <v-menu left bottom origin="bottom right" transition="v-slide-y-transition">
-                            <v-btn light icon slot="activator">
-                                <v-icon>account_circle</v-icon>
-                            </v-btn>
-                            <v-list>
-                                <v-list-item>
-                                    <v-list-tile>
-                                        <v-list-tile-title>Change Account</v-list-tile-title>
-                                    </v-list-tile>
-                                    <v-list-tile @click.native="logout">
-                                        <v-list-tile-title>Log Out</v-list-tile-title>
-                                    </v-list-tile>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </v-toolbar-items>
-                </v-toolbar>
+            <v-app toolbar>
+                <v-oma-navigation></v-oma-navigation>
                 <main>
                     {% block content %}{% endblock %}
                 </main>

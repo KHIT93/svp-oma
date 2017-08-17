@@ -1,4 +1,4 @@
-"""om URL Configuration
+"""O&M URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -13,11 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
+from django.conf import settings
 from django.contrib import admin
+from django.conf.urls.static import static
 from dashboard.views.dashboard_view import DashboardView
+#Rest framework imports
+from rest_framework import routers
+from appcore.views.user_view_set import UserViewSet
+from appcore.views.group_view_set import GroupViewSet
+from turbinemanagement.views.windfarm_api_views import (WindfarmListCreateAPIView, WindfarmRetrieveUpdateDestroyAPIView)
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardView.as_view()),
-]
+    url(r'^webapi/', include(router.urls)),
+    url(r'^webapi/windfarms', WindfarmListCreateAPIView.as_view()),
+    url(r'^webapi/windfarms/(?P<pk>[\d-]+)/$', WindfarmRetrieveUpdateDestroyAPIView.as_view()),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

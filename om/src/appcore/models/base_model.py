@@ -8,14 +8,14 @@ class BaseModel(models.Model):
 
 #    def save(self, *args, **kwargs):
 
-    @staticmethod
-    def create(self, *args, **kwargs):
-        return self.objects.create(*args, **kwargs)
-
-    @staticmethod
-    def all(self, *args, **kwargs):
-        return self.objects.all(*args, **kwargs)
-
-    @staticmethod
-    def find(self, id, *args, **kwargs):
-        return self.objects.filter(id=id, *args, **kwargs)
+#    @staticmethod
+#    def create(*args, **kwargs):
+#        return self.objects.create(*args, **kwargs)
+#
+#    @staticmethod
+#    def all(*args, **kwargs):
+#        return self.objects.all(*args, **kwargs)
+#
+#    @staticmethod
+#    def find(id, *args, **kwargs):
+#        return self.objects.filter(id=id, *args, **kwargs)

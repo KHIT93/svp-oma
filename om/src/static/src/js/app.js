@@ -1,22 +1,35 @@
 
-window._ = require('lodash');
 
 import Vue from 'vue';
 import axios from 'axios';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 
+import AppNavigation from './components/AppNavigation.vue';
+
 
 window.Vue = Vue;
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 
+let Cookies = require('js-cookie');
+
+/**
+ * Import Vue components to use for Vue-Router
+ */
+import Home from './pages/Home.vue';
+import WindFarm from './pages/WindFarm.vue';
+import NotFound from './pages/NotFound.vue';
+
+/**
+ * Define routes used with Vue-Router
+ */
 const routes = [
-    //{ path: '/', component: Home, name: 'home' },
+    { path: '/', component: Home, name: 'home' },
 
 
     /** Catchall route to display 404 page */
-    //{ path: '*', component: NotFound }
+    { path: '*', component: NotFound, name: 'not_found' }
 ];
 
 const router = new VueRouter({
@@ -55,23 +68,7 @@ function redirect(url) {
 const app = new Vue({
     el: '#app',
     router,
-    data:
-    {
-        menu: [
-            { icon: 'home', title: 'Home', link: '/'},
-            { icon: 'shopping_cart', title: 'Orders', link: '/orders'},
-            { icon: 'contacts', title: 'Customers', link: '/customers'},
-            { icon: 'book', title: 'Products', link: '/products'},
-            { icon: 'loyalty', title: 'Categories', link: '/categories'},
-            { icon: 'description', title: 'Pages', model: false, children: [
-                { icon: 'description', title: 'Web pages', link: '/pages'},
-                { icon: 'description', title: 'Menu', link: '/menu'},
-            ]},
-            { icon: 'settings', title: 'Configuration', model: false, children: [
-                { icon: 'settings', title: 'Taxes', link: '/configuration/taxes'}
-            ]},
-        ],
-        drawer: true,
-        mini: false,
-    }
+    components: {
+        'v-oma-navigation': AppNavigation
+    },
 });
