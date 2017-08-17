@@ -13,14 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from windturbine_data import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^windturbinedata/', views.WindturbineDataList.as_view()),
+    url(r'^windturbinedata/', include('windturbine_data.urls', namespace='windturbinedata')),
+    url(r'^windturbinesetting/', include('windturbine_settings.urls', namespace='windturbinesetting')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
