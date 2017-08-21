@@ -30,6 +30,10 @@ https://www.codingforentrepreneurs.com/blog/create-a-blank-django-project/
 ```
 ## IP addresser
 Application server 1: 10.135.17.51
+
 Application server 2: 10.135.17.154
+
 PostgreSQL server:    10.135.17.153
+
 Load Balancer:        10.135.17.50
+
