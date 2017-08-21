@@ -8,7 +8,7 @@ from .serializers import WindturbineDataSerializer
 import requests
 
 # windturbinedata/
-class WindturbineDataList():
+class WindturbineDataList(APIView):
 
     def get(self,request):
         data = WindturbineData.objects.all()
