@@ -9,7 +9,7 @@ class WindTurbine(BaseModel):
     windfarm = models.ForeignKey(WindFarm)
 
     def __str__(self):
-        if name == None:
+        if self.name == None:
             return str(self.id)
         else:
             return str(self.name)

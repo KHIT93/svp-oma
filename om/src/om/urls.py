@@ -23,16 +23,26 @@ from rest_framework import routers
 from appcore.views.user_view_set import UserViewSet
 from appcore.views.group_view_set import GroupViewSet
 from turbinemanagement.views.windfarm_api_views import (WindfarmListCreateAPIView, WindfarmRetrieveUpdateDestroyAPIView)
+from turbinemanagement.views.windfarm_api_viewset import WindfarmAPIViewset
+from turbinemanagement.views.windturbine_api_viewset import WindturbineAPIViewset
+from turbinemanagement.views.windturbine_data_api_viewset import WindturbineDataAPIViewset
+from turbinemanagement.views.windturbine_error_api_viewset import WindturbineErrorAPIViewset
+from turbinemanagement.views.windturbine_setting_api_viewset import WindturbineSettingAPIViewset
+from turbinemanagement.views.windfarm_status_view import WindfarmStatusView
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+router.register(r'windfarms', WindfarmAPIViewset)
+router.register(r'windturbines', WindturbineAPIViewset)
+router.register(r'windturbine-data', WindturbineDataAPIViewset)
+router.register(r'windturbine-errors', WindturbineErrorAPIViewset)
+router.register(r'windturbine-settings', WindturbineSettingAPIViewset)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardView.as_view()),
     url(r'^webapi/', include(router.urls)),
-    url(r'^webapi/windfarms', WindfarmListCreateAPIView.as_view()),
-    url(r'^webapi/windfarms/(?P<pk>[\d-]+)/$', WindfarmRetrieveUpdateDestroyAPIView.as_view()),
+    url(r'^webapi/windfarm-status/', WindfarmStatusView.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

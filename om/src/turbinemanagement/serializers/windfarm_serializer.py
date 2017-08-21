@@ -5,3 +5,5 @@ class WindfarmSerializer(serializers.ModelSerializer):
     class Meta:
         model = WindFarm
         fields = ('id', 'name')
+
+    
