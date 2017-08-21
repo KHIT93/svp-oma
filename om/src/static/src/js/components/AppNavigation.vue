@@ -2,14 +2,24 @@
     <div>
         <v-navigation-drawer persistent clipped enable-resize-watcher light v-model="drawer" :mini-variant.sync="mini" height="100%">
             <v-list class="pt-0" dense>
-                <template v-for="(item, i) in menu">
-                    <v-list-tile :to="item.link" router exact ripple>
-                        <v-list-tile-action v-if="item.icon">
-                            <v-icon>{{ item.icon }}</v-icon>
+                <v-list-tile to="/">
+                    <v-list-tile-action>
+                        <v-icon>home</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>
+                            Dashboard
+                        </v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <template v-for="(item, i) in data">
+                    <v-list-tile :to="'/windfarms/'+item.id" router exact ripple>
+                        <v-list-tile-action>
+                            <v-icon>settings_input_antenna</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
                             <v-list-tile-title>
-                                {{ item.title }}
+                                {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}
                                 <template v-if="item.info">
                                     <v-chip v-if="item.info.error" class="red white--text chip--x--small">Error</v-chip>
                                     <v-chip v-if="item.info.messages" class="orange white--text chip--x--small">{{ item.info.messages }}</v-chip>
@@ -18,16 +28,34 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </template>
-                <v-list-tile>
-                    <v-list-tile-action>
-                        <v-icon>add</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-list-tile-title>
-                            Create WindFarm
-                        </v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
+
+                <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
+                    <v-list-tile slot="activator">
+                        <v-list-tile-action>
+                            <v-icon>add</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                            <v-list-tile-title>
+                                Create WindFarm
+                            </v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    <v-card>
+                        <v-toolbar dark class="red">
+                            <v-btn icon @click.native="dialog = false" dark>
+                                <v-icon>close</v-icon>
+                            </v-btn>
+                            <v-toolbar-title>Create new Windfarm</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-toolbar-items>
+                                <v-btn dark flat @click.native="createWindFarm">Save</v-btn>
+                            </v-toolbar-items>
+                        </v-toolbar>
+                        <v-card-text>
+                            <v-text-field label="Name" v-model="new_windfarm_name"></v-text-field>
+                        </v-card-text>
+                    </v-card>
+                </v-dialog>
             </v-list>
         </v-navigation-drawer>
         <v-toolbar class="red" dark>
@@ -47,6 +75,7 @@
                 </v-list>
             </v-menu>
         </v-toolbar>
+
     </div>
 </template>
 <script>
@@ -54,7 +83,6 @@
         data: function() {
             return {
                 menu: [
-                    { icon: 'home', title: 'Dashboard', link: '/'},
                     { icon: 'settings_input_antenna', title: 'Alpha', link: '/windfarms/1', info: {
                         error: true,
                         messages: null
@@ -63,17 +91,31 @@
                     { icon: 'settings_input_antenna', title: 'Charlie', link: '/windfarms/3', info: {
                         error: false,
                         messages: 3
-                    }},
-                    { icon: 'settings_input_antenna', title: 'Delta', link: '/windfarms/4'}
+                    }}
                 ],
+                data: [],
                 drawer: true,
                 mini: false,
                 interval: null,
+                dialog: false,
+                new_windfarm_name: "",
             }
         },
         methods: {
             loadData() {
                 console.log('Polling server from navigation');
+                axios.get('/webapi/windfarms/simple').then(response => {
+                    console.log(response.data.results);
+                    this.data = response.data.results;
+                });
+            },
+            createWindFarm() {
+                console.log('Posting new windfarm to server');
+                axios.post('/webapi/windfarms/', { name: this.new_windfarm_name }).then(response => {
+                    console.log(response);
+                    this.dialog = false;
+                    this.new_windfarm_name = "";
+                });
             }
         },
         mounted() {
@@ -81,7 +123,7 @@
 
             this.interval = setInterval(function () {
                 this.loadData();
-            }.bind(this), 30000);
+            }.bind(this), 10000);
         },
         beforeDestroy() {
             clearInterval(this.interval);

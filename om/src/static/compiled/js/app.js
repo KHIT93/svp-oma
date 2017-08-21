@@ -892,7 +892,7 @@ var Cookies = __webpack_require__(37);
 /**
  * Define routes used with Vue-Router
  */
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__pages_Home_vue___default.a, name: 'home' },
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__pages_Home_vue___default.a, name: 'home' }, { path: '/windfarms/:id', component: __WEBPACK_IMPORTED_MODULE_6__pages_WindFarm_vue___default.a, name: 'windfarms.detail', props: true },
 
 /** Catchall route to display 404 page */
 { path: '*', component: __WEBPACK_IMPORTED_MODULE_7__pages_NotFound_vue___default.a, name: 'not_found' }];
@@ -25926,25 +25926,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            menu: [{ icon: 'home', title: 'Dashboard', link: '/' }, { icon: 'settings_input_antenna', title: 'Alpha', link: '/windfarms/1', info: {
+            menu: [{ icon: 'settings_input_antenna', title: 'Alpha', link: '/windfarms/1', info: {
                     error: true,
                     messages: null
                 } }, { icon: 'settings_input_antenna', title: 'Bravo', link: '/windfarms/2' }, { icon: 'settings_input_antenna', title: 'Charlie', link: '/windfarms/3', info: {
                     error: false,
                     messages: 3
-                } }, { icon: 'settings_input_antenna', title: 'Delta', link: '/windfarms/4' }],
+                } }],
+            data: [],
             drawer: true,
             mini: false,
-            interval: null
+            interval: null,
+            dialog: false,
+            new_windfarm_name: ""
         };
     },
     methods: {
         loadData: function loadData() {
+            var _this = this;
+
             console.log('Polling server from navigation');
+            axios.get('/webapi/windfarms/simple').then(function (response) {
+                console.log(response.data.results);
+                _this.data = response.data.results;
+            });
+        },
+        createWindFarm: function createWindFarm() {
+            var _this2 = this;
+
+            console.log('Posting new windfarm to server');
+            axios.post('/webapi/windfarms/', { name: this.new_windfarm_name }).then(function (response) {
+                console.log(response);
+                _this2.dialog = false;
+                _this2.new_windfarm_name = "";
+            });
         }
     },
     mounted: function mounted() {
@@ -25952,7 +26000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.interval = setInterval(function () {
             this.loadData();
-        }.bind(this), 30000);
+        }.bind(this), 10000);
     },
     beforeDestroy: function beforeDestroy() {
         clearInterval(this.interval);
@@ -25990,20 +26038,75 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "dense": ""
     }
-  }, [_vm._l((_vm.menu), function(item, i) {
+  }, [_c('v-list-tile', {
+    attrs: {
+      "to": "/"
+    }
+  }, [_c('v-list-tile-action', [_c('v-icon', [_vm._v("home")])], 1), _vm._v(" "), _c('v-list-tile-content', [_c('v-list-tile-title', [_vm._v("\n                        Dashboard\n                    ")])], 1)], 1), _vm._v(" "), _vm._l((_vm.data), function(item, i) {
     return [_c('v-list-tile', {
       attrs: {
-        "to": item.link,
+        "to": '/windfarms/' + item.id,
         "router": "",
         "exact": "",
         "ripple": ""
       }
-    }, [(item.icon) ? _c('v-list-tile-action', [_c('v-icon', [_vm._v(_vm._s(item.icon))])], 1) : _vm._e(), _vm._v(" "), _c('v-list-tile-content', [_c('v-list-tile-title', [_vm._v("\n                            " + _vm._s(item.title) + "\n                            "), (item.info) ? [(item.info.error) ? _c('v-chip', {
+    }, [_c('v-list-tile-action', [_c('v-icon', [_vm._v("settings_input_antenna")])], 1), _vm._v(" "), _c('v-list-tile-content', [_c('v-list-tile-title', [_vm._v("\n                            " + _vm._s((item.name) ? item.id + ' (' + item.name + ')' : item.id) + "\n                            "), (item.info) ? [(item.info.error) ? _c('v-chip', {
       staticClass: "red white--text chip--x--small"
     }, [_vm._v("Error")]) : _vm._e(), _vm._v(" "), (item.info.messages) ? _c('v-chip', {
       staticClass: "orange white--text chip--x--small"
     }, [_vm._v(_vm._s(item.info.messages))]) : _vm._e()] : _vm._e()], 2)], 1)], 1)]
-  }), _vm._v(" "), _c('v-list-tile', [_c('v-list-tile-action', [_c('v-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('v-list-tile-content', [_c('v-list-tile-title', [_vm._v("\n                        Create WindFarm\n                    ")])], 1)], 1)], 2)], 1), _vm._v(" "), _c('v-toolbar', {
+  }), _vm._v(" "), _c('v-dialog', {
+    attrs: {
+      "fullscreen": "",
+      "transition": "dialog-bottom-transition",
+      "overlay": false
+    },
+    model: {
+      value: (_vm.dialog),
+      callback: function($$v) {
+        _vm.dialog = $$v
+      },
+      expression: "dialog"
+    }
+  }, [_c('v-list-tile', {
+    slot: "activator"
+  }, [_c('v-list-tile-action', [_c('v-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('v-list-tile-content', [_c('v-list-tile-title', [_vm._v("\n                            Create WindFarm\n                        ")])], 1)], 1), _vm._v(" "), _c('v-card', [_c('v-toolbar', {
+    staticClass: "red",
+    attrs: {
+      "dark": ""
+    }
+  }, [_c('v-btn', {
+    attrs: {
+      "icon": "",
+      "dark": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.dialog = false
+      }
+    }
+  }, [_c('v-icon', [_vm._v("close")])], 1), _vm._v(" "), _c('v-toolbar-title', [_vm._v("Create new Windfarm")]), _vm._v(" "), _c('v-spacer'), _vm._v(" "), _c('v-toolbar-items', [_c('v-btn', {
+    attrs: {
+      "dark": "",
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.createWindFarm($event)
+      }
+    }
+  }, [_vm._v("Save")])], 1)], 1), _vm._v(" "), _c('v-card-text', [_c('v-text-field', {
+    attrs: {
+      "label": "Name"
+    },
+    model: {
+      value: (_vm.new_windfarm_name),
+      callback: function($$v) {
+        _vm.new_windfarm_name = $$v
+      },
+      expression: "new_windfarm_name"
+    }
+  })], 1)], 1)], 1)], 2)], 1), _vm._v(" "), _c('v-toolbar', {
     staticClass: "red",
     attrs: {
       "dark": ""
@@ -26283,12 +26386,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            interval: null
+            interval: null,
+            data: []
         };
     },
     methods: {
         loadData: function loadData() {
+            var _this = this;
+
             console.log('Polling server from dashboard component');
+            axios.get('/webapi/windfarms/simple').then(function (response) {
+                console.log(response.data.results);
+                _this.data = response.data.results;
+            });
         }
     },
     mounted: function mounted() {
@@ -26317,9 +26427,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "row": "",
       "wrap": ""
     }
-  }, _vm._l((12), function(n) {
+  }, _vm._l((_vm.data), function(item) {
     return _c('v-flex', {
-      key: n,
+      key: item.id,
       attrs: {
         "md4": "",
         "sm6": "",
@@ -26330,10 +26440,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "hover": ""
       }
-    }, [_c('v-card-text', [_vm._v("WindFarm " + _vm._s(n))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
+    }, [_c('v-card-text', [_vm._v("WindFarm " + _vm._s((item.name) ? item.id + ' (' + item.name + ')' : item.id))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
       attrs: {
         "flat": "",
-        "to": "n"
+        "to": '/windfarms/' + item.id
       }
     }, [_vm._v("Show Details")])], 1)], 1)], 1)
   }))], 1)], 1)
@@ -26396,15 +26506,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['id'],
+    data: function data() {
+        return {
+            interval: null,
+            data: []
+        };
+    },
+    methods: {
+        loadData: function loadData() {
+            var _this = this;
+
+            console.log('Polling server from windfarm component with id ' + this.id);
+            axios.get('/webapi/windfarms/' + this.id).then(function (response) {
+                _this.data = response.data.windturbine_set;
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.loadData();
+
+        this.interval = setInterval(function () {
+            this.loadData();
+        }.bind(this), 5000);
+    },
+    beforeDestroy: function beforeDestroy() {
+        clearInterval(this.interval);
+    }
+});
 
 /***/ }),
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c("div")
+  return _c('div', [_c('v-container', {
+    attrs: {
+      "fluid": ""
+    }
+  }, [_c('v-layout', {
+    attrs: {
+      "row": "",
+      "wrap": ""
+    }
+  }, _vm._l((_vm.data), function(item) {
+    return _c('v-flex', {
+      key: item.id,
+      attrs: {
+        "md4": "",
+        "sm6": "",
+        "xs12": ""
+      }
+    }, [_c('v-card', {
+      staticClass: "mb-2",
+      attrs: {
+        "hover": ""
+      }
+    }, [_c('v-card-text', [_vm._v("WindTurbine " + _vm._s((item.name) ? item.id + ' (' + item.name + ')' : item.id))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
+      attrs: {
+        "flat": ""
+      }
+    }, [_vm._v("Show details")]), _vm._v(" "), _c('v-btn', {
+      attrs: {
+        "flat": ""
+      }
+    }, [_vm._v("Start")]), _vm._v(" "), _c('v-btn', {
+      attrs: {
+        "flat": ""
+      }
+    }, [_vm._v("Stop")]), _vm._v(" "), _c('small', [_vm._v("Last reply 5 miuntes ago")])], 1)], 1)], 1)
+  }))], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

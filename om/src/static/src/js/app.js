@@ -26,6 +26,7 @@ import NotFound from './pages/NotFound.vue';
  */
 const routes = [
     { path: '/', component: Home, name: 'home' },
+    { path: '/windfarms/:id', component: WindFarm, name: 'windfarms.detail', props:true },
 
 
     /** Catchall route to display 404 page */
