@@ -4,23 +4,16 @@ import IRSensor
 import RPi.GPIO as GPIO
 import socket
 import ADC
-import mysql.connector
+import pymysql.cursors
 
 
-cnx = mysql.connector.connect(user='root', password='P@ssw0rd',
+cnx = pymysql.connect(user='root', password='P@ssw0rd',
                               host='127.0.0.1',
-                              database='SensorData')
+                              database='control_db')
 cursor = cnx.cursor()
-#TABLE = ("CREATE TABLE `data` (`id` int(10) NOT NULL AUTO_INCREMENT,`rpm` int(5) NOT NULL,`temp` float(4) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB")
-add_data = ("INSERT INTO data "
-			"(rpm, temp) "
-			"VALUES (%s, %s)")
-
-#cursor.execute(TABLE)
-#cursor.close()
-#cnx.close()
-
-
+add_data = ("INSERT INTO windturbine_data_windturbinedata "
+			"(windturbine_id, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
+			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
 GPIO.cleanup()
 
@@ -33,50 +26,16 @@ motor = Motor.Motor(3,5,11,1000,25.0)
 temperature = 0
 Motor.run(motor)
 rpm = 0.0
-while temperature < 28:
+while temperature < 30:
 	value = ADC.readadc(adc)
 	volts = (value * 3.3) / 1024
 	temperature = volts / (10.0 / 1000)
-	print(temperature)
 	rpm = IRSensor.read_rpm()
-	print(rpm)
-
-	data_data = (rpm, temperature)
+	print(temperature)
+	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, 20.0)
 	cursor.execute(add_data, data_data)
-	time.sleep(0.5)
+	time.sleep(0.25)
 cnx.commit()
 cursor.close()
 cnx.close()
-'''
-while rpm < 2000:
-	rpm = IRSensor.read_rpm()
-	time.sleep(1)
-	print(rpm)
-	Motor.changespeed(motor, motor.duty+0.1)
-
-
-TCP_IP = '0.0.0.0'
-TCP_PORT = 5005
-BUFFER_SIZE = 1024  # Normally 1024, but we want fast response
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((TCP_IP, TCP_PORT))
-s.listen(1)
-
-while True:
-	print("waiting..")
-	conn, addr = s.accept()
-	print('Connection address:', addr)
-	data = conn.recv(BUFFER_SIZE)
-	if data: 
-		print("received data:", data)
-		Motor.changespeed(motor, float(data))
-	conn.close()
-'''
-
-
-# The channel from where we want to read on the ADC chip
-
  
-
-	
