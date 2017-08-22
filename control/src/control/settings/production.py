@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = '70@=fwo6@!_swsgx@*8zzz085+ktyq1o9utm#ono^_c%9er0w-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'windturbine_data',
+    'windturbine_settings',
+    'control_logs',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +79,12 @@ WSGI_APPLICATION = 'control.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'control_db',
+        'USER': 'root',
+        'PASSWORD': 'P@ssw0rd',
+        'HOST': 'localhost',
+        'PORT': '8000',
     }
 }
 
