@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-container fluid>
-            <v-layout row wrap>
+            <v-layout row wrap v-if="isNumber(id)">
                 <v-flex md4 sm6 xs12 v-for="item in data" :key="item.id">
                     <v-card hover class="mb-2">
                         <v-card-text>WindTurbine {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}</v-card-text>
@@ -9,9 +9,16 @@
                             <v-btn flat>Show details</v-btn>
                             <v-btn flat>Start</v-btn>
                             <v-btn flat>Stop</v-btn>
-                            <small>Last reply 5 miuntes ago</small>
+                            <small :title="item.last_connection">
+                                {{ (item.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(item.last_connection).fromNow() }}
+                            </small>
                         </v-card-actions>
                     </v-card>
+                </v-flex>
+            </v-layout>
+            <v-layout v-else>
+                <v-flex xs12>
+                    You have specified and invalid identifier for a Windfarm. Windfarms are identified by their ID, therefore you need to provide a numeric value
                 </v-flex>
             </v-layout>
         </v-container>
@@ -29,15 +36,24 @@
         },
         methods: {
             loadData() {
-                console.log('Polling server from windfarm component with id ' + this.id);
-                axios.get('/webapi/windfarms/' + this.id).then(response => {
-                    this.data = response.data.windturbine_set;
-                })
+                if(!isNaN(+this.id) && isFinite(this.id)) {
+                    console.log('Polling server from windfarm component with id ' + this.id);
+                    axios.get('/webapi/windfarms/' + this.id).then(response => {
+                        this.data = response.data.windturbine_set;
+                    });
+                }
+            },
+            isNumber(n) {
+                return !isNaN(+n) && isFinite(n);
+            },
+            moment(str) {
+                return window.moment(str);
             }
         },
         mounted() {
-            this.loadData();
-
+            if(!isNaN(+this.id) && isFinite(this.id)) {
+                this.loadData();
+            }
             this.interval = setInterval(function () {
                 this.loadData();
             }.bind(this), 5000);

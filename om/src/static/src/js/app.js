@@ -4,6 +4,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
+import * as moment from 'moment';
 
 import AppNavigation from './components/AppNavigation.vue';
 
@@ -59,6 +60,8 @@ window.axios.interceptors.request.use(request => {
 function redirect(url) {
     window.location.href = url;
 }
+
+window.moment = moment;
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
