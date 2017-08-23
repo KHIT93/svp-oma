@@ -12,7 +12,7 @@ cnx = pymysql.connect(user='root', password='P@ssw0rd',
                               database='control_db')
 cursor = cnx.cursor()
 add_data = ("INSERT INTO windturbine_data_windturbinedata "
-			"(windturbine_id, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
+			"(windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
 			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
 GPIO.cleanup()
