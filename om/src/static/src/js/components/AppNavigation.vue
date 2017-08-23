@@ -12,6 +12,16 @@
                         </v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+                <v-list-tile to="/log">
+                    <v-list-tile-action>
+                        <v-icon>archive</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>
+                            Audit Log
+                        </v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
                 <template v-for="(item, i) in data">
                     <v-list-tile :to="'/windfarms/'+item.id" router exact ripple>
                         <v-list-tile-action>
