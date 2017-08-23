@@ -56,6 +56,28 @@
                         </v-card-text>
                     </v-card>
                 </v-dialog>
+                <v-dialog v-model="dialog_windturbine" fullscreen transition="dialog-bottom-transition" :overlay="false">
+                    <v-list-tile slot="activator">
+                        <v-list-tile-action>
+                            <v-icon>add</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                            <v-list-tile-title>
+                                Add WindTurbine
+                            </v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    <v-card>
+                        <v-toolbar dark class="red">
+                            <v-btn icon @click.native="dialog_windturbine = false" dark>
+                                <v-icon>close</v-icon>
+                            </v-btn>
+                            <v-toolbar-title>Add WindTurbine to Windfarm</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                        </v-toolbar>
+                        <v-create-windturbine-form @saved="dialog_windturbine = false"></v-create-windturbine-form>
+                    </v-card>
+                </v-dialog>
             </v-list>
         </v-navigation-drawer>
         <v-toolbar class="red" dark>
@@ -79,32 +101,23 @@
     </div>
 </template>
 <script>
+    import CreateWindTurbineForm from '../components/CreateWindTurbineForm.vue';
     export default {
         data: function() {
             return {
-                menu: [
-                    { icon: 'settings_input_antenna', title: 'Alpha', link: '/windfarms/1', info: {
-                        error: true,
-                        messages: null
-                    }},
-                    { icon: 'settings_input_antenna', title: 'Bravo', link: '/windfarms/2'},
-                    { icon: 'settings_input_antenna', title: 'Charlie', link: '/windfarms/3', info: {
-                        error: false,
-                        messages: 3
-                    }}
-                ],
                 data: [],
                 drawer: true,
                 mini: false,
                 interval: null,
                 dialog: false,
+                dialog_windturbine: false,
                 new_windfarm_name: "",
             }
         },
         methods: {
             loadData() {
                 console.log('Polling server from navigation');
-                axios.get('/webapi/windfarms/simple').then(response => {
+                axios.get('/webapi/windfarms/simple/').then(response => {
                     console.log(response.data.results);
                     this.data = response.data.results;
                 });
@@ -117,6 +130,9 @@
                     this.new_windfarm_name = "";
                 });
             }
+        },
+        components: {
+            'v-create-windturbine-form': CreateWindTurbineForm
         },
         mounted() {
             this.loadData();

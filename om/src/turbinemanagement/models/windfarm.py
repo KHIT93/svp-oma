@@ -5,7 +5,7 @@ class WindFarm(BaseModel):
     name = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        if self.name == None:
+        if self.name == None or self.name == "":
             return str(self.id)
         else:
-            return str(self.name)
+            return str(str(self.id) + " (" + self.name + ")")

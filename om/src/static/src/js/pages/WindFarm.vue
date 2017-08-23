@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-container fluid>
-            <v-layout row wrap v-if="isNumber(id)">
+        <v-container fluid v-if="isNumber(id)">
+            <v-layout row wrap>
                 <v-flex md4 sm6 xs12 v-for="item in data" :key="item.id">
                     <v-card hover class="mb-2">
                         <v-card-text>WindTurbine {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}</v-card-text>
@@ -16,16 +16,13 @@
                     </v-card>
                 </v-flex>
             </v-layout>
-            <v-layout v-else>
-                <v-flex xs12>
-                    You have specified and invalid identifier for a Windfarm. Windfarms are identified by their ID, therefore you need to provide a numeric value
-                </v-flex>
-            </v-layout>
         </v-container>
+        <v-not-found v-else></v-not-found>
     </div>
 </template>
 
 <script>
+    import NotFound from './NotFound.vue';
     export default {
         props: ['id'],
         data: function() {
@@ -34,11 +31,14 @@
                 data: [],
             }
         },
+        components: {
+            'v-not-found': NotFound
+        },
         methods: {
             loadData() {
                 if(!isNaN(+this.id) && isFinite(this.id)) {
                     console.log('Polling server from windfarm component with id ' + this.id);
-                    axios.get('/webapi/windfarms/' + this.id).then(response => {
+                    axios.get('/webapi/windfarms/' + this.id + "/").then(response => {
                         this.data = response.data.windturbine_set;
                     });
                 }

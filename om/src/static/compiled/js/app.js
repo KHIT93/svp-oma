@@ -41710,6 +41710,30 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CreateWindTurbineForm_vue__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CreateWindTurbineForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CreateWindTurbineForm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41791,21 +41815,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            menu: [{ icon: 'settings_input_antenna', title: 'Alpha', link: '/windfarms/1', info: {
-                    error: true,
-                    messages: null
-                } }, { icon: 'settings_input_antenna', title: 'Bravo', link: '/windfarms/2' }, { icon: 'settings_input_antenna', title: 'Charlie', link: '/windfarms/3', info: {
-                    error: false,
-                    messages: 3
-                } }],
             data: [],
             drawer: true,
             mini: false,
             interval: null,
             dialog: false,
+            dialog_windturbine: false,
             new_windfarm_name: ""
         };
     },
@@ -41814,7 +41833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             console.log('Polling server from navigation');
-            axios.get('/webapi/windfarms/simple').then(function (response) {
+            axios.get('/webapi/windfarms/simple/').then(function (response) {
                 console.log(response.data.results);
                 _this.data = response.data.results;
             });
@@ -41829,6 +41848,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.new_windfarm_name = "";
             });
         }
+    },
+    components: {
+        'v-create-windturbine-form': __WEBPACK_IMPORTED_MODULE_0__components_CreateWindTurbineForm_vue___default.a
     },
     mounted: function mounted() {
         this.loadData();
@@ -41941,7 +41963,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "new_windfarm_name"
     }
-  })], 1)], 1)], 1)], 2)], 1), _vm._v(" "), _c('v-toolbar', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('v-dialog', {
+    attrs: {
+      "fullscreen": "",
+      "transition": "dialog-bottom-transition",
+      "overlay": false
+    },
+    model: {
+      value: (_vm.dialog_windturbine),
+      callback: function($$v) {
+        _vm.dialog_windturbine = $$v
+      },
+      expression: "dialog_windturbine"
+    }
+  }, [_c('v-list-tile', {
+    slot: "activator"
+  }, [_c('v-list-tile-action', [_c('v-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('v-list-tile-content', [_c('v-list-tile-title', [_vm._v("\n                            Add WindTurbine\n                        ")])], 1)], 1), _vm._v(" "), _c('v-card', [_c('v-toolbar', {
+    staticClass: "red",
+    attrs: {
+      "dark": ""
+    }
+  }, [_c('v-btn', {
+    attrs: {
+      "icon": "",
+      "dark": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.dialog_windturbine = false
+      }
+    }
+  }, [_c('v-icon', [_vm._v("close")])], 1), _vm._v(" "), _c('v-toolbar-title', [_vm._v("Add WindTurbine to Windfarm")]), _vm._v(" "), _c('v-spacer')], 1), _vm._v(" "), _c('v-create-windturbine-form', {
+    on: {
+      "saved": function($event) {
+        _vm.dialog_windturbine = false
+      }
+    }
+  })], 1)], 1)], 2)], 1), _vm._v(" "), _c('v-toolbar', {
     staticClass: "red",
     attrs: {
       "dark": ""
@@ -42230,7 +42288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             console.log('Polling server from dashboard component');
-            axios.get('/webapi/windfarms/simple').then(function (response) {
+            axios.get('/webapi/windfarms/simple/').then(function (response) {
                 console.log(response.data.results);
                 _this.data = response.data.results;
             });
@@ -42337,6 +42395,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NotFound_vue__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NotFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NotFound_vue__);
 //
 //
 //
@@ -42360,10 +42420,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['id'],
@@ -42373,13 +42430,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             data: []
         };
     },
+    components: {
+        'v-not-found': __WEBPACK_IMPORTED_MODULE_0__NotFound_vue___default.a
+    },
     methods: {
         loadData: function loadData() {
             var _this = this;
 
             if (!isNaN(+this.id) && isFinite(this.id)) {
                 console.log('Polling server from windfarm component with id ' + this.id);
-                axios.get('/webapi/windfarms/' + this.id).then(function (response) {
+                axios.get('/webapi/windfarms/' + this.id + "/").then(function (response) {
                     _this.data = response.data.windturbine_set;
                 });
             }
@@ -42409,11 +42469,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('v-container', {
+  return _c('div', [(_vm.isNumber(_vm.id)) ? _c('v-container', {
     attrs: {
       "fluid": ""
     }
-  }, [(_vm.isNumber(_vm.id)) ? _c('v-layout', {
+  }, [_c('v-layout', {
     attrs: {
       "row": "",
       "wrap": ""
@@ -42448,11 +42508,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "title": item.last_connection
       }
     }, [_vm._v("\n                            " + _vm._s((item.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + _vm.moment(item.last_connection).fromNow()) + "\n                        ")])], 1)], 1)], 1)
-  })) : _c('v-layout', [_c('v-flex', {
-    attrs: {
-      "xs12": ""
-    }
-  }, [_vm._v("\n                You have specified and invalid identifier for a Windfarm. Windfarms are identified by their ID, therefore you need to provide a numeric value\n            ")])], 1)], 1)], 1)
+  }))], 1) : _c('v-not-found')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -42551,6 +42607,460 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(171),
+  /* template */
+  __webpack_require__(174),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/kenneth/Code/svp-oma/om/src/static/src/js/components/CreateWindTurbineForm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CreateWindTurbineForm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3a162de9", Component.options)
+  } else {
+    hotAPI.reload("data-v-3a162de9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_Form__ = __webpack_require__(172);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            form: new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */]({
+                name: "",
+                windfarm: null,
+                longtitude: 0,
+                latitude: 0,
+                ip_address: "0.0.0.0"
+            }),
+            windfarms: []
+        };
+    },
+    mounted: function mounted() {
+        this.getWindFarms();
+    },
+
+    methods: {
+        getWindFarms: function getWindFarms() {
+            var _this = this;
+
+            axios.get('/webapi/windfarms/simple/').then(function (response) {
+                console.log('Getting windfarms from webapi');
+                _this.windfarms = response.data.results;
+            });
+        },
+        save: function save() {
+            var _this2 = this;
+
+            this.form.post('/webapi/windturbines/').then(function (response) {
+                console.log('Posting to server from create-windturbine-form');
+                _this2.$emit('saved');
+            }).catch(function (error) {
+                console.log('Error while posting to server from create-windturbine-form');
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 172 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Errors__ = __webpack_require__(173);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Form = function () {
+    /**
+     * Create a new Form instance.
+     *
+     * @param {object} data
+     */
+    function Form(data) {
+        _classCallCheck(this, Form);
+
+        this.originalData = data;
+
+        for (var field in data) {
+            this[field] = data[field];
+        }
+
+        this.errors = new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* default */]();
+    }
+
+    /**
+     * Fetch all relevant data for the form.
+     */
+
+
+    _createClass(Form, [{
+        key: 'data',
+        value: function data() {
+            var data = {};
+
+            for (var property in this.originalData) {
+                data[property] = this[property];
+            }
+
+            return { data: data };
+        }
+
+        /**
+         * Reset the form fields.
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            for (var field in this.originalData) {
+                this[field] = '';
+            }
+
+            this.errors.clear();
+        }
+
+        /**
+         * Send a POST request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: 'post',
+        value: function post(url) {
+            return this.submit('post', url);
+        }
+
+        /**
+         * Send a PUT request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: 'put',
+        value: function put(url) {
+            return this.submit('put', url);
+        }
+
+        /**
+         * Send a PATCH request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: 'patch',
+        value: function patch(url) {
+            return this.submit('patch', url);
+        }
+
+        /**
+         * Send a DELETE request to the given URL.
+         * .
+         * @param {string} url
+         */
+
+    }, {
+        key: 'delete',
+        value: function _delete(url) {
+            return this.submit('delete', url);
+        }
+
+        /**
+         * Submit the form.
+         *
+         * @param {string} requestType
+         * @param {string} url
+         */
+
+    }, {
+        key: 'submit',
+        value: function submit(requestType, url) {
+            var _this = this;
+
+            return new Promise(function (resolve, reject) {
+                axios[requestType](url, _this.data()).then(function (response) {
+                    _this.onSuccess(response.data);
+
+                    resolve(response.data);
+                }).catch(function (error) {
+                    _this.onFail(error.response.data);
+
+                    reject(error.response.data);
+                });
+            });
+        }
+
+        /**
+         * Handle a successful form submission.
+         *
+         * @param {object} data
+         */
+
+    }, {
+        key: 'onSuccess',
+        value: function onSuccess(data) {
+            console.log(data);
+            this.reset();
+        }
+
+        /**
+         * Handle a failed form submission.
+         *
+         * @param {object} errors
+         */
+
+    }, {
+        key: 'onFail',
+        value: function onFail(errors) {
+            this.errors.record(errors);
+        }
+    }]);
+
+    return Form;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Form);
+
+/***/ }),
+/* 173 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Errors = function () {
+    /**
+     * Create a new Errors instance.
+     */
+    function Errors() {
+        _classCallCheck(this, Errors);
+
+        this.errors = {};
+    }
+
+    /**
+     * Determine if an errors exists for the given field.
+     *
+     * @param {string} field
+     */
+
+
+    _createClass(Errors, [{
+        key: "has",
+        value: function has(field) {
+            return this.errors.hasOwnProperty(field);
+        }
+
+        /**
+         * Determine if we have any errors.
+         */
+
+    }, {
+        key: "any",
+        value: function any() {
+            return Object.keys(this.errors).length > 0;
+        }
+
+        /**
+         * Retrieve the error message for a field.
+         *
+         * @param {string} field
+         */
+
+    }, {
+        key: "get",
+        value: function get(field) {
+            if (this.errors[field]) {
+                return this.errors[field][0];
+            }
+        }
+
+        /**
+         * Record the new errors.
+         *
+         * @param {object} errors
+         */
+
+    }, {
+        key: "record",
+        value: function record(errors) {
+            this.errors = errors;
+        }
+
+        /**
+         * Clear one or all error fields.
+         *
+         * @param {string|null} field
+         */
+
+    }, {
+        key: "clear",
+        value: function clear(field) {
+            if (field) {
+                delete this.errors[field];
+
+                return;
+            }
+
+            this.errors = {};
+        }
+    }]);
+
+    return Errors;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Errors);
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-card-text', [_c('v-text-field', {
+    attrs: {
+      "label": "Name"
+    },
+    model: {
+      value: (_vm.form.name),
+      callback: function($$v) {
+        _vm.form.name = $$v
+      },
+      expression: "form.name"
+    }
+  }), _vm._v(" "), _c('v-select', {
+    attrs: {
+      "items": _vm.windfarms,
+      "label": "Select Windfarm",
+      "single-line": "",
+      "item-text": "display_name",
+      "item-value": "id",
+      "bottom": ""
+    },
+    model: {
+      value: (_vm.form.windfarm),
+      callback: function($$v) {
+        _vm.form.windfarm = $$v
+      },
+      expression: "form.windfarm"
+    }
+  }), _vm._v(" "), _c('v-text-field', {
+    attrs: {
+      "label": "Longtitide"
+    },
+    model: {
+      value: (_vm.form.longtitude),
+      callback: function($$v) {
+        _vm.form.longtitude = $$v
+      },
+      expression: "form.longtitude"
+    }
+  }), _vm._v(" "), _c('v-text-field', {
+    attrs: {
+      "label": "Latitude"
+    },
+    model: {
+      value: (_vm.form.latitude),
+      callback: function($$v) {
+        _vm.form.latitude = $$v
+      },
+      expression: "form.latitude"
+    }
+  }), _vm._v(" "), _c('v-text-field', {
+    attrs: {
+      "label": "IP Address"
+    },
+    model: {
+      value: (_vm.form.ip_address),
+      callback: function($$v) {
+        _vm.form.ip_address = $$v
+      },
+      expression: "form.ip_address"
+    }
+  }), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "primary": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.save($event)
+      }
+    }
+  }, [_vm._v("Save")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3a162de9", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
