@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'windturbine_data',
     'windturbine_settings',
     'control_logs',
+    'app_settings',
 ]
 
 MIDDLEWARE = [

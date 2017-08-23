@@ -13,11 +13,13 @@ class Motor:
 		self.duty = duty
 		GPIO.setup(self.pwm_pin, GPIO.OUT)
 		GPIO.setup(self.standby_pin, GPIO.OUT)
+		GPIO.setup(self.direction_pin, GPIO.OUT)
 		self.pwm = GPIO.PWM(pwm_pin, frequency)
 
 def run(motor):
 	motor.pwm.start(motor.duty)
 	GPIO.output(motor.standby_pin, 1)
+	GPIO.output(motor.direction_pin, 1)
 
 
 def stop(motor):
