@@ -22,6 +22,7 @@ from dashboard.views.dashboard_view import DashboardView
 from rest_framework import routers
 from appcore.views.user_view_set import UserViewSet
 from appcore.views.group_view_set import GroupViewSet
+from appcore.views.audit_log_viewset import AuditLogViewset
 from turbinemanagement.views.windfarm_api_viewset import WindfarmAPIViewset
 from turbinemanagement.views.windturbine_api_viewset import WindturbineAPIViewset
 from turbinemanagement.views.windturbine_data_api_viewset import WindturbineDataAPIViewset
@@ -35,6 +36,7 @@ from turbinemanagement.views.windturbine_api_viewset import WindturbineWithRelat
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+router.register(r'auditlog', AuditLogViewset)
 router.register(r'windfarms', WindfarmAPIViewset)
 router.register(r'windturbines', WindturbineAPIViewset)
 router.register(r'windturbine-data', WindturbineDataAPIViewset)

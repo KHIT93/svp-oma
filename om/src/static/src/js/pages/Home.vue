@@ -26,7 +26,7 @@
         methods: {
             loadData() {
                 console.log('Polling server from dashboard component');
-                axios.get('/webapi/windfarms/simple').then(response => {
+                axios.get('/webapi/windfarms/simple/').then(response => {
                     console.log(response.data.results);
                     this.data = response.data.results;
                 })
