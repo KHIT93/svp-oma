@@ -34,8 +34,9 @@ while temperature < 30:
 	print(temperature)
 	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, 20.0)
 	cursor.execute(add_data, data_data)
+	cnx.commit()
 	time.sleep(0.25)
-cnx.commit()
+
 cursor.close()
 cnx.close()
  
