@@ -5,7 +5,9 @@ import RPi.GPIO as GPIO
 import socket
 import ADC
 import pymysql.cursors
+from multiprocessing.dummy import Pool as ThreadPool 
 
+pool = ThreadPool(4) 
 
 GPIO.cleanup()
 
@@ -22,10 +24,13 @@ wing_angle = 0
 adc = ADC.ADC(0, 23, 21, 19, 24)
 # IR sensor pin
 ir_sensor = IRSensor.IRSensor(7)
+
+pool.map(Motor.Motor, 3,5,11,1000,0)
 # PWM pin, Standby pin, AIN1 pin, PWM Frequincy, Duty
-motor = Motor.Motor(3,5,11,1000,0)
+#motor = Motor.Motor(3,5,11,1000,0)
 # Start the motor
-Motor.run(motor)
+#Motor.run(motor)
+pool.map(Motor.run, motor)
 
 # Database connection
 cnx = pymysql.connect(user='root', password='P@ssw0rd',
