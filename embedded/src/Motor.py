@@ -25,8 +25,8 @@ def run(motor):
 def stop(motor):
 	GPIO.output(motor.standby_pin, 0)
 
-def changespeed(motor, new_duty): 
-	motor.duty = new_duty
+def changespeed(motor, wind_speed, wing_angle): 
+	motor.duty = wind_speed - wing_angle
 	motor.pwm.ChangeDutyCycle(motor.duty)
 
 def brake(motor):

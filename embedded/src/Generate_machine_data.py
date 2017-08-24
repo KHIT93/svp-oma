@@ -65,11 +65,11 @@ for x in range(1,10000):
 	cursor.execute(add_data, data_data)
 
 for x in range(1,10000):
-	temp = np.random.uniform(25.0, 30,0)
+	temp = np.random.uniform(15.0, 27.5)
 	rpm = np.random.randint(2050, 2500)
-	wind_speed = np.random.uniform(rpm / 80, (rpm / 80 + 5))
-	wing_angle = 10
-	brake = 1
+	wing_angle = np.random.uniform(0.0,10.0)
+	wind_speed = np.random.uniform((rpm / 80) + wing_angle, (rpm / 80) + wing_angle + 5)
+	brake = 0
 
 	error_code = 210
 
