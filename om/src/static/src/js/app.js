@@ -55,10 +55,12 @@ const router = new VueRouter({
  /**
   * Debug code for logging AJAX calls to the console
   */
-window.axios.interceptors.request.use(request => {
-    console.log('Starting Request', request);
-    return request;
-});
+if(process.env.NODE_ENV != "production") {
+    window.axios.interceptors.request.use(request => {
+        console.log('Starting Request', request);
+        return request;
+    });
+}
 
 function redirect(url) {
     window.location.href = url;
