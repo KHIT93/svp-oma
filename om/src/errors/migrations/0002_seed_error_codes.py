@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = ['errors', '0001_initial']
+    dependencies = [('errors', '0001_initial'),]
 
     operations = [
         migrations.RunPython(add_error_codes, remove_error_codes),
