@@ -4,6 +4,24 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+def add_error_codes(apps, schema_editor):
+    ErrorCode = apps.get_model("errors", "ErrorCode")
+    db_alias = schema_editor.connection.alias
+    ErrorCode.objects.using(db_alias).bulk_create([
+        ErrorCode(message="OK", severity=0, code=0),
+        ErrorCode(code=100, severity=3, message="No connection to generator temperature sensor"),
+        ErrorCode(code=110, severity=2, message="Generator temperature is too high with high RPM"),
+        ErrorCode(code=120, severity=3, message="Generator temperature is too high with low RPM"),
+        ErrorCode(code=130, severity=3, message="Generator temperature is too high and no activity"),
+        ErrorCode(code=200, severity=3, message="No connection to RPM sensor"),
+        ErrorCode(code=210, severity=2, message="RPM is too high"),
+        ErrorCode(code=220, severity=1, message="RPM is too low"),
+        ErrorCode(code=230, severity=1, message="No RPM registered"),
+    ])
+    Country.objects.using(db_alias).bulk_create([
+        Country(name="USA", code="us"),
+        Country(name="France", code="fr"),
+    ])
 
 class Migration(migrations.Migration):
 
@@ -18,7 +36,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('message', models.CharField(max_length=255)),
+                ('code', models.IntegerField()),
                 ('severity', models.IntegerField()),
             ],
         ),
+        migrations.RunPython()
     ]
