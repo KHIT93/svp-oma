@@ -8,11 +8,13 @@ from .serializers import WindturbineSettingSerializer
 # windturbinesetting/update/
 class WindturbineSettingDetail(APIView):
 
+    #Gets all setting objects, and returns it
     def get(self,request):
         data = WindturbineSetting.objects.all()
         serializer = WindturbineSettingSerializer(data, many=True)
         return Response(serializer.data)
 
+    #Update windturbine settings
     def put(self,request,pk,format=None):
         windmill = WindturbineSetting.objects.get(pk=pk)
         serializer = WindturbineSettingSerializer(windmill,data=request.data)
