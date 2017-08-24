@@ -7,26 +7,45 @@ import ADC
 import pymysql.cursors
 
 
-cnx = pymysql.connect(user='root', password='P@ssw0rd',
-                              host='127.0.0.1',
-                              database='control_db')
-cursor = cnx.cursor()
-add_data = ("INSERT INTO windturbine_data_windturbinedata "
-			"(windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
-			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
-
 GPIO.cleanup()
+
+# State of the windturbine 1 = running, 0 = stopped
+state = 1
+# State on the brake 1 = Activated, 0 = deactivated
+brake = 0
+# Speed of wind in meters/second
+wind_speed = 20
+# Angle of the wind turbine wings in degress (Max = 10)
+wing_angle = 0
 
 # ADC channel, clock_pin, miso_pin, mosi_pin, cs_pin
 adc = ADC.ADC(0, 23, 21, 19, 24)
 # IR sensor pin
 ir_sensor = IRSensor.IRSensor(7)
 # PWM pin, Standby pin, AIN1 pin, PWM Frequincy, Duty
-motor = Motor.Motor(3,5,11,1000,25.0)
-temperature = 0
+motor = Motor.Motor(3,5,11,1000,0)
+# Start the motor
 Motor.run(motor)
+
+# Database connection
+cnx = pymysql.connect(user='root', password='P@ssw0rd',
+                              host='127.0.0.1',
+                              database='control_db')
+cursor = cnx.cursor()
+# Windturbine data insertion string
+add_data = ("INSERT INTO windturbine_data_windturbinedata "
+			"(windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
+			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
+
+temperature = 0
 rpm = 0.0
-while temperature < 30:
+get_config_count = 8
+
+while True:
+	if get_config_count > 7:
+		get_config_count = 0
+		Motor.changespeed(motor, wind_speed, wing_angle)
+
 	value = ADC.readadc(adc)
 	volts = (value * 3.3) / 1024
 	temperature = volts / (10.0 / 1000)
@@ -35,6 +54,7 @@ while temperature < 30:
 	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, 20.0)
 	cursor.execute(add_data, data_data)
 	cnx.commit()
+	get_config_count += 1
 	time.sleep(0.25)
 
 cursor.close()
