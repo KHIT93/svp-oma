@@ -10,21 +10,25 @@ from app_settings.models.app_setting import AppSetting
 # windturbinedata/
 class WindturbineDataList(APIView):
     def get(self,request):
-
         current_time = timezone.now()
         lastsyncdate = current_time
 
+        #Checks our key-value pair table, to see if the key lastsyncdate exists
+        #If not it creates it, with current time
+        #If it does it gets the last saved lastsyncdate
         if not helpers.first(AppSetting.objects.filter(key='lastsyncdate')):
             appsett = AppSetting.objects.create(key='lastsyncdate', value=current_time)
             appsett.save()
         else:
             lastsyncdate = AppSetting.objects.get(key='lastsyncdate').value
 
+        #Gets data between two datetimes, the most current data
         data = WindturbineData.objects.filter(timestamp__range=(lastsyncdate,current_time))
 
         cache.set('data', data)
         data.delete()
 
+        #Gets earliest entry, and deletes data older than last sync date. And updates lastsyncdate
         if WindturbineData.objects.all():
             last = WindturbineData.objects.earliest('timestamp')
 
@@ -38,6 +42,7 @@ class WindturbineDataList(APIView):
 
         return Response(serializer.data)
 
+#Helper class
 class helpers():
     def first(query):
         try:

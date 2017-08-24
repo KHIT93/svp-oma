@@ -6,6 +6,8 @@ import socket
 import ADC
 import pymysql.cursors
 
+# Config data: windturbine, State, Brake, Wind_speed, Wing_angle
+# Out data: windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed, wing_angle, brake
 
 GPIO.cleanup()
 
@@ -55,7 +57,7 @@ while True:
 	cursor.execute(add_data, data_data)
 	cnx.commit()
 	get_config_count += 1
-	time.sleep(0.25)
+	time.sleep(1)
 
 cursor.close()
 cnx.close()
