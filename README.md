@@ -36,3 +36,9 @@ https://www.codingforentrepreneurs.com/blog/create-a-blank-django-project/
 | PostgreSQL server |10.135.17.153 |
 | Load Balancer |10.135.17.50 |
 
+# Tools
+I `tools`mappen findes der 4 scripts som afvikles med kommandoen `sh scriptnavn.sh` på raspberry pi. Scriptet skal afvikles uden brug af `sudo`.
+Scriptet `start_control.sh` afvikler en opstart af `nginx`og `gunicorn`, såfremt disse er stoppet
+Scriptet `stop_control.sh` afvikler en nedlukning af `nginx`og `gunicorn`, såfremt disse er startet
+Scriptet `restart_control.sh` afvikler en genstart af `nginx`og `gunicorn`
+Scriptet `status_control.sh` viser en status for `nginx`og `gunicorn`
