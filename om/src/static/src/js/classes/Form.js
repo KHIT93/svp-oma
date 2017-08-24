@@ -26,7 +26,7 @@ export default class Form {
             data[property] = this[property];
         }
 
-        return {data};
+        return data;
     }
 
 
@@ -39,6 +39,22 @@ export default class Form {
         }
 
         this.errors.clear();
+    }
+
+    /**
+     * Checks if the form data has changed from the original data.
+     */
+    changed() {
+        let changed = false;
+        for (let property in this.originalData) {
+            if(this.originalData[property] != this[property]) {
+                if(!changed) {
+                    changed = true;
+                }
+            }
+        }
+
+        return changed;
     }
 
 

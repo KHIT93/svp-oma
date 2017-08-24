@@ -70,7 +70,6 @@
             getLogItems() {
                 this.loading = true;
                 axios.get('/webapi/auditlog/').then(response => {
-                    console.log(response);
                     this.items = response.data;
                     this.loading = false;
                 }).catch(error => {

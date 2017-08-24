@@ -39,9 +39,9 @@ router.register(r'groups', GroupViewSet)
 router.register(r'auditlog', AuditLogViewset)
 router.register(r'windfarms', WindfarmAPIViewset)
 router.register(r'windturbines', WindturbineAPIViewset)
-router.register(r'windturbine-data', WindturbineDataAPIViewset)
+router.register(r'windturbine-data', WindturbineDataAPIViewset, 'WindTurbineData')
 router.register(r'windturbine-errors', WindturbineErrorAPIViewset)
-router.register(r'windturbine-settings', WindturbineSettingAPIViewset)
+router.register(r'windturbine-settings', WindturbineSettingAPIViewset, 'WindTurbineSettings')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

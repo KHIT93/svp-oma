@@ -44,7 +44,6 @@ import Form from '../classes/Form';
             },
             save() {
                 this.form.post('/webapi/windturbines/').then(response => {
-                    console.log('Posting to server from create-windturbine-form');
                     this.$emit('saved');
                 }).catch(error => {
                     console.log('Error while posting to server from create-windturbine-form');

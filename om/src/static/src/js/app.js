@@ -20,6 +20,7 @@ let Cookies = require('js-cookie');
  */
 import Home from './pages/Home.vue';
 import WindFarm from './pages/WindFarm.vue';
+import WindTurbine from './pages/WindTurbine.vue';
 import AuditLogList from './pages/AuditLogList.vue';
 import NotFound from './pages/NotFound.vue';
 
@@ -28,7 +29,8 @@ import NotFound from './pages/NotFound.vue';
  */
 const routes = [
     { path: '/', component: Home, name: 'home' },
-    { path: '/windfarms/:id', component: WindFarm, name: 'windfarms.detail', props:true },
+    { path: '/windfarms/:id', component: WindFarm, name: 'windfarm.detail', props:true },
+    { path: '/windturbines/:id', component: WindTurbine, name: 'windturbine.detail', props:true },
     { path: '/log', component: AuditLogList, name: 'log.list'},
 
     /** Catchall route to display 404 page */
@@ -75,5 +77,5 @@ const app = new Vue({
     router,
     components: {
         'v-oma-navigation': AppNavigation
-    },
+    }
 });

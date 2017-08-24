@@ -1,21 +1,15 @@
 <template>
-    <div>
         <v-container fluid>
             <v-layout row wrap>
                 <v-flex md4 sm6 xs12 v-for="item in data" :key="item.id">
-                    <v-card hover class="mb-2">
-                        <v-card-text>WindFarm {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}</v-card-text>
-                        <v-card-actions>
-                            <v-btn flat :to="'/windfarms/' + item.id">Show Details</v-btn>
-                        </v-card-actions>
-                    </v-card>
+                    <v-windfarm-card :windfarm="item"></v-windfarm-card>
                 </v-flex>
             </v-layout>
         </v-container>
-    </div>
 </template>
 
 <script>
+    import WindFarmCard from '../components/WindFarmCard.vue';
     export default {
         data: function() {
             return {
@@ -27,10 +21,12 @@
             loadData() {
                 console.log('Polling server from dashboard component');
                 axios.get('/webapi/windfarms/simple/').then(response => {
-                    console.log(response.data.results);
                     this.data = response.data.results;
                 })
             }
+        },
+        components: {
+            'v-windfarm-card': WindFarmCard
         },
         mounted() {
             this.loadData();

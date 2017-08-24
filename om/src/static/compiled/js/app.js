@@ -16457,10 +16457,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_Home_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__pages_Home_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_WindFarm_vue__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_WindFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__pages_WindFarm_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_AuditLogList_vue__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_AuditLogList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__pages_AuditLogList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_NotFound_vue__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_NotFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__pages_NotFound_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_WindTurbine_vue__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_WindTurbine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__pages_WindTurbine_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_AuditLogList_vue__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_AuditLogList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__pages_AuditLogList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_NotFound_vue__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_NotFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__pages_NotFound_vue__);
 
 
 
@@ -16485,13 +16487,14 @@ var Cookies = __webpack_require__(161);
 
 
 
+
 /**
  * Define routes used with Vue-Router
  */
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_6__pages_Home_vue___default.a, name: 'home' }, { path: '/windfarms/:id', component: __WEBPACK_IMPORTED_MODULE_7__pages_WindFarm_vue___default.a, name: 'windfarms.detail', props: true }, { path: '/log', component: __WEBPACK_IMPORTED_MODULE_8__pages_AuditLogList_vue___default.a, name: 'log.list' },
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_6__pages_Home_vue___default.a, name: 'home' }, { path: '/windfarms/:id', component: __WEBPACK_IMPORTED_MODULE_7__pages_WindFarm_vue___default.a, name: 'windfarm.detail', props: true }, { path: '/windturbines/:id', component: __WEBPACK_IMPORTED_MODULE_8__pages_WindTurbine_vue___default.a, name: 'windturbine.detail', props: true }, { path: '/log', component: __WEBPACK_IMPORTED_MODULE_9__pages_AuditLogList_vue___default.a, name: 'log.list' },
 
 /** Catchall route to display 404 page */
-{ path: '*', component: __WEBPACK_IMPORTED_MODULE_9__pages_NotFound_vue___default.a, name: 'not_found' }];
+{ path: '*', component: __WEBPACK_IMPORTED_MODULE_10__pages_NotFound_vue___default.a, name: 'not_found' }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
     routes: routes
@@ -41887,7 +41890,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             console.log('Polling server from navigation');
             axios.get('/webapi/windfarms/simple/').then(function (response) {
-                console.log(response.data.results);
                 _this.data = response.data.results;
             });
         },
@@ -41896,7 +41898,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             console.log('Posting new windfarm to server');
             axios.post('/webapi/windfarms/', { name: this.new_windfarm_name }).then(function (response) {
-                console.log(response);
                 _this2.dialog = false;
                 _this2.new_windfarm_name = "";
             });
@@ -42015,7 +42016,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.form.post('/webapi/windturbines/').then(function (response) {
-                console.log('Posting to server from create-windturbine-form');
                 _this2.$emit('saved');
             }).catch(function (error) {
                 console.log('Error while posting to server from create-windturbine-form');
@@ -42069,7 +42069,7 @@ var Form = function () {
                 data[property] = this[property];
             }
 
-            return { data: data };
+            return data;
         }
 
         /**
@@ -42084,6 +42084,25 @@ var Form = function () {
             }
 
             this.errors.clear();
+        }
+
+        /**
+         * Checks if the form data has changed from the original data.
+         */
+
+    }, {
+        key: 'changed',
+        value: function changed() {
+            var changed = false;
+            for (var property in this.originalData) {
+                if (this.originalData[property] != this[property]) {
+                    if (!changed) {
+                        changed = true;
+                    }
+                }
+            }
+
+            return changed;
         }
 
         /**
@@ -42375,8 +42394,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', [_c('v-navigation-drawer', {
     attrs: {
       "persistent": "",
-      "clipped": "",
       "enable-resize-watcher": "",
+      "clipped": "",
+      "overflow": "",
       "light": "",
       "mini-variant": _vm.mini,
       "height": "100%"
@@ -42765,6 +42785,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_WindFarmCard_vue__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_WindFarmCard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_WindFarmCard_vue__);
 //
 //
 //
@@ -42775,13 +42797,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42796,10 +42812,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             console.log('Polling server from dashboard component');
             axios.get('/webapi/windfarms/simple/').then(function (response) {
-                console.log(response.data.results);
                 _this.data = response.data.results;
             });
         }
+    },
+    components: {
+        'v-windfarm-card': __WEBPACK_IMPORTED_MODULE_0__components_WindFarmCard_vue___default.a
     },
     mounted: function mounted() {
         this.loadData();
@@ -42818,7 +42836,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('v-container', {
+  return _c('v-container', {
     attrs: {
       "fluid": ""
     }
@@ -42835,18 +42853,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "sm6": "",
         "xs12": ""
       }
-    }, [_c('v-card', {
-      staticClass: "mb-2",
+    }, [_c('v-windfarm-card', {
       attrs: {
-        "hover": ""
+        "windfarm": item
       }
-    }, [_c('v-card-text', [_vm._v("WindFarm " + _vm._s((item.name) ? item.id + ' (' + item.name + ')' : item.id))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
-      attrs: {
-        "flat": "",
-        "to": '/windfarms/' + item.id
-      }
-    }, [_vm._v("Show Details")])], 1)], 1)], 1)
-  }))], 1)], 1)
+    })], 1)
+  }))], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -42904,6 +42916,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NotFound_vue__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NotFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NotFound_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_WindTurbineCard_vue__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_WindTurbineCard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_WindTurbineCard_vue__);
 //
 //
 //
@@ -42917,16 +42931,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42938,14 +42943,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     components: {
-        'v-not-found': __WEBPACK_IMPORTED_MODULE_0__NotFound_vue___default.a
+        'v-not-found': __WEBPACK_IMPORTED_MODULE_0__NotFound_vue___default.a,
+        'v-windturbine-card': __WEBPACK_IMPORTED_MODULE_1__components_WindTurbineCard_vue___default.a
     },
     methods: {
         loadData: function loadData() {
             var _this = this;
 
             if (!isNaN(+this.id) && isFinite(this.id)) {
-                console.log('Polling server from windfarm component with id ' + this.id);
                 axios.get('/webapi/windfarms/' + this.id + "/").then(function (response) {
                     _this.data = response.data.windturbine_set;
                 });
@@ -43037,28 +43042,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "sm6": "",
         "xs12": ""
       }
-    }, [_c('v-card', {
-      staticClass: "mb-2",
+    }, [_c('v-windturbine-card', {
       attrs: {
-        "hover": ""
+        "item": item
+      },
+      on: {
+        "deleted": _vm.loadData
       }
-    }, [_c('v-card-text', [_vm._v("WindTurbine " + _vm._s((item.name) ? item.id + ' (' + item.name + ')' : item.id))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
-      attrs: {
-        "flat": ""
-      }
-    }, [_vm._v("Show details")]), _vm._v(" "), _c('v-btn', {
-      attrs: {
-        "flat": ""
-      }
-    }, [_vm._v("Start")]), _vm._v(" "), _c('v-btn', {
-      attrs: {
-        "flat": ""
-      }
-    }, [_vm._v("Stop")]), _vm._v(" "), _c('small', {
-      attrs: {
-        "title": item.last_connection
-      }
-    }, [_vm._v("\n                            " + _vm._s((item.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + _vm.moment(item.last_connection).fromNow()) + "\n                        ")])], 1)], 1)], 1)
+    })], 1)
   }))], 1) : _c('v-not-found')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -43196,7 +43187,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.loading = true;
             axios.get('/webapi/auditlog/').then(function (response) {
-                console.log(response);
                 _this.items = response.data;
                 _this.loading = false;
             }).catch(function (error) {
@@ -43271,6 +43261,1422 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-c9111b76", module.exports)
+  }
+}
+
+/***/ }),
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(182),
+  /* template */
+  __webpack_require__(183),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/kenneth/Code/svp-oma/om/src/static/src/js/components/WindTurbineCard.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] WindTurbineCard.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-65d6cb5e", Component.options)
+  } else {
+    hotAPI.reload("data-v-65d6cb5e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 182 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_Form__ = __webpack_require__(157);
+var _this = this;
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['item'],
+    data: function data() {
+        return {
+            form: new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */](_this.item),
+            dialog: false
+        };
+    },
+    methods: {
+        moment: function moment(str) {
+            return window.moment(str);
+        },
+        cancelDelete: function cancelDelete() {
+            this.dialog = false;
+        },
+        deleteItem: function deleteItem() {
+            var _this2 = this;
+
+            this.form.delete('/webapi/windturbines/' + this.item.id + '/').then(function (response) {
+                _this2.$emit('deleted', _this2.item);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        startWindTurbine: function startWindTurbine() {
+            console.log('sending command to start the turbine');
+        },
+        stopWindTurbine: function stopWindTurbine() {
+            console.log('sending command to stop the turbine');
+        }
+    }
+});
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-card', {
+    staticClass: "mb-2",
+    attrs: {
+      "hover": ""
+    }
+  }, [_c('v-card-text', [_vm._v("WindTurbine " + _vm._s((_vm.item.name) ? _vm.item.id + ' (' + _vm.item.name + ')' : _vm.item.id))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Show details",
+      "icon": "",
+      "primary": "",
+      "to": '/windturbines/' + _vm.item.id
+    }
+  }, [_c('v-icon', [_vm._v("storage")])], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Start",
+      "icon": "",
+      "success": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.startWindTurbine($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("power_settings_new")])], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Stop",
+      "icon": "",
+      "error": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.stopWindTurbine($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("power_settings_new")])], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Delete",
+      "icon": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.dialog = true
+      }
+    }
+  }, [_c('v-icon', [_vm._v("delete")])], 1), _vm._v(" "), _c('small', {
+    attrs: {
+      "title": _vm.item.last_connection
+    }
+  }, [_vm._v("\n                " + _vm._s((_vm.item.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + _vm.moment(_vm.item.last_connection).fromNow()) + "\n            ")])], 1)], 1), _vm._v(" "), _c('v-dialog', {
+    attrs: {
+      "persistent": ""
+    },
+    model: {
+      value: (_vm.dialog),
+      callback: function($$v) {
+        _vm.dialog = $$v
+      },
+      expression: "dialog"
+    }
+  }, [_c('v-card', [_c('v-card-title', [_vm._v("Delete Windturbine " + _vm._s(_vm.item.display_name))]), _vm._v(" "), _c('v-card-text', [_vm._v("Are you sure that you want to delete " + _vm._s(_vm.item.display_name))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
+    staticClass: "green--text darken-1",
+    attrs: {
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.deleteItem($event)
+      }
+    }
+  }, [_vm._v("Yes")]), _vm._v(" "), _c('v-btn', {
+    staticClass: "red--text darken-1",
+    attrs: {
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.cancelDelete($event)
+      }
+    }
+  }, [_vm._v("No")])], 1)], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-65d6cb5e", module.exports)
+  }
+}
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(185),
+  /* template */
+  __webpack_require__(186),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/kenneth/Code/svp-oma/om/src/static/src/js/components/WindFarmCard.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] WindFarmCard.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-93a846f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-93a846f8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['windfarm'],
+    data: function data() {
+        return {};
+    }
+});
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-card', {
+    staticClass: "mb-2",
+    attrs: {
+      "hover": ""
+    }
+  }, [_c('v-card-text', [_vm._v("WindFarm " + _vm._s((_vm.windfarm.name) ? _vm.windfarm.id + ' (' + _vm.windfarm.name + ')' : _vm.windfarm.id))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
+    attrs: {
+      "flat": "",
+      "to": '/windfarms/' + _vm.windfarm.id,
+      "icon": "",
+      "primary": ""
+    }
+  }, [_c('v-icon', [_vm._v("storage")])], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-93a846f8", module.exports)
+  }
+}
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(188),
+  /* template */
+  __webpack_require__(189),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/kenneth/Code/svp-oma/om/src/static/src/js/pages/WindTurbine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] WindTurbine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c4b9d79", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c4b9d79", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_Form__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_WindTurbineDataCard_vue__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_WindTurbineDataCard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_WindTurbineDataCard_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_WindTurbineSettingsCard_vue__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_WindTurbineSettingsCard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_WindTurbineSettingsCard_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['id'],
+    data: function data() {
+        return {
+            windturbine: null,
+            form: null,
+            dialog: false,
+            readonly: true,
+            windfarms: [],
+            windturbine_data: [],
+            windturbine_settings: []
+        };
+    },
+    mounted: function mounted() {
+        this.getItem();
+        this.getWindturbineData();
+        this.getWindturbineSettings();
+        this.getWindfarms();
+    },
+
+    computed: {
+        changed: function changed() {
+            if (this.form.changed()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    components: {
+        'v-windturbine-data-card': __WEBPACK_IMPORTED_MODULE_1__components_WindTurbineDataCard_vue___default.a,
+        'v-windturbine-settings-card': __WEBPACK_IMPORTED_MODULE_2__components_WindTurbineSettingsCard_vue___default.a
+    },
+    methods: {
+        getItem: function getItem() {
+            var _this = this;
+
+            axios.get('/webapi/windturbines/' + this.id + '/').then(function (response) {
+                console.log(response);
+                _this.windturbine = response.data;
+                _this.form = new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */]({
+                    id: _this.windturbine.id,
+                    name: _this.windturbine.name,
+                    longtitude: _this.windturbine.longtitude,
+                    latitude: _this.windturbine.latitude,
+                    windfarm: _this.windturbine.windfarm,
+                    ip_address: _this.windturbine.ip_address
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getWindfarms: function getWindfarms() {
+            var _this2 = this;
+
+            axios.get('/webapi/windfarms/simple/').then(function (response) {
+                console.log(response);
+                _this2.windfarms = response.data.results;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getWindturbineData: function getWindturbineData() {
+            var _this3 = this;
+
+            axios.get('/webapi/windturbine-data/?windturbine=' + this.id).then(function (response) {
+                _this3.windturbine_data = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getWindturbineSettings: function getWindturbineSettings() {
+            var _this4 = this;
+
+            axios.get('/webapi/windturbine-settings/?windturbine=' + this.id).then(function (response) {
+                _this4.windturbine_settings = response.data[0];
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        moment: function moment(str) {
+            return window.moment(str);
+        },
+        save: function save() {
+            var _this5 = this;
+
+            if (this.form.changed()) {
+                this.form.put('/webapi/windturbines/' + this.form.id + '/').then(function (response) {
+                    _this5.readonly = true;
+                    _this5.getItem();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                console.log('The form data has not changed, so nothing can be saved');
+            }
+        },
+        cancelDelete: function cancelDelete() {
+            this.dialog = false;
+        },
+        deleteItem: function deleteItem() {
+            this.form.delete('/webapi/windturbines/' + this.windturbine.id + '/').then(function (response) {
+                router.push('home');
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        startWindTurbine: function startWindTurbine() {
+            console.log('sending command to start the turbine');
+        },
+        stopWindTurbine: function stopWindTurbine() {
+            console.log('sending command to stop the turbine');
+        }
+    }
+});
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-card', [_c('v-card-actions', [_c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Start",
+      "success": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.startWindTurbine($event)
+      }
+    }
+  }, [_c('v-icon', {
+    attrs: {
+      "success": ""
+    }
+  }, [_vm._v("power_settings_new")]), _vm._v(" Start")], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Stop",
+      "error": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.stopWindTurbine($event)
+      }
+    }
+  }, [_c('v-icon', {
+    attrs: {
+      "error": ""
+    }
+  }, [_vm._v("power_settings_new")]), _vm._v(" Stop")], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Edit"
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.readonly = !_vm.readonly
+      }
+    }
+  }, [_c('v-icon', [_vm._v("edit")]), _vm._v(" Edit")], 1), _vm._v(" "), _c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Delete"
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.dialog = true
+      }
+    }
+  }, [_c('v-icon', [_vm._v("delete")]), _vm._v(" Delete")], 1)], 1), _vm._v(" "), _c('v-card-title', {
+    attrs: {
+      "primary-title": ""
+    }
+  }, [_c('h3', {
+    staticClass: "headline mb-0 mr-2"
+  }, [_vm._v("Windturbine " + _vm._s(_vm.windturbine.display_name))]), _vm._v(" "), _c('small', {
+    attrs: {
+      "title": _vm.windturbine.last_connection
+    }
+  }, [_vm._v("\n                " + _vm._s((_vm.windturbine.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + _vm.moment(_vm.windturbine.last_connection).fromNow()) + "\n            ")])]), _vm._v(" "), _c('v-card-text', [_c('v-container', {
+    attrs: {
+      "fluid": ""
+    }
+  }, [_c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm2": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Name")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbine.name))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the descriptive name of this windturbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.name),
+      callback: function($$v) {
+        _vm.form.name = $$v
+      },
+      expression: "form.name"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm2": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Windfarm")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbine.windfarm))]), _vm._v(" "), _c('v-select', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "items": _vm.windfarms,
+      "label": "Select Windfarm",
+      "single-line": "",
+      "item-text": "display_name",
+      "item-value": "id",
+      "bottom": "",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.windfarm),
+      callback: function($$v) {
+        _vm.form.windfarm = $$v
+      },
+      expression: "form.windfarm"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm2": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Longtitude")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbine.longtitude))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the geographic longtitude of this windturbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.longtitude),
+      callback: function($$v) {
+        _vm.form.longtitude = $$v
+      },
+      expression: "form.longtitude"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm2": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Latitude")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbine.latitude))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the geographic lattitude of this windturbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.latitude),
+      callback: function($$v) {
+        _vm.form.latitude = $$v
+      },
+      expression: "form.latitude"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm2": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("IP Address")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbine.ip_address))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the IP address of this windturbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.ip_address),
+      callback: function($$v) {
+        _vm.form.ip_address = $$v
+      },
+      expression: "form.ip_address"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-fab-transition', [_c('v-btn', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.changed),
+      expression: "changed"
+    }],
+    staticClass: "green",
+    attrs: {
+      "fab": "",
+      "dark": "",
+      "small": "",
+      "absolute": "",
+      "bottom": "",
+      "left": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.save($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("save")])], 1)], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-dialog', {
+    attrs: {
+      "persistent": ""
+    },
+    model: {
+      value: (_vm.dialog),
+      callback: function($$v) {
+        _vm.dialog = $$v
+      },
+      expression: "dialog"
+    }
+  }, [_c('v-card', [_c('v-card-title', [_vm._v("Delete Windturbine " + _vm._s(_vm.windturbine.display_name))]), _vm._v(" "), _c('v-card-text', [_vm._v("Are you sure that you want to delete " + _vm._s(_vm.windturbine.display_name))]), _vm._v(" "), _c('v-card-actions', [_c('v-btn', {
+    staticClass: "green--text darken-1",
+    attrs: {
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.deleteItem($event)
+      }
+    }
+  }, [_vm._v("Yes")]), _vm._v(" "), _c('v-btn', {
+    staticClass: "red--text darken-1",
+    attrs: {
+      "flat": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.cancelDelete($event)
+      }
+    }
+  }, [_vm._v("No")])], 1)], 1)], 1), _vm._v(" "), _c('v-windturbine-data-card', {
+    attrs: {
+      "windturbinedata": _vm.windturbine_data,
+      "windturbine": _vm.windturbine
+    }
+  }), _vm._v(" "), _c('v-windturbine-settings-card', {
+    attrs: {
+      "windturbine": _vm.windturbine,
+      "windturbinesettings": _vm.windturbine_settings
+    }
+  })], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0c4b9d79", module.exports)
+  }
+}
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(191),
+  /* template */
+  __webpack_require__(192),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/kenneth/Code/svp-oma/om/src/static/src/js/components/WindTurbineDataCard.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] WindTurbineDataCard.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-02b7b0ca", Component.options)
+  } else {
+    hotAPI.reload("data-v-02b7b0ca", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['windturbinedata', 'windturbine'],
+    methods: {
+        moment: function moment(str) {
+            return window.moment(str);
+        }
+    }
+
+});
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-card', {
+    staticClass: "mt-4"
+  }, [_c('v-card-title', [_c('h3', {
+    staticClass: "headline mb-0 mr-2"
+  }, [_vm._v("Data from turbine " + _vm._s(_vm.windturbine.display_name))])]), _vm._v(" "), _c('v-card-text', [_c('v-expansion-panel', _vm._l((_vm.windturbinedata), function(item, i) {
+    return _c('v-expansion-panel-content', {
+      key: i
+    }, [_c('div', {
+      slot: "header"
+    }, [_vm._v("Recieved " + _vm._s(_vm.moment(item.timestamp).fromNow()))]), _vm._v(" "), _c('v-card', [_c('v-card-text', {
+      staticClass: "grey lighten-3"
+    }, [_vm._v("\n                        State: " + _vm._s(item.state)), _c('br'), _vm._v("\n                        Gearbox temperature: " + _vm._s(item.temp_gearbox)), _c('br'), _vm._v("\n                        Generator temperature: " + _vm._s(item.temp_generator)), _c('br'), _vm._v("\n                        Current generator RPM: " + _vm._s(item.rpm_generator)), _c('br'), _vm._v("\n                        Current windspeed: " + _vm._s(item.wind_speed)), _c('br')])], 1)], 1)
+  }))], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-02b7b0ca", module.exports)
+  }
+}
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(194),
+  /* template */
+  __webpack_require__(195),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/kenneth/Code/svp-oma/om/src/static/src/js/components/WindTurbineSettingsCard.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] WindTurbineSettingsCard.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c86ba2d8", Component.options)
+  } else {
+    hotAPI.reload("data-v-c86ba2d8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_Form__ = __webpack_require__(157);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['windturbine', 'windturbinesettings'],
+    data: function data() {
+        return {
+            form: null,
+            readonly: true
+        };
+    },
+    mounted: function mounted() {
+        if (this.windturbinesettings.id == null) {
+            this.form = new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */]({
+                state: "",
+                max_rpm_generator: "",
+                max_temp_gearbox: "",
+                max_temp_generator: "",
+                windturbine: this.windturbine.id
+            });
+        } else {
+            this.form = new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */]({
+                id: this.windturbinesettings.id,
+                state: this.windturbinesettings.state,
+                max_rpm_generator: this.windturbinesettings.max_rpm_generator,
+                max_temp_gearbox: this.windturbinesettings.max_temp_gearbox,
+                max_temp_generator: this.windturbinesettings.max_temp_generator,
+                windturbine: this.windturbine.id
+            });
+        }
+    },
+
+    computed: {
+        changed: function changed() {
+            if (this.form.changed()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    methods: {
+        save: function save() {
+            var _this = this;
+
+            if (this.windturbinesettings.id) {
+                this.form.patch('/webapi/windturbine-settings/' + this.windturbinesettings.id + '/').then(function (response) {
+                    _this.readonly = true;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                this.form.post('/webapi/windturbine-settings/').then(function (response) {
+                    _this.readonly = true;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-card', {
+    staticClass: "mt-4"
+  }, [_c('v-card-actions', [_c('v-btn', {
+    attrs: {
+      "flat": "",
+      "title": "Edit"
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.readonly = !_vm.readonly
+      }
+    }
+  }, [_c('v-icon', [_vm._v("edit")]), _vm._v(" Edit")], 1)], 1), _vm._v(" "), _c('v-card-title', {
+    attrs: {
+      "primary-title": ""
+    }
+  }, [_c('h3', {
+    staticClass: "headline mb-0 mr-2"
+  }, [_vm._v("Settings for turbine " + _vm._s(_vm.windturbine.display_name))])]), _vm._v(" "), (!_vm.windturbinesettings.id) ? _c('v-card-text', [_vm._v("\n        Currently no settings are registered for this turbine\n    ")]) : _vm._e(), _vm._v(" "), _c('v-card-text', [_c('v-container', {
+    attrs: {
+      "fluid": ""
+    }
+  }, [_c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm3": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("State")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbinesettings.state))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the state of normal operation for this turbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.state),
+      callback: function($$v) {
+        _vm.form.state = $$v
+      },
+      expression: "form.state"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm3": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Max Generator RPM")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbinesettings.max_rpm_generator))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the maximum allowd RPM for the generator of this turbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.max_rpm_generator),
+      callback: function($$v) {
+        _vm.form.max_rpm_generator = $$v
+      },
+      expression: "form.max_rpm_generator"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm3": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Max temperature of gearbox")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbinesettings.max_temp_gearbox))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the maxmimum allowed temperature for the gearbox of this turbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.max_temp_gearbox),
+      callback: function($$v) {
+        _vm.form.max_temp_gearbox = $$v
+      },
+      expression: "form.max_temp_gearbox"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm3": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("Max temperature of generator")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbinesettings.max_temp_generator))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the maximum allowed temperature of the generator in this turbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.max_temp_generator),
+      callback: function($$v) {
+        _vm.form.max_temp_generator = $$v
+      },
+      expression: "form.max_temp_generator"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-fab-transition', [_c('v-btn', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.changed),
+      expression: "changed"
+    }],
+    staticClass: "green",
+    attrs: {
+      "fab": "",
+      "dark": "",
+      "small": "",
+      "absolute": "",
+      "bottom": "",
+      "left": ""
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.save($event)
+      }
+    }
+  }, [_c('v-icon', [_vm._v("save")])], 1)], 1)], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-c86ba2d8", module.exports)
   }
 }
 

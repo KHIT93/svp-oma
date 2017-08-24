@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-navigation-drawer persistent clipped enable-resize-watcher light v-model="drawer" :mini-variant.sync="mini" height="100%">
+        <v-navigation-drawer persistent enable-resize-watcher clipped overflow light v-model="drawer" :mini-variant.sync="mini" height="100%">
             <v-list class="pt-0" dense>
                 <v-list-tile to="/">
                     <v-list-tile-action>
@@ -128,14 +128,12 @@
             loadData() {
                 console.log('Polling server from navigation');
                 axios.get('/webapi/windfarms/simple/').then(response => {
-                    console.log(response.data.results);
                     this.data = response.data.results;
                 });
             },
             createWindFarm() {
                 console.log('Posting new windfarm to server');
                 axios.post('/webapi/windfarms/', { name: this.new_windfarm_name }).then(response => {
-                    console.log(response);
                     this.dialog = false;
                     this.new_windfarm_name = "";
                 });
