@@ -1,5 +1,4 @@
-# svp-oma
-Svendeprøve projekt August 2017
+# Svendeprøve projekt August 2017
 
 Når projeket klones fra github med `git clone` skal det virtuelle python miljø genoprettes.
 
