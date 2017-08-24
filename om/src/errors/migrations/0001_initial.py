@@ -18,10 +18,19 @@ def add_error_codes(apps, schema_editor):
         ErrorCode(code=220, severity=1, message="RPM is too low"),
         ErrorCode(code=230, severity=1, message="No RPM registered"),
     ])
-    Country.objects.using(db_alias).bulk_create([
-        Country(name="USA", code="us"),
-        Country(name="France", code="fr"),
-    ])
+
+def remove_error_codes(apps, schema_editor):
+    ErrorCode = apps.get_model("errors", "ErrorCode")
+    db_alias = schema_editor.connection.alias
+    ErrorCode.objects.using(db_alias).filter(code=0).delete()
+    ErrorCode.objects.using(db_alias).filter(code=100).delete()
+    ErrorCode.objects.using(db_alias).filter(code=110).delete()
+    ErrorCode.objects.using(db_alias).filter(code=120).delete()
+    ErrorCode.objects.using(db_alias).filter(code=130).delete()
+    ErrorCode.objects.using(db_alias).filter(code=200).delete()
+    ErrorCode.objects.using(db_alias).filter(code=210).delete()
+    ErrorCode.objects.using(db_alias).filter(code=220).delete()
+    ErrorCode.objects.using(db_alias).filter(code=230).delete()
 
 class Migration(migrations.Migration):
 
@@ -40,5 +49,5 @@ class Migration(migrations.Migration):
                 ('severity', models.IntegerField()),
             ],
         ),
-        migrations.RunPython()
+        migrations.RunPython(add_error_codes, remove_error_codes)
     ]
