@@ -98,7 +98,7 @@
             </v-card>
         </v-dialog>
         <v-windturbine-data-card :windturbinedata="windturbine_data" :windturbine="windturbine"></v-windturbine-data-card>
-        <v-windturbine-settings-card :windturbine="windturbine" :windturbinesettings="windturbine_settings"></v-windturbine-settings-card>
+        <v-windturbine-settings-card @saved="getWindturbineSettings" :windturbine="windturbine" :windturbinesettings="windturbine_settings" v-if="windturbine.id"></v-windturbine-settings-card>
     </div>
 </template>
 

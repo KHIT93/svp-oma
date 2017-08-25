@@ -70,24 +70,23 @@
 <script>
     import Form from '../classes/Form';
     export default {
-        props: ['windturbine', 'windturbinesettings'],
+        props: {
+            windturbine: {
+                default: {}
+            },
+            windturbinesettings: {
+                default: {}
+            },
+        },
         data: () => {
             return {
-                form: null,
+                //form: null,
+                form: new Form(),
                 readonly: true,
             }
         },
         mounted() {
-            if(this.windturbinesettings.id == null) {
-                this.form = new Form({
-                    state: "",
-                    max_rpm_generator: "",
-                    max_temp_gearbox: "",
-                    max_temp_generator: "",
-                    windturbine: this.windturbine.id
-                });
-            }
-            else {
+            if(this.windturbinesettings.id) {
                 this.form = new Form({
                     id: this.windturbinesettings.id,
                     state: this.windturbinesettings.state,
@@ -95,7 +94,16 @@
                     max_temp_gearbox: this.windturbinesettings.max_temp_gearbox,
                     max_temp_generator: this.windturbinesettings.max_temp_generator,
                     windturbine: this.windturbine.id
-                })
+                });
+            }
+            else {
+                this.form = new Form({
+                    state: "",
+                    max_rpm_generator: "",
+                    max_temp_gearbox: "",
+                    max_temp_generator: "",
+                    windturbine: this.windturbine.id
+                });
             }
         },
         computed: {
@@ -113,6 +121,7 @@
                 if(this.windturbinesettings.id) {
                     this.form.patch('/webapi/windturbine-settings/' + this.windturbinesettings.id + '/').then(response => {
                         this.readonly = true;
+                        this.$emit('saved');
                     }).catch(error => {
                         console.log(error);
                     })
@@ -120,6 +129,7 @@
                 else {
                     this.form.post('/webapi/windturbine-settings/').then(response => {
                         this.readonly = true;
+                        this.$emit('saved');
                     }).catch(error => {
                         console.log(error);
                     })
