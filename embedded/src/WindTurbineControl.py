@@ -17,7 +17,7 @@ class Windturbine():
 		self.wing_angle = wing_angle
 
 	def changesettings(self):
-		self.motor.changespeed(self.wind_speed, self.wing_angle)
+		Motor.changespeed(self.motor, self.wind_speed, self.wing_angle)
 		
 		if self.brake:
 			self.motor.brake()
