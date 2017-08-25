@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>appcore.models package &#8212; Operation &amp; Maintenance platform 1.0poc documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0poc',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="appcore-models-package">
+<h1>appcore.models package<a class="headerlink" href="#appcore-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-appcore.models.audit_log">
+<span id="appcore-models-audit-log-module"></span><h2>appcore.models.audit_log module<a class="headerlink" href="#module-appcore.models.audit_log" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="appcore.models.audit_log.AuditLog">
+<em class="property">class </em><code class="descclassname">appcore.models.audit_log.</code><code class="descname">AuditLog</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/appcore/models/audit_log.html#AuditLog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#appcore.models.audit_log.AuditLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>The AuditLog class defines the model used for logging actions and events happening in the application.
+This can fx. be when a user performs an action or when the system synchronizes data with the
+windturbines.</p>
+<p>Each entry has the following values:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> – Unique identifier for the specific log entry</li>
+<li><strong>timestamp</strong> – Timestamp stored in ISO-8601</li>
+<li><strong>user</strong> – Reference to the application user that caused the entry to be created. This can be null if a system action is automatically performed</li>
+<li><strong>name</strong> – The name of the user or system component that caused the entry to be created.</li>
+<li><strong>message</strong> – A message describing the performed action</li>
+<li><strong>api_response</strong> – If an API call was performed this contains the API response that was recieved by the server</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="appcore.models.audit_log.AuditLog.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="appcore.models.audit_log.AuditLog.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.api_response">
+<code class="descname">api_response</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.api_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="appcore.models.audit_log.AuditLog.get_next_by_timestamp">
+<code class="descname">get_next_by_timestamp</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#appcore.models.audit_log.AuditLog.get_next_by_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="appcore.models.audit_log.AuditLog.get_previous_by_timestamp">
+<code class="descname">get_previous_by_timestamp</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#appcore.models.audit_log.AuditLog.get_previous_by_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.id">
+<code class="descname">id</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.message">
+<code class="descname">message</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.name">
+<code class="descname">name</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.objects">
+<code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#appcore.models.audit_log.AuditLog.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.user">
+<code class="descname">user</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">child.parent</span></code> is a <code class="docutils literal"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.models.audit_log.AuditLog.user_id">
+<code class="descname">user_id</code><a class="headerlink" href="#appcore.models.audit_log.AuditLog.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-appcore.models.base_model">
+<span id="appcore-models-base-model-module"></span><h2>appcore.models.base_model module<a class="headerlink" href="#module-appcore.models.base_model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="appcore.models.base_model.BaseModel">
+<em class="property">class </em><code class="descclassname">appcore.models.base_model.</code><code class="descname">BaseModel</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/appcore/models/base_model.html#BaseModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#appcore.models.base_model.BaseModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<dl class="class">
+<dt id="appcore.models.base_model.BaseModel.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="reference internal" href="../_modules/appcore/models/base_model.html#BaseModel.Meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#appcore.models.base_model.BaseModel.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="appcore.models.base_model.BaseModel.Meta.abstract">
+<code class="descname">abstract</code><em class="property"> = False</em><a class="headerlink" href="#appcore.models.base_model.BaseModel.Meta.abstract" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-appcore.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-appcore.models" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Operation & Maintenance platform</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kenneth Hansen, Dennis Asmussen, Daniel M. Nielsen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rst/appcore.models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

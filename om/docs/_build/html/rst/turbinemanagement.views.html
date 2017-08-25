@@ -1,0 +1,308 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>turbinemanagement.views package &#8212; Operation &amp; Maintenance platform 1.0poc documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0poc',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="turbinemanagement-views-package">
+<h1>turbinemanagement.views package<a class="headerlink" href="#turbinemanagement-views-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-turbinemanagement.views.windfarm_api_viewset">
+<span id="turbinemanagement-views-windfarm-api-viewset-module"></span><h2>turbinemanagement.views.windfarm_api_viewset module<a class="headerlink" href="#module-turbinemanagement.views.windfarm_api_viewset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windfarm_api_viewset.</code><code class="descname">WindfarmAPIViewset</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windfarm_api_viewset.html#WindfarmAPIViewset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows windfarms to be created, viewed, updated and deleted.</p>
+<p>The WindfarmAPIViewset does include the related windturbines</p>
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;WindFarm: 1 (Alpha)&gt;, &lt;WindFarm: 2 (Bravo)&gt;, &lt;WindFarm: 3 (Charlie)&gt;, &lt;WindFarm: 4 (Delta)&gt;, &lt;WindFarm: 5&gt;, &lt;WindFarm: 6 (Dennis)&gt;, &lt;WindFarm: 7 (Freja)&gt;]&gt;</em><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindfarmSerializerWithRelationships</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset.suffix">
+<code class="descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmAPIViewset.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmWithNestedRelationshipsAPIView">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windfarm_api_viewset.</code><code class="descname">WindfarmWithNestedRelationshipsAPIView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windfarm_api_viewset.html#WindfarmWithNestedRelationshipsAPIView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmWithNestedRelationshipsAPIView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.generics.ListAPIView</span></code></p>
+<p>API endpoint that allows windfarms to be viewed with their windturbines eagerloaded.
+This also eagerloads the relationships of the windturbines.</p>
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmWithNestedRelationshipsAPIView.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;WindFarm: 1 (Alpha)&gt;, &lt;WindFarm: 2 (Bravo)&gt;, &lt;WindFarm: 3 (Charlie)&gt;, &lt;WindFarm: 4 (Delta)&gt;, &lt;WindFarm: 5&gt;, &lt;WindFarm: 6 (Dennis)&gt;, &lt;WindFarm: 7 (Freja)&gt;]&gt;</em><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmWithNestedRelationshipsAPIView.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmWithNestedRelationshipsAPIView.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmWithNestedRelationshipsAPIView.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindfarmSerializerWithNestedRelationships</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmWithRelationshipsAPIView">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windfarm_api_viewset.</code><code class="descname">WindfarmWithRelationshipsAPIView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windfarm_api_viewset.html#WindfarmWithRelationshipsAPIView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmWithRelationshipsAPIView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.generics.ListAPIView</span></code></p>
+<p>API endpoint that allows windfarms to be viewed with the windturbines eager loaded.</p>
+<p>The WindfarmWithRelationshipsAPIView does not include any related models.</p>
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmWithRelationshipsAPIView.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;WindFarm: 1 (Alpha)&gt;, &lt;WindFarm: 2 (Bravo)&gt;, &lt;WindFarm: 3 (Charlie)&gt;, &lt;WindFarm: 4 (Delta)&gt;, &lt;WindFarm: 5&gt;, &lt;WindFarm: 6 (Dennis)&gt;, &lt;WindFarm: 7 (Freja)&gt;]&gt;</em><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmWithRelationshipsAPIView.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windfarm_api_viewset.WindfarmWithRelationshipsAPIView.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windfarm_api_viewset.WindfarmWithRelationshipsAPIView.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindfarmSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.views.windturbine_api_viewset">
+<span id="turbinemanagement-views-windturbine-api-viewset-module"></span><h2>turbinemanagement.views.windturbine_api_viewset module<a class="headerlink" href="#module-turbinemanagement.views.windturbine_api_viewset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windturbine_api_viewset.</code><code class="descname">WindturbineAPIViewset</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_api_viewset.html#WindturbineAPIViewset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows Windturbines to be created, viewed, updated and deleted.</p>
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;WindTurbine: a-01&gt;, &lt;WindTurbine: a-02&gt;]&gt;</em><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindturbineSerializer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset.suffix">
+<code class="descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windturbine_api_viewset.</code><code class="descname">WindturbineWithRelationshipsAPIView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_api_viewset.html#WindturbineWithRelationshipsAPIView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.generics.ListAPIView</span></code></p>
+<p>API endpoint that allows windturbines to be viewed with their relationships eagerloaded.</p>
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;WindTurbine: a-01&gt;, &lt;WindTurbine: a-02&gt;]&gt;</em><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindturbineSerializerWtihRelationships</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.views.windturbine_data_api_viewset">
+<span id="turbinemanagement-views-windturbine-data-api-viewset-module"></span><h2>turbinemanagement.views.windturbine_data_api_viewset module<a class="headerlink" href="#module-turbinemanagement.views.windturbine_data_api_viewset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windturbine_data_api_viewset.</code><code class="descname">WindturbineDataAPIViewset</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_data_api_viewset.html#WindturbineDataAPIViewset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows WindTurbineData to be created, viewed, updated and deleted.
+This endpoint can recieve a windturbine ID as a request parameter in order to only show data, 
+related to a specific windturbine</p>
+<dl class="method">
+<dt id="turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_data_api_viewset.html#WindturbineDataAPIViewset.get_queryset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.pagination_class">
+<code class="descname">pagination_class</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.pagination_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindturbineDataSerializer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.suffix">
+<code class="descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windturbine_data_api_viewset.WindturbineDataAPIViewset.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.views.windturbine_error_api_viewset">
+<span id="turbinemanagement-views-windturbine-error-api-viewset-module"></span><h2>turbinemanagement.views.windturbine_error_api_viewset module<a class="headerlink" href="#module-turbinemanagement.views.windturbine_error_api_viewset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windturbine_error_api_viewset.</code><code class="descname">WindturbineErrorAPIViewset</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_error_api_viewset.html#WindturbineErrorAPIViewset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows WindTurbineError to be created, viewed, updated and deleted.</p>
+<p>This endpoint can recieve a windturbine ID as a request parameter,
+in order only show the incidents related to a specific windturbine</p>
+<dl class="method">
+<dt id="turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_error_api_viewset.html#WindturbineErrorAPIViewset.get_queryset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindturbineErrorSerializer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset.suffix">
+<code class="descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windturbine_error_api_viewset.WindturbineErrorAPIViewset.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.views.windturbine_setting_api_viewset">
+<span id="turbinemanagement-views-windturbine-setting-api-viewset-module"></span><h2>turbinemanagement.views.windturbine_setting_api_viewset module<a class="headerlink" href="#module-turbinemanagement.views.windturbine_setting_api_viewset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset">
+<em class="property">class </em><code class="descclassname">turbinemanagement.views.windturbine_setting_api_viewset.</code><code class="descname">WindturbineSettingAPIViewset</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_setting_api_viewset.html#WindturbineSettingAPIViewset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows WindTurbineSetting to be created, viewed, updated and deleted.</p>
+<p>This endpoint can recieve a request parameter with the windturbine ID,
+in order to only show the settings of a specific windturbine</p>
+<dl class="method">
+<dt id="turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/views/windturbine_setting_api_viewset.html#WindturbineSettingAPIViewset.get_queryset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.pagination_class">
+<code class="descname">pagination_class</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.pagination_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">WindturbineSettingSerializer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.suffix">
+<code class="descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.views">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-turbinemanagement.views" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Operation & Maintenance platform</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kenneth Hansen, Dennis Asmussen, Daniel M. Nielsen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rst/turbinemanagement.views.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

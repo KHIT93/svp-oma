@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>turbinemanagement.migrations package &#8212; Operation &amp; Maintenance platform 1.0poc documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0poc',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="turbinemanagement-migrations-package">
+<h1>turbinemanagement.migrations package<a class="headerlink" href="#turbinemanagement-migrations-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0001_initial">
+<span id="turbinemanagement-migrations-0001-initial-module"></span><h2>turbinemanagement.migrations.0001_initial module<a class="headerlink" href="#module-turbinemanagement.migrations.0001_initial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0001_initial.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0001_initial.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0001_initial.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0001_initial.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0001_initial.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = []</em><a class="headerlink" href="#turbinemanagement.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0001_initial.Migration.initial">
+<code class="descname">initial</code><em class="property"> = True</em><a class="headerlink" href="#turbinemanagement.migrations.0001_initial.Migration.initial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0001_initial.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  name='WindFarm', fields=[('id', &lt;django.db.models.fields.AutoField&gt;)], options={'abstract': False}&gt;, &lt;CreateModel  name='WindTurbine', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('longtitude', &lt;django.db.models.fields.FloatField&gt;), ('latitude', &lt;django.db.models.fields.FloatField&gt;), ('windfarm_id', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'abstract': False}&gt;, &lt;CreateModel  name='WindTurbineData', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('timestamp', &lt;django.db.models.fields.DateTimeField&gt;), ('state', &lt;django.db.models.fields.IntegerField&gt;), ('temp_gearbox', &lt;django.db.models.fields.DecimalField&gt;), ('temp_generator', &lt;django.db.models.fields.DecimalField&gt;), ('rpm_shaft', &lt;django.db.models.fields.IntegerField&gt;), ('wind_speed', &lt;django.db.models.fields.DecimalField&gt;), ('windturbine_id', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'abstract': False}&gt;, &lt;CreateModel  name='WindTurbineError', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('timestamp', &lt;django.db.models.fields.DateTimeField&gt;), ('error_messge', &lt;django.db.models.fields.TextField&gt;), ('error_code', &lt;django.db.models.fields.IntegerField&gt;), ('windturbine_id', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'abstract': False}&gt;, &lt;CreateModel  name='WindTurbineSetting', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('state', &lt;django.db.models.fields.IntegerField&gt;), ('max_rpm_shaft', &lt;django.db.models.fields.IntegerField&gt;), ('max_temp_gearbox', &lt;django.db.models.fields.DecimalField&gt;), ('max_temp_generator', &lt;django.db.models.fields.DecimalField&gt;), ('windturbine_id', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'abstract': False}&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0002_windfarm_name">
+<span id="turbinemanagement-migrations-0002-windfarm-name-module"></span><h2>turbinemanagement.migrations.0002_windfarm_name module<a class="headerlink" href="#module-turbinemanagement.migrations.0002_windfarm_name" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0002_windfarm_name.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0002_windfarm_name.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0002_windfarm_name.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0002_windfarm_name.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0002_windfarm_name.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0001_initial')]</em><a class="headerlink" href="#turbinemanagement.migrations.0002_windfarm_name.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0002_windfarm_name.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='windfarm', name='name', field=&lt;django.db.models.fields.CharField&gt;, preserve_default=False&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0002_windfarm_name.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0003_auto_20170816_0737">
+<span id="turbinemanagement-migrations-0003-auto-20170816-0737-module"></span><h2>turbinemanagement.migrations.0003_auto_20170816_0737 module<a class="headerlink" href="#module-turbinemanagement.migrations.0003_auto_20170816_0737" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0003_auto_20170816_0737.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0003_auto_20170816_0737.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0003_auto_20170816_0737.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0003_auto_20170816_0737.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0003_auto_20170816_0737.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0002_windfarm_name')]</em><a class="headerlink" href="#turbinemanagement.migrations.0003_auto_20170816_0737.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0003_auto_20170816_0737.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameField  model_name='windturbine', old_name='windfarm_id', new_name='windfarm'&gt;, &lt;RenameField  model_name='windturbinedata', old_name='windturbine_id', new_name='windturbine'&gt;, &lt;RenameField  model_name='windturbineerror', old_name='windturbine_id', new_name='windturbine'&gt;, &lt;RenameField  model_name='windturbinesetting', old_name='windturbine_id', new_name='windturbine'&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0003_auto_20170816_0737.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0004_auto_20170816_0740">
+<span id="turbinemanagement-migrations-0004-auto-20170816-0740-module"></span><h2>turbinemanagement.migrations.0004_auto_20170816_0740 module<a class="headerlink" href="#module-turbinemanagement.migrations.0004_auto_20170816_0740" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0004_auto_20170816_0740.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0004_auto_20170816_0740.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0004_auto_20170816_0740.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0004_auto_20170816_0740.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0004_auto_20170816_0740.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0003_auto_20170816_0737')]</em><a class="headerlink" href="#turbinemanagement.migrations.0004_auto_20170816_0740.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0004_auto_20170816_0740.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='windturbine', name='name', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='windfarm', name='name', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0004_auto_20170816_0740.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0005_auto_20170817_1124">
+<span id="turbinemanagement-migrations-0005-auto-20170817-1124-module"></span><h2>turbinemanagement.migrations.0005_auto_20170817_1124 module<a class="headerlink" href="#module-turbinemanagement.migrations.0005_auto_20170817_1124" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0005_auto_20170817_1124.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0005_auto_20170817_1124.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0005_auto_20170817_1124.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0005_auto_20170817_1124.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0005_auto_20170817_1124.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0004_auto_20170816_0740')]</em><a class="headerlink" href="#turbinemanagement.migrations.0005_auto_20170817_1124.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0005_auto_20170817_1124.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameField  model_name='windturbinedata', old_name='rpm_shaft', new_name='rpm_generator'&gt;, &lt;RenameField  model_name='windturbinesetting', old_name='max_rpm_shaft', new_name='max_rpm_generator'&gt;, &lt;AlterField  model_name='windturbinedata', name='timestamp', field=&lt;django.db.models.fields.DateTimeField&gt;&gt;, &lt;AlterField  model_name='windturbineerror', name='timestamp', field=&lt;django.db.models.fields.DateTimeField&gt;&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0005_auto_20170817_1124.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0006_auto_20170818_0717">
+<span id="turbinemanagement-migrations-0006-auto-20170818-0717-module"></span><h2>turbinemanagement.migrations.0006_auto_20170818_0717 module<a class="headerlink" href="#module-turbinemanagement.migrations.0006_auto_20170818_0717" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0006_auto_20170818_0717.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0006_auto_20170818_0717.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0006_auto_20170818_0717.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0006_auto_20170818_0717.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0006_auto_20170818_0717.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0005_auto_20170817_1124')]</em><a class="headerlink" href="#turbinemanagement.migrations.0006_auto_20170818_0717.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0006_auto_20170818_0717.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='windturbine', name='name', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0006_auto_20170818_0717.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0007_remove_windturbine_name">
+<span id="turbinemanagement-migrations-0007-remove-windturbine-name-module"></span><h2>turbinemanagement.migrations.0007_remove_windturbine_name module<a class="headerlink" href="#module-turbinemanagement.migrations.0007_remove_windturbine_name" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0007_remove_windturbine_name.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0007_remove_windturbine_name.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0007_remove_windturbine_name.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0007_remove_windturbine_name.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0007_remove_windturbine_name.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0006_auto_20170818_0717')]</em><a class="headerlink" href="#turbinemanagement.migrations.0007_remove_windturbine_name.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0007_remove_windturbine_name.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='windturbine', name='name'&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0007_remove_windturbine_name.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0008_windturbine_name">
+<span id="turbinemanagement-migrations-0008-windturbine-name-module"></span><h2>turbinemanagement.migrations.0008_windturbine_name module<a class="headerlink" href="#module-turbinemanagement.migrations.0008_windturbine_name" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0008_windturbine_name.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0008_windturbine_name.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0008_windturbine_name.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0008_windturbine_name.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0008_windturbine_name.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0007_remove_windturbine_name')]</em><a class="headerlink" href="#turbinemanagement.migrations.0008_windturbine_name.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0008_windturbine_name.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='windturbine', name='name', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0008_windturbine_name.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0009_windturbine_ip_address">
+<span id="turbinemanagement-migrations-0009-windturbine-ip-address-module"></span><h2>turbinemanagement.migrations.0009_windturbine_ip_address module<a class="headerlink" href="#module-turbinemanagement.migrations.0009_windturbine_ip_address" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0009_windturbine_ip_address.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0009_windturbine_ip_address.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0009_windturbine_ip_address.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0009_windturbine_ip_address.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0009_windturbine_ip_address.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0008_windturbine_name')]</em><a class="headerlink" href="#turbinemanagement.migrations.0009_windturbine_ip_address.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0009_windturbine_ip_address.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='windturbine', name='ip_address', field=&lt;django.db.models.fields.GenericIPAddressField&gt;&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0009_windturbine_ip_address.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations.0010_windturbineerror_resolved">
+<span id="turbinemanagement-migrations-0010-windturbineerror-resolved-module"></span><h2>turbinemanagement.migrations.0010_windturbineerror_resolved module<a class="headerlink" href="#module-turbinemanagement.migrations.0010_windturbineerror_resolved" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="turbinemanagement.migrations.0010_windturbineerror_resolved.Migration">
+<em class="property">class </em><code class="descclassname">turbinemanagement.migrations.0010_windturbineerror_resolved.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/migrations/0010_windturbineerror_resolved.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.migrations.0010_windturbineerror_resolved.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0010_windturbineerror_resolved.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('turbinemanagement', '0009_windturbine_ip_address')]</em><a class="headerlink" href="#turbinemanagement.migrations.0010_windturbineerror_resolved.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.migrations.0010_windturbineerror_resolved.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='windturbineerror', name='resolved', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#turbinemanagement.migrations.0010_windturbineerror_resolved.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-turbinemanagement.migrations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-turbinemanagement.migrations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Operation & Maintenance platform</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kenneth Hansen, Dennis Asmussen, Daniel M. Nielsen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rst/turbinemanagement.migrations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>appcore.views package &#8212; Operation &amp; Maintenance platform 1.0poc documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0poc',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="appcore-views-package">
+<h1>appcore.views package<a class="headerlink" href="#appcore-views-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-appcore.views.audit_log_viewset">
+<span id="appcore-views-audit-log-viewset-module"></span><h2>appcore.views.audit_log_viewset module<a class="headerlink" href="#module-appcore.views.audit_log_viewset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="appcore.views.audit_log_viewset.AuditLogViewset">
+<em class="property">class </em><code class="descclassname">appcore.views.audit_log_viewset.</code><code class="descname">AuditLogViewset</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/appcore/views/audit_log_viewset.html#AuditLogViewset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#appcore.views.audit_log_viewset.AuditLogViewset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows entries in the audit log to be viewed or created.</p>
+<dl class="attribute">
+<dt id="appcore.views.audit_log_viewset.AuditLogViewset.pagination_class">
+<code class="descname">pagination_class</code><em class="property"> = None</em><a class="headerlink" href="#appcore.views.audit_log_viewset.AuditLogViewset.pagination_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.views.audit_log_viewset.AuditLogViewset.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, &lt;AuditLog: AuditLog object&gt;, '...(remaining elements truncated)...']&gt;</em><a class="headerlink" href="#appcore.views.audit_log_viewset.AuditLogViewset.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.views.audit_log_viewset.AuditLogViewset.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#appcore.views.audit_log_viewset.AuditLogViewset.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">AuditLogSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-appcore.views.group_view_set">
+<span id="appcore-views-group-view-set-module"></span><h2>appcore.views.group_view_set module<a class="headerlink" href="#module-appcore.views.group_view_set" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="appcore.views.group_view_set.GroupViewSet">
+<em class="property">class </em><code class="descclassname">appcore.views.group_view_set.</code><code class="descname">GroupViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/appcore/views/group_view_set.html#GroupViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#appcore.views.group_view_set.GroupViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows groups to be viewed or edited.</p>
+<dl class="attribute">
+<dt id="appcore.views.group_view_set.GroupViewSet.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet []&gt;</em><a class="headerlink" href="#appcore.views.group_view_set.GroupViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.views.group_view_set.GroupViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#appcore.views.group_view_set.GroupViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">GroupSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-appcore.views.user_view_set">
+<span id="appcore-views-user-view-set-module"></span><h2>appcore.views.user_view_set module<a class="headerlink" href="#module-appcore.views.user_view_set" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="appcore.views.user_view_set.UserViewSet">
+<em class="property">class </em><code class="descclassname">appcore.views.user_view_set.</code><code class="descname">UserViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/appcore/views/user_view_set.html#UserViewSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#appcore.views.user_view_set.UserViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint that allows users to be viewed or edited.</p>
+<dl class="attribute">
+<dt id="appcore.views.user_view_set.UserViewSet.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;User: kenneth&gt;]&gt;</em><a class="headerlink" href="#appcore.views.user_view_set.UserViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="appcore.views.user_view_set.UserViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#appcore.views.user_view_set.UserViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">UserSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-appcore.views">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-appcore.views" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Operation & Maintenance platform</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kenneth Hansen, Dennis Asmussen, Daniel M. Nielsen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rst/appcore.views.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
