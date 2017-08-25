@@ -187,6 +187,10 @@ sphinx-apidoc -o /Users/kenneth/Code/svp-oma/om/docs/rst/ /Users/kenneth/Code/sv
 
 Herefter kan vi lave `html` udgaven af vores dokumentation. Kør `make html` og vent til den er færdig.
 
+I mappen `_build/html` ligger dokumentationen nu klar. Problemet er dog at denne ikke medtages i VCS, så vi skal lige kopiere den færdige dokumentation til en anden mappe. Det er her mappen `html` kommer i brug.
+
+Kopier indholdet af `_build/html` til `html` og commit til VCS.
+
 ### Opdatering af eksisterende dokumentation
 For at opdatere eksisterende dokumentation afvikles følgende:
 ```
@@ -198,3 +202,7 @@ make html
 Herefter er der opdateret dokumentation tilgængelig.
 
 Dokumentationen er lavet som "flade" `html` filer og kræver derfor ikke en specifik webserver for at fungere.
+
+I mappen `_build/html` ligger dokumentationen nu klar. Problemet er dog at denne ikke medtages i VCS, så vi skal lige kopiere den færdige dokumentation til en anden mappe. Det er her mappen `html` kommer i brug.
+
+Kopier indholdet af `_build/html` til `html` og commit til VCS. 
