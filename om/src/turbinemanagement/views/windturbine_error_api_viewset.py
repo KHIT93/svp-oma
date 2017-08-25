@@ -3,5 +3,16 @@ from turbinemanagement.models.windturbine_error import WindTurbineError
 from turbinemanagement.serializers.windturbine_error_serializer import WindturbineErrorSerializer
 
 class WindturbineErrorAPIViewset(viewsets.ModelViewSet):
-    queryset = WindTurbineError.objects.all()
+    """
+    API endpoint that allows WindTurbineError to be created, viewed, updated and deleted.
+
+    This endpoint can recieve a windturbine ID as a request parameter,
+    in order only show the incidents related to a specific windturbine
+    """
     serializer_class = WindturbineErrorSerializer
+
+    def get_queryset(self):
+        if self.request.query_params.__contains__('windturbine'):
+            return WindTurbineError.objects.filter(windturbine=self.request.query_params.get('windturbine'))
+        else:
+            return WindTurbineError.objects.all()
