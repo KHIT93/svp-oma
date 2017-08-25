@@ -3,8 +3,18 @@ from turbinemanagement.models.windturbine import WindTurbine
 from appcore.models.audit_log import AuditLog
 import requests
 
+# === Command to handle data sync between Control and O&M ===
+
 class Command(BaseCommand):
+    """
+    The Command class defines the commandline functionality for the data sync between O&M and the Control instances in the wind turbines
+    """
+
+    # === Main entry point for the command ===
     def handle(self, *args, **options):
+        """
+        Handle the execution of the command by invoking this method and synchronize the data from the windturbines into the O&M database
+        """
         print("Starting data sync from windturbines")
         for windturbine in WindTurbine.objects.all():
             if windturbine.ip_address == "0.0.0.0":

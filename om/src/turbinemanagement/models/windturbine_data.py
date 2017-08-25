@@ -2,7 +2,30 @@ from django.db import models
 from appcore.models.base_model import BaseModel
 from .windturbine import WindTurbine
 
+# === Model to hold sensor data from the windturbine ===
+
 class WindTurbineData(BaseModel):
+    """
+    The WindTurbineData class defines the format in which we store the sensor information that has been recieved from the windturbines.
+
+    Each entry includes these fields:
+
+    id - Unique identifier for the specific sensor reading
+
+    windturbine - Relationship to the windturbine that collected the sensor data. In the SQL database, this reference is stored as windturbine_id
+
+    timestamp - Timestamp in ISO 8601 for when the data was registered at the windturbine
+
+    state - A numeric representation for the windturbine state at the time of this sensor reading
+
+    temp_gearbox - Temperature reading in degrees Celcius from the gearbox
+
+    temp_generator - Temperature reading in degrees Celcius from the generator
+
+    rpm_generator - Reading of the current RPM registered at the generator
+
+    wind_speed - Current reading of the wind speed at the windturbine
+    """
     windturbine = models.ForeignKey(WindTurbine)
     timestamp = models.DateTimeField(auto_now_add=True)
     state = models.IntegerField()

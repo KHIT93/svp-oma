@@ -12,6 +12,11 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+
+Including API viewsets
+    1. Add an import: from other_app.views import MyAppAPIViewset
+    2. Register the endpoint with the router: router.register(r'myapp-endpoint', MyAppAPIViewset)
+    3. If method get_queryset is defined on the ViewSet change the router registration like this: router.register(r'myapp-endpoint', MyAppAPIViewset, 'MyModel')
 """
 from django.conf.urls import url, include
 from django.conf import settings
@@ -29,7 +34,6 @@ from turbinemanagement.views.windturbine_api_viewset import WindturbineAPIViewse
 from turbinemanagement.views.windturbine_data_api_viewset import WindturbineDataAPIViewset
 from turbinemanagement.views.windturbine_error_api_viewset import WindturbineErrorAPIViewset
 from turbinemanagement.views.windturbine_setting_api_viewset import WindturbineSettingAPIViewset
-from turbinemanagement.views.windfarm_status_view import WindfarmStatusView
 from turbinemanagement.views.windfarm_api_viewset import WindfarmWithRelationshipsAPIView
 from turbinemanagement.views.windfarm_api_viewset import WindfarmWithNestedRelationshipsAPIView
 from turbinemanagement.views.windturbine_api_viewset import WindturbineWithRelationshipsAPIView
@@ -42,14 +46,13 @@ router.register(r'errors', ErrorCodeAPIViewset)
 router.register(r'windfarms', WindfarmAPIViewset)
 router.register(r'windturbines', WindturbineAPIViewset)
 router.register(r'windturbine-data', WindturbineDataAPIViewset, 'WindTurbineData')
-router.register(r'windturbine-errors', WindturbineErrorAPIViewset)
+router.register(r'windturbine-errors', WindturbineErrorAPIViewset, 'WindTurbineError')
 router.register(r'windturbine-settings', WindturbineSettingAPIViewset, 'WindTurbineSettings')
 
 urlpatterns = [
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardView.as_view()),
-    url(r'^webapi/windfarm-status/', WindfarmStatusView.as_view()),
     url(r'^webapi/windfarms/simple/', WindfarmWithRelationshipsAPIView.as_view()),
     url(r'^webapi/windfarms/complete/', WindfarmWithNestedRelationshipsAPIView.as_view()),
     url(r'^webapi/windturbines/complete/', WindturbineWithRelationshipsAPIView.as_view()),

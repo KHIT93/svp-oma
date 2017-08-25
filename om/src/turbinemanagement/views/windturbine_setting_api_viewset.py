@@ -3,7 +3,12 @@ from turbinemanagement.models.windturbine_setting import WindTurbineSetting
 from turbinemanagement.serializers.windturbine_setting_serializer import WindturbineSettingSerializer
 
 class WindturbineSettingAPIViewset(viewsets.ModelViewSet):
-    #queryset = WindTurbineSetting.objects.all()
+    """
+    API endpoint that allows WindTurbineSetting to be created, viewed, updated and deleted.
+
+    This endpoint can recieve a request parameter with the windturbine ID,
+    in order to only show the settings of a specific windturbine
+    """
     serializer_class = WindturbineSettingSerializer
     pagination_class = None
 
