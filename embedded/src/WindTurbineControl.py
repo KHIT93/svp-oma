@@ -29,36 +29,54 @@ motor = Motor.Motor(3,5,11,1000,0)
 # Start the motor
 Motor.run(motor)
 
+
 # Database connection
 cnx = pymysql.connect(user='root', password='P@ssw0rd',
                               host='127.0.0.1',
                               database='control_db')
-cursor = cnx.cursor()
+cursor = cnx.cursor(pymysql.cursors.DictCursor)
 # Windturbine data insertion string
 add_data = ("INSERT INTO windturbine_data_windturbinedata "
 			"(windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
 			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
+get_settings = ("SELECT * FROM windturbine_settings_windturbinesetting WHERE id > %s ORDER BY id desc")
+
+# Variables initialized for later
 temperature = 0
 rpm = 0.0
 get_config_count = 8
+current_config = 0
 
 while True:
-	if get_config_count > 7:
+	# Check for new config
+	if get_config_count > 4:
 		get_config_count = 0
-		Motor.changespeed(motor, wind_speed, wing_angle)
+		Motor.changespeed(motor, wind_speed, wing_angle)	
+		if cursor.execute(get_settings, current_config) > 0:
+			row = cursor.fetchone()
+			state = row['state']
+			brake = row['brake']
+			wind_speed = row['wind_speed']
+			wing_angle = row['wing_angle']
+			current_config = row['id']
+			print(row['id'])
 
+	# Read ADC
 	value = ADC.readadc(adc)
+	# Take the reading and multiply it by the volts on the ADC. Then divide by the amount of bits from the ADC
 	volts = (value * 3.3) / 1024
 	temperature = volts / (10.0 / 1000)
+	# Read RPM
 	rpm = IRSensor.read_rpm()
-	print(temperature)
+
+	# Prepare the insertion data, then insert into database and commit
 	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, 20.0)
 	cursor.execute(add_data, data_data)
 	cnx.commit()
+
 	get_config_count += 1
 	time.sleep(1)
 
 cursor.close()
 cnx.close()
- 
