@@ -20,12 +20,12 @@ class Windturbine():
 		Motor.changespeed(self.motor, self.wind_speed, self.wing_angle)
 		
 		if self.brake:
-			self.motor.brake()
+			Motor.brake(self.motor)
 
 		if self.state == 0:
-			self.motor.stop()
+			Motor.stop(self.motor)
 		elif self.state == 1:
-			self.motor.run()
+			Motor.run(self.motor)
 
 		
 GPIO.cleanup()
