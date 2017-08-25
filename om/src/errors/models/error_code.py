@@ -7,13 +7,13 @@ class ErrorCode(models.Model):
     The ErrorCode class defines the format used for error codes and their severity
     Each entry includes these fields:
 
-    id - Unique identifier for the error code
+    :param id: Unique identifier for the error code
 
-    code - A unique user defined numeric code
+    :param code: A unique user defined numeric code
 
-    message - A message that can be displayed in logs and UI notifications
+    :param message: A message that can be displayed in logs and UI notifications
 
-    severity - A numeric value that defines the severity / priority of the error
+    :param severity: A numeric value that defines the severity / priority of the error
 
     """
     code = models.IntegerField()

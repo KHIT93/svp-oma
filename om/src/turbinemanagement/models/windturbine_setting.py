@@ -10,17 +10,17 @@ class WindTurbineSetting(BaseModel):
 
     Each entry holds the following information:
 
-    id - Unique identifier for the settings of the WindTurbine
+    :param id: Unique identifier for the settings of the WindTurbine
 
-    windturbine - Relationship to the WindTurbine using these settings. In the SQL database, this reference is saved as windturbine_id
+    :param windturbine: Relationship to the WindTurbine using these settings. In the SQL database, this reference is saved as windturbine_id
 
-    state - The normal state of operation for this WindTurbine
+    :param state: The normal state of operation for this WindTurbine
 
-    max_rpm_generator - The highest allowed RPM for the generator
+    :param max_rpm_generator: The highest allowed RPM for the generator
 
-    max_temp_gearbox - The highest allowed temperature in degrees Celcius for the gearbox
+    :param max_temp_gearbox: The highest allowed temperature in degrees Celcius for the gearbox
 
-    max_temp_generator - The highest allowed temperature in degrees Celcius for the generator
+    :param max_temp_generator: The highest allowed temperature in degrees Celcius for the generator
     """
     windturbine = models.ForeignKey(WindTurbine)
     state = models.IntegerField()

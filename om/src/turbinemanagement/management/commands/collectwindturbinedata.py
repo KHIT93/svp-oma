@@ -14,6 +14,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """
         Handle the execution of the command by invoking this method and synchronize the data from the windturbines into the O&M database
+
+        :param *args: any additional positional arguments
+        :param **options: any named options/keyword arguments
         """
         print("Starting data sync from windturbines")
         for windturbine in WindTurbine.objects.all():

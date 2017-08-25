@@ -11,17 +11,17 @@ class AuditLog(models.Model):
 
     Each entry has the following values:
 
-    id - Unique identifier for the specific log entry
+    :param id: Unique identifier for the specific log entry
 
-    timestamp - Timestamp stored in ISO-8601
+    :param timestamp: Timestamp stored in ISO-8601
 
-    user - Reference to the application user that caused the entry to be created. This can be null if a system action is automatically performed
+    :param user: Reference to the application user that caused the entry to be created. This can be null if a system action is automatically performed
 
-    name - The name of the user or system component that caused the entry to be created.
+    :param name: The name of the user or system component that caused the entry to be created.
 
-    message - A message describing the performed action
+    :param message: A message describing the performed action
 
-    api_response - If an API call was performed this contains the API response that was recieved by the server
+    :param api_response: If an API call was performed this contains the API response that was recieved by the server
     """
     class Meta:
         db_table = "audit_log"

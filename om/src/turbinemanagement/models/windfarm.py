@@ -11,9 +11,9 @@ class WindFarm(BaseModel):
 
     Each entry includes the following fields:
 
-    id - Unique identifier for this record
+    :param id: Unique identifier for this record
 
-    name - A short descriptive name of the windfarm. This could fx. be an internal codename
+    :param name: A short descriptive name of the windfarm. This could fx. be an internal codename
     """
     name = models.CharField(max_length=100, null=True, blank=True)
 
