@@ -35,7 +35,7 @@ adc = ADC.ADC(0, 23, 21, 19, 24)
 # IR sensor pin
 ir_sensor = IRSensor.IRSensor(7)
 # PWM pin, Standby pin, AIN1 pin, PWM Frequincy, Duty
-motor = Motor.Motor(3,5,11,1000)
+motor = Motor.Motor(3,5,11,1000, 0)
 # Motor, state, brake, wind_speed, wing_angle
 windturbine = Windturbine(motor, 0, 0, 0.0, 0.0)
 
