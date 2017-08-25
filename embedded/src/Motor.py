@@ -4,7 +4,7 @@ import time
 
 class Motor:
 	"""docstring for Motor"""
-	def __init__(self, pwm_pin, standby_pin, direction_pin, frequency,duty):
+	def __init__(self, pwm_pin, standby_pin, direction_pin, frequency, duty):
 		GPIO.setmode(GPIO.BOARD)
 		self.pwm_pin = pwm_pin
 		self.standby_pin = standby_pin
@@ -16,19 +16,19 @@ class Motor:
 		GPIO.setup(self.direction_pin, GPIO.OUT)
 		self.pwm = GPIO.PWM(pwm_pin, frequency)
 
-def run(motor):
-	motor.pwm.start(motor.duty)
-	GPIO.output(motor.standby_pin, 1)
-	GPIO.output(motor.direction_pin, 1)
+def run(self):
+	self.pwm.start(self.duty)
+	GPIO.output(self.standby_pin, 1)
+	GPIO.output(self.direction_pin, 1)
 
 
-def stop(motor):
-	GPIO.output(motor.standby_pin, 0)
+def stop(self):
+	GPIO.output(self.standby_pin, 0)
 
-def changespeed(motor, wind_speed, wing_angle): 
-	motor.duty = wind_speed - wing_angle
-	motor.pwm.ChangeDutyCycle(motor.duty)
+def changespeed(self, wind_speed, wing_angle): 
+	self.duty = wind_speed - wing_angle
+	self.pwm.ChangeDutyCycle(self.duty)
 
-def brake(motor):
-	motor.duty -= 1
-	motor.pwm.ChangeDutyCycle(motor.duty)
+def brake(self):
+	self.duty -= 10
+	self.pwm.ChangeDutyCycle(self.duty)

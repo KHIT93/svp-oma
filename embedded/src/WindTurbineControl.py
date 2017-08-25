@@ -6,40 +6,46 @@ import socket
 import ADC
 import pymysql.cursors
 
-# Config data: windturbine, State, Brake, Wind_speed, Wing_angle
-# Out data: windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed, wing_angle, brake
 
+class Windturbine():
+	"""docstring for Windturbine"""
+	def __init__(self, motor, state, brake, wind_speed, wing_angle):
+		self.motor = motor
+		self.state = state
+		self.brake = brake
+		self.wind_speed = wind_speed
+		self.wing_angle = wing_angle
+
+	def changesettings(self):
+		Motor.changespeed(self.wind_speed, self.wing_angle)
+		
+		if self.brake:
+			self.motor.brake()
+
+		if self.state = 0:
+			self.motor.stop()
+		elif self.state = 1:
+			self.motor.run()
+
+		
 GPIO.cleanup()
-
-# State of the windturbine 1 = running, 0 = stopped
-state = 1
-# State on the brake 1 = Activated, 0 = deactivated
-brake = 0
-# Speed of wind in meters/second
-wind_speed = 20
-# Angle of the wind turbine wings in degress (Max = 10)
-wing_angle = 0
 
 # ADC channel, clock_pin, miso_pin, mosi_pin, cs_pin
 adc = ADC.ADC(0, 23, 21, 19, 24)
 # IR sensor pin
 ir_sensor = IRSensor.IRSensor(7)
 # PWM pin, Standby pin, AIN1 pin, PWM Frequincy, Duty
-motor = Motor.Motor(3,5,11,1000,0)
-# Start the motor
-Motor.run(motor)
-
+motor = Motor.Motor(3,5,11,1000)
+# Motor, state, brake, wind_speed, wing_angle
+windturbine = Windturbine(motor, 0, 0, 0.0, 0.0)
 
 # Database connection
-cnx = pymysql.connect(user='root', password='P@ssw0rd',
-                              host='127.0.0.1',
-                              database='control_db')
+cnx = pymysql.connect(user='root', password='P@ssw0rd', host='127.0.0.1', database='control_db')
 cursor = cnx.cursor(pymysql.cursors.DictCursor)
-# Windturbine data insertion string
-add_data = ("INSERT INTO windturbine_data_windturbinedata "
-			"(windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
-			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
+# Windturbine data insertion statement
+add_data = ("INSERT INTO windturbine_data_windturbinedata (windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) VALUES (%s, %s, %s, %s, %s, %s, %s)")
+# Windturbine settings select statement
 get_settings = ("SELECT * FROM windturbine_settings_windturbinesetting WHERE id > %s ORDER BY id desc")
 
 # Variables initialized for later
@@ -52,15 +58,19 @@ while True:
 	# Check for new config
 	if get_config_count > 4:
 		get_config_count = 0
-		Motor.changespeed(motor, wind_speed, wing_angle)	
+		# If there is a new config
 		if cursor.execute(get_settings, current_config) > 0:
 			row = cursor.fetchone()
-			state = row['state']
-			brake = row['brake']
-			wind_speed = row['wind_speed']
-			wing_angle = row['wing_angle']
+			windturbine.state = row['state']
+			windturbine.brake = row['brake']
+			windturbine.wind_speed = row['wind_speed']
+			windturbine.wing_angle = row['wing_angle']
 			current_config = row['id']
 			print(row['id'])
+			windturbine.changesettings()
+			
+
+
 
 	# Read ADC
 	value = ADC.readadc(adc)
