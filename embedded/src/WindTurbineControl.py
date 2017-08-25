@@ -54,13 +54,14 @@ while True:
 		get_config_count = 0
 		Motor.changespeed(motor, wind_speed, wing_angle)
 		cursor.execute(get_settings, current_config)
-		if cursor.fetchone():
-			state = cursor['state']
-			brake = cursor['brake']
-			wind_speed = cursor['wind_speed']
-			wing_angle = cursor['wing_angle']
-			current_config = cursor['id']
-			print(cursor['id'])
+		row = cursor.fetchone()
+		if row['id']:
+			state = row['state']
+			brake = row['brake']
+			wind_speed = row['wind_speed']
+			wing_angle = row['wing_angle']
+			current_config = row['id']
+			print(row['id'])
 
 	# Read ADC
 	value = ADC.readadc(adc)
