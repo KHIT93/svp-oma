@@ -22,9 +22,9 @@ class Windturbine():
 		if self.brake:
 			self.motor.brake()
 
-		if self.state = 0:
+		if self.state == 0:
 			self.motor.stop()
-		elif self.state = 1:
+		elif self.state == 1:
 			self.motor.run()
 
 		
