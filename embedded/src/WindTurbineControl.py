@@ -40,7 +40,7 @@ add_data = ("INSERT INTO windturbine_data_windturbinedata "
 			"(windturbine, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed) "
 			"VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
-get_settings = ("SELECT TOP 1 * FROM windturbine_settings_windturbinesetting WHERE id > %s ORDER BY id desc")
+get_settings = ("SELECT * FROM windturbine_settings_windturbinesetting WHERE id > %s ORDER BY id desc")
 
 # Variables initialized for later
 temperature = 0
