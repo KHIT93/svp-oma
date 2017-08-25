@@ -52,10 +52,9 @@ while True:
 	# Check for new config
 	if get_config_count > 4:
 		get_config_count = 0
-		Motor.changespeed(motor, wind_speed, wing_angle)
-		cursor.execute(get_settings, current_config)
-		row = cursor.fetchone()
-		if row['id']:
+		Motor.changespeed(motor, wind_speed, wing_angle)	
+		if cursor.execute(get_settings, current_config) > 0:
+			row = cursor.fetchone()
 			state = row['state']
 			brake = row['brake']
 			wind_speed = row['wind_speed']
