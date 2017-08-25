@@ -23,6 +23,7 @@ from rest_framework import routers
 from appcore.views.user_view_set import UserViewSet
 from appcore.views.group_view_set import GroupViewSet
 from appcore.views.audit_log_viewset import AuditLogViewset
+from errors.views.error_code_api_viewset import ErrorCodeAPIViewset
 from turbinemanagement.views.windfarm_api_viewset import WindfarmAPIViewset
 from turbinemanagement.views.windturbine_api_viewset import WindturbineAPIViewset
 from turbinemanagement.views.windturbine_data_api_viewset import WindturbineDataAPIViewset
@@ -37,6 +38,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'auditlog', AuditLogViewset)
+router.register(r'errors', ErrorCodeAPIViewset)
 router.register(r'windfarms', WindfarmAPIViewset)
 router.register(r'windturbines', WindturbineAPIViewset)
 router.register(r'windturbine-data', WindturbineDataAPIViewset, 'WindTurbineData')
@@ -44,6 +46,7 @@ router.register(r'windturbine-errors', WindturbineErrorAPIViewset)
 router.register(r'windturbine-settings', WindturbineSettingAPIViewset, 'WindTurbineSettings')
 
 urlpatterns = [
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardView.as_view()),
     url(r'^webapi/windfarm-status/', WindfarmStatusView.as_view()),

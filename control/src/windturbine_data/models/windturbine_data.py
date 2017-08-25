@@ -8,6 +8,8 @@ class WindturbineData(models.Model):
     temp_generator = models.DecimalField(max_digits=10, decimal_places=2)
     rpm_generator = models.IntegerField()
     wind_speed = models.DecimalField(max_digits=10, decimal_places=2)
+    wing_angle = models.DecimalField(max_digits=10, decimal_places=2)
+    brake = models.BooleanField(default=0)
 
     class Meta:
         verbose_name_plural = "Windturbine data"
