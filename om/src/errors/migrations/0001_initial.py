@@ -4,33 +4,6 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
-def add_error_codes(apps, schema_editor):
-    ErrorCode = apps.get_model("errors", "ErrorCode")
-    db_alias = schema_editor.connection.alias
-    ErrorCode.objects.using(db_alias).bulk_create([
-        ErrorCode(message="OK", severity=0, code=0),
-        ErrorCode(code=100, severity=3, message="No connection to generator temperature sensor"),
-        ErrorCode(code=110, severity=2, message="Generator temperature is too high with high RPM"),
-        ErrorCode(code=120, severity=3, message="Generator temperature is too high with low RPM"),
-        ErrorCode(code=130, severity=3, message="Generator temperature is too high and no activity"),
-        ErrorCode(code=200, severity=3, message="No connection to RPM sensor"),
-        ErrorCode(code=210, severity=2, message="RPM is too high"),
-        ErrorCode(code=220, severity=1, message="RPM is too low"),
-        ErrorCode(code=230, severity=1, message="No RPM registered"),
-    ])
-
-def remove_error_codes(apps, schema_editor):
-    ErrorCode = apps.get_model("errors", "ErrorCode")
-    db_alias = schema_editor.connection.alias
-    ErrorCode.objects.using(db_alias).filter(code=0).delete()
-    ErrorCode.objects.using(db_alias).filter(code=100).delete()
-    ErrorCode.objects.using(db_alias).filter(code=110).delete()
-    ErrorCode.objects.using(db_alias).filter(code=120).delete()
-    ErrorCode.objects.using(db_alias).filter(code=130).delete()
-    ErrorCode.objects.using(db_alias).filter(code=200).delete()
-    ErrorCode.objects.using(db_alias).filter(code=210).delete()
-    ErrorCode.objects.using(db_alias).filter(code=220).delete()
-    ErrorCode.objects.using(db_alias).filter(code=230).delete()
 
 class Migration(migrations.Migration):
 
@@ -49,5 +22,4 @@ class Migration(migrations.Migration):
                 ('severity', models.IntegerField()),
             ],
         ),
-        migrations.RunPython(add_error_codes, remove_error_codes)
     ]

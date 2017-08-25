@@ -46,6 +46,7 @@ router.register(r'windturbine-errors', WindturbineErrorAPIViewset)
 router.register(r'windturbine-settings', WindturbineSettingAPIViewset, 'WindTurbineSettings')
 
 urlpatterns = [
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardView.as_view()),
     url(r'^webapi/windfarm-status/', WindfarmStatusView.as_view()),
