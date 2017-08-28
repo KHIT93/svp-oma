@@ -21,15 +21,15 @@ class Windturbine():
 		self.brake = row['brake']
 		self.wind_speed = row['wind_speed']
 		self.wing_angle = row['wing_angle']
-		Motor.changespeed(self.motor, self.wind_speed, self.wing_angle)
+		self.motor.changespeed(self.wind_speed, self.wing_angle)
 		
 		if self.brake:
-			Motor.brake(self.motor)
+			self.motor.brake()
 
 		if self.state == 0:
-			Motor.stop(self.motor)
+			self.motor.stop()
 		elif self.state == 1:
-			Motor.run(self.motor)
+			self.motor.run()
 
 		
 GPIO.cleanup()
