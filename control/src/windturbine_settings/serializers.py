@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models.windturbine_setting import WindturbineSetting
 
-class  WindturbineSettingSerializer(serializers.ModelSerializer):
+class WindturbineSettingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WindturbineSetting
-        fields = '__all__'
+        fields = ('url','windturbine','state','brake','wind_speed','wing_angle','max_rpm_generator','max_temp_gearbox','max_temp_generator')
