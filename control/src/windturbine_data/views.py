@@ -26,7 +26,6 @@ class WindturbineDataList(APIView):
         data = WindturbineData.objects.filter(timestamp__range=(lastsyncdate,current_time))
 
         cache.set('data', data)
-        data.delete()
 
         #Gets earliest entry, and deletes data older than last sync date. And updates lastsyncdate
         if WindturbineData.objects.all():
@@ -34,12 +33,13 @@ class WindturbineDataList(APIView):
 
             clean = WindturbineData.objects.filter(timestamp__range=(last.timestamp, lastsyncdate))
             clean.delete()
-
+            print("INDEN TID!!!!!")
             appsett = AppSetting.objects.filter(key='lastsyncdate').update(value=current_time)
-            appsett.save()
+            print("Efter IF")
 
         serializer = WindturbineDataSerializer(cache.get('data'), many=True)
 
+        data.delete()
         return Response(serializer.data)
 
 #Helper class
