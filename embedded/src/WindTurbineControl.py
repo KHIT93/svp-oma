@@ -77,7 +77,7 @@ while True:
 	# Read temperature
 	temperature = adc.readtemperature()
 	
-	windspeed = (adc2.readadc() / 25)
+	windspeed = Decimal(adc2.readadc() / 25)
 	print(windspeed)
 
 	# Read RPM
