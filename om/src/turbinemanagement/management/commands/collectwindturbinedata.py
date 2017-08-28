@@ -48,6 +48,6 @@ class Command(BaseCommand):
                         AuditLog.objects.create(name="System", message=message)
                         print(message)
                 except Exception as e:
-                    message = "The data sync with windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " failed with the following error: " + str(e)
-                    AuditLog.objects.create(name="System", message=message)
+                    message = "The data sync with windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " failed with an error:"
+                    AuditLog.objects.create(name="System", message=message, api_response=e)
                     print(message)
