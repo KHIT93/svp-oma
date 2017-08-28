@@ -44,7 +44,7 @@ class Command(BaseCommand):
                             print(message)
 
                     else:
-                        message = "The windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned error with status " + response.status_code
+                        message = "The windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned error with status " + str(response.status_code)
                         AuditLog.objects.create(name="System", message=message)
                         print(message)
                 except Exception as e:
