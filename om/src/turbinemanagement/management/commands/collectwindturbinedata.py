@@ -46,7 +46,7 @@ class Command(BaseCommand):
                         message = "The windturbine " + str(windturbine) + " at " + windturbine.ip_address + " returned error with status " + r.status_code
                         AuditLog.objects.create(name="System", message=message)
                         print(message)
-                except:
-                    message = "The windturbine " + str(windturbine) + " at " + windturbine.ip_address + " could not be reached"
+                except Exception as e:
+                    message = "The windturbine " + str(windturbine) + " at " + windturbine.ip_address + " could not be reached. Error details: " + str(e)
                     AuditLog.objects.create(name="System", message=message)
                     print(message)
