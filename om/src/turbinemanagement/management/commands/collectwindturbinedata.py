@@ -47,6 +47,6 @@ class Command(BaseCommand):
                         AuditLog.objects.create(name="System", message=message)
                         print(message)
                 except Exception as e:
-                    message = "The windturbine " + str(windturbine) + " at " + windturbine.ip_address + " could not be reached. Error details: " + str(e)
+                    message = "The data sync with windturbine " + str(windturbine) + " at " + windturbine.ip_address + " failed with the following error: " + str(e)
                     AuditLog.objects.create(name="System", message=message)
                     print(message)
