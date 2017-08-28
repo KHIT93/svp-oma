@@ -19,7 +19,7 @@ class ADC:
                 GPIO.setup(cs_pin, GPIO.OUT)
 
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
-def readadc(ADC):
+def readadc(self):
         # Only between 0 and 7 ADC pins
         if ((ADC.adcnum > 7) or (ADC.adcnum < 0)):
                 return -1
@@ -53,3 +53,11 @@ def readadc(ADC):
         
         adcout >>= 1       # first bit is 'null' so drop it
         return adcout
+
+def readtemperature(self):
+        value = readadc()
+        # Take the reading and multiply it by the volts on the ADC. Then divide by the amount of bits from the ADC
+        volts = (value * 3.3) / 1024
+        temperature = volts / (10.0 / 1000)
+
+        return temperature
