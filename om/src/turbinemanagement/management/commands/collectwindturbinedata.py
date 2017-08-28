@@ -21,8 +21,8 @@ class Command(BaseCommand):
         """
         print("Starting data sync from windturbines")
         for windturbine in WindTurbine.objects.all():
-            if windturbine.ip_address == "0.0.0.0":
-                logmessage = "Windturbine " + str(windturbine) + " skipped due to missing IP-address"
+            if windturbine.ip_address == "0.0.0.0" and self.windturbine.api_token == None:
+                logmessage = "Windturbine " + str(windturbine) + " skipped due to missing IP-address or API token"
                 AuditLog.objects.create(name="System", message=logmessage)
                 print(logmessage)
             else:
@@ -36,11 +36,11 @@ class Command(BaseCommand):
                         if serializer.is_valid():
                             serializer.save()
                             message = "Windturbine data for windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " has been updated"
-                            AuditLog.objects.create(name="System", message=message, api_response=response.json())
+                            AuditLog.objects.create(name="System", message=message, result=response.json())
                             print(message)
                         else:
                             message = "The data recieved from windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned invalid data. The response data has been saved to the audit log for troubleshotting purposes"
-                            AuditLog.objects.create(name="System", message=message, api_response=response.json())
+                            AuditLog.objects.create(name="System", message=message, result=response.json())
                             print(message)
 
                     else:
@@ -49,5 +49,5 @@ class Command(BaseCommand):
                         print(message)
                 except Exception as e:
                     message = "The data sync with windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " failed with an error. See response data for more information"
-                    AuditLog.objects.create(name="System", message=message, api_response=e)
+                    AuditLog.objects.create(name="System", message=message, result=e)
                     print(message)

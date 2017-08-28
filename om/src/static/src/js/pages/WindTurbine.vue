@@ -41,6 +41,7 @@
                                   item-text="display_name"
                                   item-value="id"
                                   bottom
+                                  required
                                   v-show="!readonly" :readonly="readonly"
                             ></v-select>
                         </v-flex>
@@ -51,7 +52,7 @@
                         </v-flex>
                         <v-flex xs8>
                             <v-subheader v-show="readonly">{{ windturbine.longtitude }}</v-subheader>
-                            <v-text-field v-model="form.longtitude" hint="Insert the geographic longtitude of this windturbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                            <v-text-field v-model="form.longtitude" hint="Insert the geographic longtitude of this windturbine" v-show="!readonly" :readonly="readonly" required></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout row>
@@ -60,7 +61,7 @@
                         </v-flex>
                         <v-flex xs8>
                             <v-subheader v-show="readonly">{{ windturbine.latitude }}</v-subheader>
-                            <v-text-field v-model="form.latitude" hint="Insert the geographic lattitude of this windturbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                            <v-text-field v-model="form.latitude" hint="Insert the geographic lattitude of this windturbine" v-show="!readonly" :readonly="readonly" required></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout row>
@@ -70,6 +71,15 @@
                         <v-flex xs8>
                             <v-subheader v-show="readonly">{{ windturbine.ip_address }}</v-subheader>
                             <v-text-field v-model="form.ip_address" hint="Insert the IP address of this windturbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex sm2 xs4>
+                            <v-subheader>API Token</v-subheader>
+                        </v-flex>
+                        <v-flex xs8>
+                            <v-subheader v-show="readonly">{{ windturbine.api_token }}</v-subheader>
+                            <v-text-field v-model="form.api_token" hint="Insert the descriptive name of this windturbine" v-show="!readonly" :readonly="readonly"></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-fab-transition>
@@ -153,7 +163,8 @@
                         longtitude: this.windturbine.longtitude,
                         latitude: this.windturbine.latitude,
                         windfarm: this.windturbine.windfarm,
-                        ip_address: this.windturbine.ip_address
+                        ip_address: this.windturbine.ip_address,
+                        api_token: this.windturbine.api_token
                     });
                 }).catch(error => {
                     console.log(error);

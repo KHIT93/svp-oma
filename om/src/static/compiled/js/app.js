@@ -28131,6 +28131,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28141,7 +28143,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 windfarm: null,
                 longtitude: 0,
                 latitude: 0,
-                ip_address: "0.0.0.0"
+                ip_address: "0.0.0.0",
+                api_token: ""
             }),
             windfarms: []
         };
@@ -28287,7 +28290,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "single-line": "",
       "item-text": "display_name",
       "item-value": "id",
-      "bottom": ""
+      "bottom": "",
+      "required": ""
     },
     model: {
       value: (_vm.form.windfarm),
@@ -28298,7 +28302,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('v-text-field', {
     attrs: {
-      "label": "Longtitide"
+      "label": "Longtitide",
+      "required": ""
     },
     model: {
       value: (_vm.form.longtitude),
@@ -28309,7 +28314,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('v-text-field', {
     attrs: {
-      "label": "Latitude"
+      "label": "Latitude",
+      "required": ""
     },
     model: {
       value: (_vm.form.latitude),
@@ -28328,6 +28334,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.form.ip_address = $$v
       },
       expression: "form.ip_address"
+    }
+  }), _vm._v(" "), _c('v-text-field', {
+    attrs: {
+      "label": "API token"
+    },
+    model: {
+      value: (_vm.form.api_token),
+      callback: function($$v) {
+        _vm.form.api_token = $$v
+      },
+      expression: "form.api_token"
     }
   }), _vm._v(" "), _c('v-btn', {
     attrs: {
@@ -43495,6 +43512,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43545,7 +43572,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     longtitude: _this.windturbine.longtitude,
                     latitude: _this.windturbine.latitude,
                     windfarm: _this.windturbine.windfarm,
-                    ip_address: _this.windturbine.ip_address
+                    ip_address: _this.windturbine.ip_address,
+                    api_token: _this.windturbine.api_token
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -43989,7 +44017,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "hint": "Insert the state of normal operation for this turbine",
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "required": ""
     },
     model: {
       value: (_vm.form.state),
@@ -44027,7 +44056,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "hint": "Insert the maximum allowd RPM for the generator of this turbine",
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "required": ""
     },
     model: {
       value: (_vm.form.max_rpm_generator),
@@ -44065,7 +44095,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "hint": "Insert the maxmimum allowed temperature for the gearbox of this turbine",
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "required": ""
     },
     model: {
       value: (_vm.form.max_temp_gearbox),
@@ -44103,7 +44134,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "hint": "Insert the maximum allowed temperature of the generator in this turbine",
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "required": ""
     },
     model: {
       value: (_vm.form.max_temp_generator),
@@ -44366,6 +44398,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "item-text": "display_name",
       "item-value": "id",
       "bottom": "",
+      "required": "",
       "readonly": _vm.readonly
     },
     model: {
@@ -44404,7 +44437,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "hint": "Insert the geographic longtitude of this windturbine",
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "required": ""
     },
     model: {
       value: (_vm.form.longtitude),
@@ -44442,7 +44476,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "hint": "Insert the geographic lattitude of this windturbine",
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "required": ""
     },
     model: {
       value: (_vm.form.latitude),
@@ -44488,6 +44523,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.form.ip_address = $$v
       },
       expression: "form.ip_address"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-layout', {
+    attrs: {
+      "row": ""
+    }
+  }, [_c('v-flex', {
+    attrs: {
+      "sm2": "",
+      "xs4": ""
+    }
+  }, [_c('v-subheader', [_vm._v("API Token")])], 1), _vm._v(" "), _c('v-flex', {
+    attrs: {
+      "xs8": ""
+    }
+  }, [_c('v-subheader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.readonly),
+      expression: "readonly"
+    }]
+  }, [_vm._v(_vm._s(_vm.windturbine.api_token))]), _vm._v(" "), _c('v-text-field', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.readonly),
+      expression: "!readonly"
+    }],
+    attrs: {
+      "hint": "Insert the descriptive name of this windturbine",
+      "readonly": _vm.readonly
+    },
+    model: {
+      value: (_vm.form.api_token),
+      callback: function($$v) {
+        _vm.form.api_token = $$v
+      },
+      expression: "form.api_token"
     }
   })], 1)], 1), _vm._v(" "), _c('v-fab-transition', [_c('v-btn', {
     directives: [{
@@ -44796,7 +44869,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('v-card', [_c('v-card-title', {
     staticClass: "headline"
-  }, [_vm._v("Details for entry " + _vm._s(_vm.selected_entry.display_name))]), _vm._v(" "), _c('v-card-text', [_c('p', [_vm._v("Name: " + _vm._s(_vm.selected_entry.name))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected_entry.message))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected_entry.api_response))])]), _vm._v(" "), _c('v-card-actions', [_c('v-spacer'), _vm._v(" "), _c('v-btn', {
+  }, [_vm._v("Details for entry " + _vm._s(_vm.selected_entry.display_name))]), _vm._v(" "), _c('v-card-text', [_c('p', [_vm._v("Name: " + _vm._s(_vm.selected_entry.name))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected_entry.message))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected_entry.result))])]), _vm._v(" "), _c('v-card-actions', [_c('v-spacer'), _vm._v(" "), _c('v-btn', {
     staticClass: "green--text darken-1",
     attrs: {
       "flat": "flat"

@@ -30,6 +30,7 @@ class WindTurbine(BaseModel):
     latitude = models.FloatField()
     windfarm = models.ForeignKey(WindFarm)
     ip_address = models.GenericIPAddressField(protocol="ipv4", default="0.0.0.0")
+    api_token = models.CharField(max_length=40, null=True, blank=True)
 
     def __str__(self):
         if self.name == None:
