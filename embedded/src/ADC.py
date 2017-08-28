@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 
-class ADC:
+class ADC(object):
         """docstring for ADC"""
         def __init__(self, adcnum, clock_pin, miso_pin, mosi_pin, cs_pin):
                 self.adcnum = adcnum
