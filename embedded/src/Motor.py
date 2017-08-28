@@ -26,7 +26,7 @@ class Motor:
 		GPIO.output(self.standby_pin, 0)
 
 	def changespeed(self, wind_speed, wing_angle): 
-		self.duty = wind_speed - wing_angle
+		self.duty = Decimal(wind_speed) - Decimal(wing_angle)
 		self.pwm.ChangeDutyCycle(self.duty)
 
 	def brake(self):
