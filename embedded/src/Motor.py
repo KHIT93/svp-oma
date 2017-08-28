@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from decimal import *
 
 
 class Motor:
