@@ -16,19 +16,19 @@ class Motor:
 		GPIO.setup(self.direction_pin, GPIO.OUT)
 		self.pwm = GPIO.PWM(pwm_pin, frequency)
 
-def run(self):
-	self.pwm.start(self.duty)
-	GPIO.output(self.standby_pin, 1)
-	GPIO.output(self.direction_pin, 1)
+	def run(self):
+		self.pwm.start(self.duty)
+		GPIO.output(self.standby_pin, 1)
+		GPIO.output(self.direction_pin, 1)
 
 
-def stop(self):
-	GPIO.output(self.standby_pin, 0)
+	def stop(self):
+		GPIO.output(self.standby_pin, 0)
 
-def changespeed(self, wind_speed, wing_angle): 
-	self.duty = wind_speed - wing_angle
-	self.pwm.ChangeDutyCycle(self.duty)
+	def changespeed(self, wind_speed, wing_angle): 
+		self.duty = wind_speed - wing_angle
+		self.pwm.ChangeDutyCycle(self.duty)
 
-def brake(self):
-	self.duty -= 10
-	self.pwm.ChangeDutyCycle(self.duty)
+	def brake(self):
+		self.duty -= 10
+		self.pwm.ChangeDutyCycle(self.duty)
