@@ -55,7 +55,7 @@ def readadc(self):
         return adcout
 
 def readtemperature(self):
-        value = readadc()
+        value = readadc(self)
         # Take the reading and multiply it by the volts on the ADC. Then divide by the amount of bits from the ADC
         volts = (value * 3.3) / 1024
         temperature = volts / (10.0 / 1000)
