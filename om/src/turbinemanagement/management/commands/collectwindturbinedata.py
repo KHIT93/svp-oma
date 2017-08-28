@@ -30,7 +30,7 @@ class Command(BaseCommand):
                 AuditLog.objects.create(name="System", message=logmessage)
                 print(logmessage)
                 try:
-                    response = requests.get('http://' + windturbine.ip_address + ':80/windturbinedata/all/')
+                    response = requests.get('http://' + windturbine.ip_address + ':80/windturbinedata/all/', headers={ "Authorization": "token " + windturbine.api_token })
                     if response.status_code == 200:
                         serializer = WindturbineDataSerializer(data=response.json(), many=True)
                         if serializer.is_valid():

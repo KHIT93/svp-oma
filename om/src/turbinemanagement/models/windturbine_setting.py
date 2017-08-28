@@ -56,7 +56,7 @@ class WindTurbineSetting(BaseModel):
             AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message)
         else:
             message = "Settings have been updated on the windturbine " + str(self.windturbine)
-            response = requests.post('http://' + self.windturbine.ip_address + '/windturbinesettings/', json={ "windturbine": self.windturbine, "state": self.state, "max_rpm_generator": self.max_rpm_generator, "max_temp_gearbox": self.max_temp_gearbox, "max_temp_generator": self.max_temp_generator, "wing_angle": self.wing_angle, "brake": self.brake })
+            response = requests.post('http://' + self.windturbine.ip_address + '/windturbinesettings/', headers={ "Authorization": "token " + self.windturbine.api_token }, json={ "windturbine": self.windturbine, "state": self.state, "max_rpm_generator": self.max_rpm_generator, "max_temp_gearbox": self.max_temp_gearbox, "max_temp_generator": self.max_temp_generator, "wing_angle": self.wing_angle, "brake": self.brake })
             print(response.status_code)
             print(response.json())
             print(message)
