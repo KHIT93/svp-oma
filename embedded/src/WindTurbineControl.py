@@ -16,7 +16,11 @@ class Windturbine():
 		self.wind_speed = wind_speed
 		self.wing_angle = wing_angle
 
-	def changesettings(self):
+	def changesettings(self, sqlrow):
+		self.state = row['state']
+		self.brake = row['brake']
+		self.wind_speed = row['wind_speed']
+		self.wing_angle = row['wing_angle']
 		Motor.changespeed(self.motor, self.wind_speed, self.wing_angle)
 		
 		if self.brake:
@@ -32,6 +36,8 @@ GPIO.cleanup()
 
 # ADC channel, clock_pin, miso_pin, mosi_pin, cs_pin
 adc = ADC.ADC(0, 23, 21, 19, 24)
+# ADC channel, clock_pin, miso_pin, mosi_pin, cs_pin
+adc2 = ADC.ADC(1, 23, 21, 19, 24)
 # IR sensor pin
 ir_sensor = IRSensor.IRSensor(7)
 # PWM pin, Standby pin, AIN1 pin, PWM Frequincy, Duty
@@ -60,28 +66,23 @@ while True:
 		get_config_count = 0
 		# If there is a new config
 		if cursor.execute(get_settings, current_config) > 0:
+			# Fetch row and send it to change settings. Then save the id of this new config
 			row = cursor.fetchone()
-			windturbine.state = row['state']
-			windturbine.brake = row['brake']
-			windturbine.wind_speed = row['wind_speed']
-			windturbine.wing_angle = row['wing_angle']
+			windturbine.changesettings(row)
 			current_config = row['id']
 			print(row['id'])
-			windturbine.changesettings()
-			
 
+	# Read temperature
+	temperature = adc.readtemperature()
+	
+	windspeed = adc2.readadc()
+	print(windspeed)
 
-
-	# Read ADC
-	value = ADC.readadc(adc)
-	# Take the reading and multiply it by the volts on the ADC. Then divide by the amount of bits from the ADC
-	volts = (value * 3.3) / 1024
-	temperature = volts / (10.0 / 1000)
 	# Read RPM
-	rpm = IRSensor.read_rpm()
+	rpm = ir_sensor.read_rpm()
 
 	# Prepare the insertion data, then insert into database and commit
-	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, 20.0)
+	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, windturbine.wind_speed)
 	cursor.execute(add_data, data_data)
 	cnx.commit()
 
