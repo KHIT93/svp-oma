@@ -24,7 +24,7 @@ class WindTurbineError(BaseModel):
     """
     windturbine = models.ForeignKey(WindTurbine)
     timestamp = models.DateTimeField(auto_now_add=True)
-    error_messge = models.TextField()
+    error_message = models.TextField()
     error_code = models.IntegerField()
     resolved = models.BooleanField(default=False)
 
