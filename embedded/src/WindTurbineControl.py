@@ -16,10 +16,10 @@ class Windturbine():
 		self.wind_speed = wind_speed
 		self.wing_angle = wing_angle
 
-	def changesettings(self, sqlrow):
+	def changesettings(self, sqlrow, windspeed):
 		self.state = row['state']
 		self.brake = row['brake']
-		self.wind_speed = row['wind_speed']
+		self.wind_speed = windspeed
 		self.wing_angle = row['wing_angle']
 		self.motor.changespeed(self.wind_speed, self.wing_angle)
 		
@@ -59,6 +59,8 @@ temperature = 0
 rpm = 0.0
 get_config_count = 8
 current_config = 0
+row = {}
+windspeed = 0
 
 while True:
 	# Check for new config
@@ -68,14 +70,14 @@ while True:
 		if cursor.execute(get_settings, current_config) > 0:
 			# Fetch row and send it to change settings. Then save the id of this new config
 			row = cursor.fetchone()
-			windturbine.changesettings(row)
 			current_config = row['id']
 			print(row['id'])
+		windturbine.changesettings(row, windspeed)
 
 	# Read temperature
 	temperature = adc.readtemperature()
 	
-	windspeed = adc2.readadc()
+	windspeed = (adc2.readadc() / 25)
 	print(windspeed)
 
 	# Read RPM
