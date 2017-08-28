@@ -34,19 +34,19 @@ class Command(BaseCommand):
                         serializer = WindturbineDataSerializer(data=response.json(), many=True)
                         if serializer.is_valid():
                             serializer.save()
-                            message = "Windturbine data for windturbine " + str(windturbine) + " at " + windturbine.ip_address + " has been updated"
+                            message = "Windturbine data for windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " has been updated"
                             AuditLog.objects.create(name="System", message=message, api_response=response.json())
                             print(message)
                         else:
-                            message = "The data recieved from windturbine " + str(windturbine) + " at " + windturbine.ip_address + " returned invalid data. The response data has been saved to the audit log for troubleshotting purposes"
+                            message = "The data recieved from windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned invalid data. The response data has been saved to the audit log for troubleshotting purposes"
                             AuditLog.objects.create(name="System", message=message, api_response=response.json())
                             print(message)
 
                     else:
-                        message = "The windturbine " + str(windturbine) + " at " + windturbine.ip_address + " returned error with status " + response.status_code
+                        message = "The windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned error with status " + response.status_code
                         AuditLog.objects.create(name="System", message=message)
                         print(message)
                 except Exception as e:
-                    message = "The data sync with windturbine " + str(windturbine) + " at " + windturbine.ip_address + " failed with the following error: " + str(e)
+                    message = "The data sync with windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " failed with the following error: " + str(e)
                     AuditLog.objects.create(name="System", message=message)
                     print(message)
