@@ -17,7 +17,7 @@
                     </v-flex>
                     <v-flex xs8>
                         <v-subheader v-show="readonly">{{ windturbinesettings.state }}</v-subheader>
-                        <v-text-field v-model="form.state" hint="Insert the state of normal operation for this turbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                        <v-text-field v-model="form.state" hint="Insert the state of normal operation for this turbine" v-show="!readonly" :readonly="readonly" required></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -26,7 +26,7 @@
                     </v-flex>
                     <v-flex xs8>
                         <v-subheader v-show="readonly">{{ windturbinesettings.max_rpm_generator }}</v-subheader>
-                        <v-text-field v-model="form.max_rpm_generator" hint="Insert the maximum allowd RPM for the generator of this turbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                        <v-text-field v-model="form.max_rpm_generator" hint="Insert the maximum allowd RPM for the generator of this turbine" v-show="!readonly" :readonly="readonly" required></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -35,7 +35,7 @@
                     </v-flex>
                     <v-flex xs8>
                         <v-subheader v-show="readonly">{{ windturbinesettings.max_temp_gearbox }}</v-subheader>
-                        <v-text-field v-model="form.max_temp_gearbox" hint="Insert the maxmimum allowed temperature for the gearbox of this turbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                        <v-text-field v-model="form.max_temp_gearbox" hint="Insert the maxmimum allowed temperature for the gearbox of this turbine" v-show="!readonly" :readonly="readonly" required></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -44,7 +44,7 @@
                     </v-flex>
                     <v-flex xs8>
                         <v-subheader v-show="readonly">{{ windturbinesettings.max_temp_generator }}</v-subheader>
-                        <v-text-field v-model="form.max_temp_generator" hint="Insert the maximum allowed temperature of the generator in this turbine" v-show="!readonly" :readonly="readonly"></v-text-field>
+                        <v-text-field v-model="form.max_temp_generator" hint="Insert the maximum allowed temperature of the generator in this turbine" v-show="!readonly" :readonly="readonly" required></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout row>

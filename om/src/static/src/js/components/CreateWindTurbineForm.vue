@@ -9,10 +9,12 @@
               item-text="display_name"
               item-value="id"
               bottom
+              required
         ></v-select>
-        <v-text-field label="Longtitide" v-model="form.longtitude"></v-text-field>
-        <v-text-field label="Latitude" v-model="form.latitude"></v-text-field>
+        <v-text-field label="Longtitide" v-model="form.longtitude" required></v-text-field>
+        <v-text-field label="Latitude" v-model="form.latitude" required></v-text-field>
         <v-text-field label="IP Address" v-model="form.ip_address"></v-text-field>
+        <v-text-field label="API token" v-model="form.api_token"></v-text-field>
         <v-btn flat primary @click.native="save">Save</v-btn>
     </v-card-text>
 </template>
@@ -27,7 +29,8 @@ import Form from '../classes/Form';
                     windfarm: null,
                     longtitude: 0,
                     latitude: 0,
-                    ip_address: "0.0.0.0"
+                    ip_address: "0.0.0.0",
+                    api_token: ""
                 }),
                 windfarms: []
             }

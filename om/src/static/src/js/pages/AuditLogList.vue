@@ -36,7 +36,7 @@
                 <v-card-text>
                     <p>Name: {{ selected_entry.name }}</p>
                     <p>{{ selected_entry.message }}</p>
-                    <p>{{ selected_entry.api_response }}</p>
+                    <p>{{ selected_entry.result }}</p>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>

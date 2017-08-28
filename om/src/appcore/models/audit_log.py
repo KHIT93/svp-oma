@@ -31,4 +31,4 @@ class AuditLog(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=255)
     message = models.TextField()
-    api_response = models.TextField(null=True, blank=True)
+    result = models.TextField(null=True, blank=True)
