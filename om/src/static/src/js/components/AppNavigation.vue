@@ -29,7 +29,7 @@
                         </v-list-tile-action>
                         <v-list-tile-content>
                             <v-list-tile-title>
-                                {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}
+                                Windfarm {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}
                                 <template v-if="item.info">
                                     <v-chip v-if="item.info.error" class="red white--text chip--x--small">Error</v-chip>
                                     <v-chip v-if="item.info.messages" class="orange white--text chip--x--small">{{ item.info.messages }}</v-chip>
@@ -93,21 +93,7 @@
         <v-toolbar class="red" dark>
             <v-toolbar-side-icon light @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>Offshore Monitoring Advanced</v-toolbar-title>
-            <v-menu bottom right origin="bottom right" transition="v-slide-y-transition">
-                <v-btn light icon slot="activator">
-                    <v-icon>account_circle</v-icon>
-                </v-btn>
-                <v-list>
-                    <v-list-tile>
-                        <v-list-tile-title>Change Account</v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile>
-                        <v-list-tile-title>Log Out</v-list-tile-title>
-                    </v-list-tile>
-                </v-list>
-            </v-menu>
         </v-toolbar>
-
     </div>
 </template>
 <script>

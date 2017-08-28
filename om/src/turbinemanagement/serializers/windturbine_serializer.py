@@ -7,9 +7,10 @@ from turbinemanagement.serializers.windturbine_setting_serializer import Windtur
 class WindturbineSerializer(serializers.ModelSerializer):
     last_connection = serializers.SerializerMethodField()
     display_name = serializers.SerializerMethodField()
+    brakes_active = serializers.SerializerMethodField()
     class Meta:
         model = WindTurbine
-        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection')
+        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active')
     def get_last_connection(self, obj):
         if obj.windturbinedata_set.count():
             return obj.windturbinedata_set.last().timestamp
@@ -19,6 +20,12 @@ class WindturbineSerializer(serializers.ModelSerializer):
     def get_display_name(self, obj):
         return obj.__str__()
 
+    def get_brakes_active(self, obj):
+        if obj.windturbinedata_set.count():
+            return obj.windturbinedata_set.last().brake
+        else:
+            return False
+
 
 
 class WindturbineSerializerWtihRelationships(WindturbineSerializer):
@@ -27,7 +34,7 @@ class WindturbineSerializerWtihRelationships(WindturbineSerializer):
     windturbinesetting_set = WindturbineSettingSerializer(many=True, read_only=True)
     class Meta:
         model = WindTurbine
-        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'windturbinedata_set', 'windturbineerror_set', 'windturbinesetting_set')
+        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'windturbinedata_set', 'windturbineerror_set', 'windturbinesetting_set')
 
 
     @staticmethod

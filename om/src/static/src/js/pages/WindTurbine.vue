@@ -12,6 +12,9 @@
                 <small :title="windturbine.last_connection">
                     {{ (windturbine.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(windturbine.last_connection).fromNow() }}
                 </small>
+                <small v-if="windturbine.brakes_active">
+                    Brakes are currently active
+                </small>
             </v-card-title>
             <v-card-text>
                 <v-container fluid>
@@ -110,7 +113,7 @@
         props: ['id'],
         data: () => {
             return {
-                windturbine: null,
+                windturbine: {},
                 form: null,
                 dialog: false,
                 readonly: true,

@@ -11,5 +11,6 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('static/src/js/app.js', 'static/compiled/js').
-    stylus('static/src/stylus/app.styl', 'static/compiled/css');
+mix.js('static/src/js/app.js', 'static/compiled/js')
+    .js('static/src/js/login.js', 'static/compiled/js')
+    .stylus('static/src/stylus/app.styl', 'static/compiled/css');

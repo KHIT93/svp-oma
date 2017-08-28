@@ -47,6 +47,24 @@
                         <v-text-field v-model="form.max_temp_generator" hint="Insert the maximum allowed temperature of the generator in this turbine" v-show="!readonly" :readonly="readonly"></v-text-field>
                     </v-flex>
                 </v-layout>
+                <v-layout row>
+                    <v-flex sm3 xs4>
+                        <v-subheader>Wing angle</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-subheader v-show="readonly">{{ windturbinesettings.wing_angle }}</v-subheader>
+                        <v-slider v-model="form.wing_angle" hint="Adjust the angles of the turbine wing" v-show="!readonly" max="10" :disabled="readonly"></v-slider>
+                    </v-flex>
+                </v-layout>
+                <v-layout row>
+                    <v-flex sm3 xs4>
+                        <v-subheader>Brakes active</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-subheader v-show="readonly">{{ windturbinesettings.brake ? 'Yes' : 'No' }}</v-subheader>
+                        <v-checkbox v-model="form.brake" label="Activate brakes" hint="Choose if the brakes should activate on this turbine" v-show="!readonly" :readonly="readonly"></v-checkbox>
+                    </v-flex>
+                </v-layout>
                 <v-fab-transition>
                   <v-btn
                     class="green"
@@ -93,7 +111,9 @@
                     max_rpm_generator: this.windturbinesettings.max_rpm_generator,
                     max_temp_gearbox: this.windturbinesettings.max_temp_gearbox,
                     max_temp_generator: this.windturbinesettings.max_temp_generator,
-                    windturbine: this.windturbine.id
+                    windturbine: this.windturbine.id,
+                    brake: this.windturbinesettings.brake,
+                    wing_angle: this.windturbinesettings.wing_angle
                 });
             }
             else {

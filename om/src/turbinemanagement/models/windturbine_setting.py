@@ -21,12 +21,18 @@ class WindTurbineSetting(BaseModel):
     :param max_temp_gearbox: The highest allowed temperature in degrees Celcius for the gearbox
 
     :param max_temp_generator: The highest allowed temperature in degrees Celcius for the generator
+
+    :param brake: Defines if the brakes are active
+
+    :param wing_angle: The angle of the turbine wings
     """
     windturbine = models.ForeignKey(WindTurbine)
     state = models.IntegerField()
     max_rpm_generator = models.IntegerField()
     max_temp_gearbox = models.DecimalField(max_digits=10, decimal_places=2)
     max_temp_generator = models.DecimalField(max_digits=10, decimal_places=2)
+    brake = models.BooleanField(default=False)
+    wing_angle = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return str(self.windturbine)

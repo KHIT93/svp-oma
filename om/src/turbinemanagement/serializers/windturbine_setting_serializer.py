@@ -4,7 +4,7 @@ from turbinemanagement.models.windturbine_setting import WindTurbineSetting
 class WindturbineSettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = WindTurbineSetting
-        fields = ('id', 'windturbine', 'state', 'max_rpm_generator', 'max_temp_gearbox', 'max_temp_generator')
+        fields = ('id', 'windturbine', 'state', 'max_rpm_generator', 'max_temp_gearbox', 'max_temp_generator', 'brake', 'wing_angle')
 
 
     @staticmethod

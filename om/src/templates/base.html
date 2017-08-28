@@ -25,6 +25,6 @@
                 </main>
             </v-app>
         </div>
-        <script defer src="{% static 'js/app.js' %}"></script>
+        {% block scripts %}<script defer src="{% static 'js/app.js' %}"></script>{% endblock %}
     </body>
 </html>

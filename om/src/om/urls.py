@@ -22,6 +22,8 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 from dashboard.views.dashboard_view import DashboardView
 #Rest framework imports
 from rest_framework import routers
@@ -52,7 +54,8 @@ router.register(r'windturbine-settings', WindturbineSettingAPIViewset, 'WindTurb
 urlpatterns = [
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', DashboardView.as_view()),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^$', login_required(DashboardView.as_view())),
     url(r'^webapi/windfarms/simple/', WindfarmWithRelationshipsAPIView.as_view()),
     url(r'^webapi/windfarms/complete/', WindfarmWithNestedRelationshipsAPIView.as_view()),
     url(r'^webapi/windturbines/complete/', WindturbineWithRelationshipsAPIView.as_view()),

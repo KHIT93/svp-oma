@@ -103,7 +103,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-]
+],
+
+
+# URL Redirect after succesful login
+# https://docs.djangoproject.com/en/1.11/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = '/'
+
+# URL Redirect for require login
+# https://docs.djangoproject.com/en/1.11/ref/settings/#login-url
+LOGIN_URL = '/login'
 
 
 # Internationalization
@@ -134,7 +143,7 @@ STATICFILES_DIRS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'PAGE_SIZE': 10
 }

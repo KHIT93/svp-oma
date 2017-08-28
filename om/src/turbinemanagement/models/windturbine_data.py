@@ -25,6 +25,10 @@ class WindTurbineData(BaseModel):
     :param rpm_generator: Reading of the current RPM registered at the generator
 
     :param wind_speed: Current reading of the wind speed at the windturbine
+
+    :param wing_angle: The angle of the turbine wings
+
+    :param brake: Defines if the brakes are active
     """
     windturbine = models.ForeignKey(WindTurbine)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -33,6 +37,11 @@ class WindTurbineData(BaseModel):
     temp_generator = models.DecimalField(max_digits=10, decimal_places=2)
     rpm_generator = models.IntegerField()
     wind_speed = models.DecimalField(max_digits=10, decimal_places=2)
+    wing_angle = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    brake = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.windturbine)
+
+    class Meta:
+        verbose_name_plural = "Windturbine data"

@@ -14,6 +14,8 @@
                             Generator temperature: {{ item.temp_generator }}<br/>
                             Current generator RPM: {{ item.rpm_generator }}<br/>
                             Current windspeed: {{ item.wind_speed }}<br/>
+                            Current wing angle: {{ item.wing_angle }}<br/>
+                            Brakes active: {{ item.brake ? 'Yes' : 'No' }}<br/>
                         </v-card-text>
                     </v-card>
                 </v-expansion-panel-content>

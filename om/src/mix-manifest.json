@@ -1,4 +1,5 @@
 {
     "/static/compiled/js/app.js": "/static/compiled/js/app.js",
-    "/static/compiled/css/app.css": "/static/compiled/css/app.css"
+    "/static/compiled/css/app.css": "/static/compiled/css/app.css",
+    "/static/compiled/js/login.js": "/static/compiled/js/login.js"
 }

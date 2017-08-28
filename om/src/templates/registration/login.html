@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <form method="post" action="{% url 'login' %}" @submit="loading = true">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <v-card>
+            <v-card-title><h1 class="headline"><v-icon>lock_outline</v-icon> Login</h1></v-card-title>
+            <v-card-text>
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+                    {% else %}
+                        <p>Please login to see this page.</p>
+                    {% endif %}
+                {% endif %}
+            </v-card-text>
+            <v-card-text>
+                <v-container fluid>
+                    <v-layout row>
+                        <v-flex sm2 xs4>
+                            <v-subheader>Username</v-subheader>
+                        </v-flex>
+                        <v-flex xs8>
+                            <v-text-field name="username"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex sm2 xs4>
+                            <v-subheader>Password</v-subheader>
+                        </v-flex>
+                        <v-flex xs8>
+                            <v-text-field name="password" type="password"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex sm2 xs4>
+
+                        </v-flex>
+                        <v-flex xs8>
+                            <v-btn type="submit" primary :loading="loading" :disabled="loading"><span v-if="!loading">Login</span> <v-icon v-if="loading">loading</v-icon></v-btn>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card-text>
+        </v-card>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script defer src="{% static 'js/login.js' %}"></script>
+{% endblock %}
