@@ -44,10 +44,10 @@ class Command(BaseCommand):
                             print(message)
 
                     else:
-                        message = "The windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned error with status " + response.status_code
+                        message = "The windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned error with status " + str(response.status_code)
                         AuditLog.objects.create(name="System", message=message)
                         print(message)
                 except Exception as e:
-                    message = "The data sync with windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " failed with an error:"
+                    message = "The data sync with windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " failed with an error. See response data for more information"
                     AuditLog.objects.create(name="System", message=message, api_response=e)
                     print(message)
