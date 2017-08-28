@@ -1,6 +1,9 @@
 from django.db import models
 from appcore.models.base_model import BaseModel
 from .windturbine import WindTurbine
+from appcore.models.audit_log import AuditLog
+from appcore.middleware import get_request
+import requests
 
 # === Model for windturbine configuration data ===
 
@@ -36,3 +39,25 @@ class WindTurbineSetting(BaseModel):
 
     def __str__(self):
         return str(self.windturbine)
+
+    def save(self, *args, **kwargs):
+        """
+        Override for the save method on django.db.models.Model to initiate sync of settings to control system
+
+        :param *args: Additional positional arguments
+
+        :param **kwargs: Additional named arguments /keyword arguments
+        """
+        super(WindTurbineSetting, self).save(*args, **kwargs)
+
+        if self.windturbine.ip_address == "0.0.0.0":
+            message = "The windturbine " + str(self.windturbine) + " has no IP-address and data was not sent"
+            print(message)
+            AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message)
+        else:
+            message = "Settings have been updated on the windturbine " + str(self.windturbine)
+            response = requests.post('http://' + self.windturbine.ip_address + '/windturbinesettings/', json={ "windturbine": self.windturbine, "state": self.state, "max_rpm_generator": self.max_rpm_generator, "max_temp_gearbox": self.max_temp_gearbox, "max_temp_generator": self.max_temp_generator, "wing_angle": self.wing_angle, "brake": self.brake })
+            print(response.status_code)
+            print(response.json())
+            print(message)
+            AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message, api_response=response.json())

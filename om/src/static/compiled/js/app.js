@@ -44645,6 +44645,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -44667,8 +44681,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }],
             items: [],
             loading: true,
-            search: null
-
+            search: null,
+            dialog: false,
+            selected_entry: {}
         };
     },
     mounted: function mounted() {
@@ -44686,6 +44701,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        getDetail: function getDetail(item) {
+            this.selected_entry = item;
+            this.dialog = !this.dialog;
         },
         moment: function moment(str) {
             return window.moment(str);
@@ -44740,15 +44759,54 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           staticClass: "text-xs-left",
           attrs: {
             "title": props.item.timestamp
+          },
+          on: {
+            "click": function($event) {
+              _vm.getDetail(props.item.id)
+            }
           }
         }, [_vm._v(_vm._s(_vm.moment(props.item.timestamp).fromNow()))]), _vm._v(" "), _c('td', {
-          staticClass: "text-xs-left"
+          staticClass: "text-xs-left",
+          on: {
+            "click": function($event) {
+              _vm.getDetail(props.item)
+            }
+          }
         }, [_vm._v(_vm._s(props.item.name))]), _vm._v(" "), _c('td', {
-          staticClass: "text-xs-left"
+          staticClass: "text-xs-left",
+          on: {
+            "click": function($event) {
+              _vm.getDetail(props.item)
+            }
+          }
         }, [_vm._v(_vm._s(props.item.message))])]
       }
     }])
-  })], 1)], 1)], 1)], 1)
+  })], 1)], 1)], 1), _vm._v(" "), _c('v-dialog', {
+    attrs: {
+      "persistent": "",
+      "width": "75%"
+    },
+    model: {
+      value: (_vm.dialog),
+      callback: function($$v) {
+        _vm.dialog = $$v
+      },
+      expression: "dialog"
+    }
+  }, [_c('v-card', [_c('v-card-title', {
+    staticClass: "headline"
+  }, [_vm._v("Details for entry " + _vm._s(_vm.selected_entry.display_name))]), _vm._v(" "), _c('v-card-text', [_c('p', [_vm._v("Name: " + _vm._s(_vm.selected_entry.name))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected_entry.message))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected_entry.api_response))])]), _vm._v(" "), _c('v-card-actions', [_c('v-spacer'), _vm._v(" "), _c('v-btn', {
+    staticClass: "green--text darken-1",
+    attrs: {
+      "flat": "flat"
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.dialog = false
+      }
+    }
+  }, [_vm._v("Close")])], 1)], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

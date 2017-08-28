@@ -1,5 +1,7 @@
 from django.db import models
 from appcore.models.base_model import BaseModel
+from appcore.models.audit_log import AuditLog
+from appcore.middleware import get_request
 from .windfarm import WindFarm
 
 # === Model for defining af windturbine ===
@@ -34,3 +36,17 @@ class WindTurbine(BaseModel):
             return str(self.id)
         else:
             return str(self.name)
+
+    def save(self, *args, **kwargs):
+        """
+        Override for the save method on django.db.models.Model to initiate sync of settings to control system
+
+        :param *args: Additional positional arguments
+
+        :param **kwargs: Additional named arguments /keyword arguments
+        """
+        message = "The windturbine " + str(self) + " has been updated"
+        if self.id == None:
+            message = "New windturbine created in windfarm " + str(self.windfarm)
+        super(WindTurbine, self).save(*args, **kwargs)
+        AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message)
