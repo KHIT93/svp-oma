@@ -73,9 +73,9 @@ while True:
 			print(row['id'])
 
 	# Read temperature
-	temperature = adc2.readtemperature()
+	temperature = ADC.readtemperature(adc)
 	
-	windspeed = adc2.readadc()
+	windspeed = ADC.readadc(adc2)
 	print(windspeed)
 
 	# Read RPM
