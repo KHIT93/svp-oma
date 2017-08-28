@@ -60,7 +60,7 @@ rpm = 0.0
 get_config_count = 8
 current_config = 0
 row = {}
-windspeed = 0
+windspeed = 0.0
 
 while True:
 	# Check for new config
