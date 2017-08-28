@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import time
 from multiprocessing.dummy import Pool as ThreadPool 
 
+
+
 class IRSensor:
 	"""docstring for IRSensor"""
 	def __init__(self, ir_pin):
@@ -10,10 +12,8 @@ class IRSensor:
 		GPIO.setup(ir_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 		GPIO.add_event_detect(ir_pin, GPIO.FALLING, callback=callback, bouncetime=10)
 
-	count = 0
-	last_time = time.perf_counter()
-
-	def read_rpm():
+	
+	def read_rpm(self):
 		global count
 		global last_time
 
@@ -29,6 +29,9 @@ class IRSensor:
 		rpm = local_count * seconds
 		return rpm
 
-	def callback(channel):
-		global count
-		count += 1
+count = 0
+last_time = time.perf_counter()
+	
+def callback(channel):
+	global count
+	count += 1
