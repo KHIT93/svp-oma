@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from turbinemanagement.models.windturbine import WindTurbine
+from turbinemanagement.serializers.windturbine_data_serializer import WindturbineDataSerializer
 from appcore.models.audit_log import AuditLog
 import requests
 
