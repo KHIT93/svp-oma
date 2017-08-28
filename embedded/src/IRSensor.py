@@ -13,7 +13,7 @@ class IRSensor:
 		GPIO.add_event_detect(ir_pin, GPIO.FALLING, callback=callback, bouncetime=10)
 
 	
-	def read_rpm():
+	def read_rpm(self):
 		global count
 		global last_time
 
