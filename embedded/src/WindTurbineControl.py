@@ -78,13 +78,12 @@ while True:
 	temperature = adc.readtemperature()
 	
 	windspeed = adc2.readadc() / 25
-	print(windspeed)
 
 	# Read RPM
 	rpm = ir_sensor.read_rpm()
 
 	# Prepare the insertion data, then insert into database and commit
-	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, windturbine.wind_speed)
+	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, windspeed)
 	cursor.execute(add_data, data_data)
 	cnx.commit()
 
