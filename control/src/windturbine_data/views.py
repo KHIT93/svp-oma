@@ -1,7 +1,6 @@
 from django.core.cache import cache
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from .models.windturbine_data import WindturbineData
 from .serializers import WindturbineDataSerializer
 from django.utils import timezone
@@ -9,7 +8,7 @@ from app_settings.models.app_setting import AppSetting
 
 # windturbinedata/
 class WindturbineDataList(APIView):
-    def get(self,request):
+    def get(self,request,format=None):
         current_time = timezone.now()
         lastsyncdate = current_time
 
