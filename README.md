@@ -164,6 +164,9 @@ Dernæst tilrettes den oprettede `conf.py` fil at indeholde følgende linjer fra
 import os
 import sys
 import django
+cwd = os.getcwd()
+parent = os.path.dirname(cwd)
+sys.path.append(os.path.join(parent, "src"))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "om.settings")
 django.setup()
 ```
@@ -174,7 +177,9 @@ I tilfælde af projekter som ikke er Django skal det se således ud:
 ```
 import os
 import sys
-sys.path.append('/path/to/project/root')
+cwd = os.getcwd()
+parent = os.path.dirname(cwd)
+sys.path.append(os.path.join(parent, "src"))
 ```
 
 For at lave dokumentationen den første gang skal vi have oprettet de `rst` filer som `sphinx` bruger til at oprette HTML-versionen af vores dokumentation.
@@ -205,4 +210,4 @@ Dokumentationen er lavet som "flade" `html` filer og kræver derfor ikke en spec
 
 I mappen `_build/html` ligger dokumentationen nu klar. Problemet er dog at denne ikke medtages i VCS, så vi skal lige kopiere den færdige dokumentation til en anden mappe. Det er her mappen `html` kommer i brug.
 
-Kopier indholdet af `_build/html` til `html` og commit til VCS. 
+Kopier indholdet af `_build/html` til `html` og commit til VCS.
