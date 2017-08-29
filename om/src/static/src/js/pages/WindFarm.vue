@@ -1,9 +1,14 @@
 <template>
     <div>
         <v-container fluid v-if="isNumber(id)">
-            <v-layout row wrap>
+            <v-layout row wrap v-if="this.data.length">
                 <v-flex md4 sm6 xs12 v-for="item in data" :key="item.id">
                     <v-windturbine-card :item="item" @deleted="loadData"></v-windturbine-card>
+                </v-flex>
+            </v-layout>
+            <v-layout v-else>
+                <v-flex md4 sm6 xs12>
+                    There are currently no windturbines in this windfarm
                 </v-flex>
             </v-layout>
         </v-container>
