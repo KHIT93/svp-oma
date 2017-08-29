@@ -130,7 +130,8 @@
                 windfarms: [],
                 windturbine_data: [],
                 windturbine_settings: {},
-                windturbine_settings_form: new Form({})
+                windturbine_settings_form: new Form({}),
+                processing: false,
             }
         },
         created() {
@@ -223,8 +224,10 @@
                     this.form.put('/webapi/windturbines/' + this.form.id + '/').then(response => {
                         this.readonly = true;
                         this.getItem();
+                        this.processing = false;
                     }).catch(error => {
                         console.log(error);
+                        this.processing = false;
                     })
                 }
                 else {

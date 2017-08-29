@@ -58,7 +58,7 @@
                             <v-toolbar-title>Create new Windfarm</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-toolbar-items>
-                                <v-btn dark flat @click.native="createWindFarm">Save</v-btn>
+                                <v-btn dark flat @click.native="createWindFarm" :loading="form_processing"><v-icon v-if="form_processing">loading</v-icon> <span v-else>Save</span></v-btn>
                             </v-toolbar-items>
                         </v-toolbar>
                         <v-card-text>
@@ -108,6 +108,7 @@
                 dialog: false,
                 dialog_windturbine: false,
                 new_windfarm_name: "",
+                form_processing: false,
             }
         },
         methods: {
@@ -118,10 +119,12 @@
                 });
             },
             createWindFarm() {
+                this.form_processing = true;
                 console.log('Posting new windfarm to server');
                 axios.post('/webapi/windfarms/', { name: this.new_windfarm_name }).then(response => {
                     this.dialog = false;
                     this.new_windfarm_name = "";
+                    this.form_processing = false;
                 });
             }
         },

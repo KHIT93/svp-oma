@@ -76,8 +76,10 @@
                     left
                     v-show="changed"
                     @click.native="save"
+                    :loading="processing"
                   >
-                    <v-icon>save</v-icon>
+                    <v-icon v-if="processing">loading</v-icon>
+                    <v-icon v-else>save</v-icon>
                   </v-btn>
                 </v-fab-transition>
             </v-container>
@@ -103,7 +105,8 @@
             return {
                 //form: new Form({}),
                 readonly: true,
-                max: 10
+                max: 10,
+                processing: false
             }
         },
         mounted() {
@@ -141,20 +144,25 @@
         },
         methods: {
             save() {
+                this.processing = true;
                 if(this.windturbinesettings.id) {
                     this.form.patch('/webapi/windturbine-settings/' + this.windturbinesettings.id + '/').then(response => {
                         this.readonly = true;
                         this.$emit('saved');
+                        this.processing = false;
                     }).catch(error => {
                         console.log(error);
+                        this.processing = false;
                     })
                 }
                 else {
                     this.form.post('/webapi/windturbine-settings/').then(response => {
                         this.readonly = true;
                         this.$emit('saved');
+                        this.processing = false;
                     }).catch(error => {
                         console.log(error);
+                        this.processing = false;
                     })
                 }
             }
