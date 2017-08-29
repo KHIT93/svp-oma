@@ -35,7 +35,7 @@ import Form from '../classes/Form';
                 windfarms: []
             }
         },
-        mounted() {
+        created() {
             this.getWindFarms();
         },
         methods: {

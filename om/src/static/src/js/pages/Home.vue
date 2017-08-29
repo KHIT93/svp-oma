@@ -28,7 +28,7 @@
         components: {
             'v-windfarm-card': WindFarmCard
         },
-        mounted() {
+        created() {
             this.loadData();
 
             this.interval = setInterval(function () {

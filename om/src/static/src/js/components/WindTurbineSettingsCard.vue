@@ -53,7 +53,7 @@
                     </v-flex>
                     <v-flex xs8>
                         <v-subheader v-show="readonly">{{ windturbinesettings.wing_angle }}</v-subheader>
-                        <v-slider v-model="form.wing_angle" hint="Adjust the angles of the turbine wing" v-show="!readonly" max="10" :disabled="readonly"></v-slider>
+                        <v-slider v-model="form.wing_angle" hint="Adjust the angle of the turbine wings" v-show="!readonly" :max="max" :disabled="readonly"></v-slider>
                     </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -95,15 +95,19 @@
             windturbinesettings: {
                 default: {}
             },
+            form: {
+                default: new Form({})
+            }
         },
         data: () => {
             return {
-                form: new Form({}),
+                //form: new Form({}),
                 readonly: true,
+                max: 10
             }
         },
-        created() {
-            if(this.windturbinesettings.id) {
+        mounted() {
+            /*if(this.windturbinesettings.id) {
                 this.form = new Form({
                     id: this.windturbinesettings.id,
                     state: this.windturbinesettings.state,
@@ -123,7 +127,7 @@
                     max_temp_generator: "",
                     windturbine: this.windturbine.id
                 });
-            }
+            }*/
         },
         computed: {
             changed() {

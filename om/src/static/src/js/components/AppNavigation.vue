@@ -128,7 +128,7 @@
         components: {
             'v-create-windturbine-form': CreateWindTurbineForm
         },
-        mounted() {
+        created() {
             this.loadData();
 
             this.interval = setInterval(function () {

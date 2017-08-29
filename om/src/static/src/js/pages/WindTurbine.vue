@@ -111,7 +111,7 @@
             </v-card>
         </v-dialog>
         <v-windturbine-data-card :windturbinedata="windturbine_data" :windturbine="windturbine"></v-windturbine-data-card>
-        <v-windturbine-settings-card @saved="getWindturbineSettings" :windturbine="windturbine" :windturbinesettings="windturbine_settings" v-if="windturbine.id"></v-windturbine-settings-card>
+        <v-windturbine-settings-card @saved="getWindturbineSettings" :windturbine="windturbine" :windturbinesettings="windturbine_settings" :form="windturbine_settings_form"></v-windturbine-settings-card>
     </div>
 </template>
 
@@ -129,13 +129,14 @@
                 readonly: true,
                 windfarms: [],
                 windturbine_data: [],
-                windturbine_settings: [],
+                windturbine_settings: {},
+                windturbine_settings_form: new Form({})
             }
         },
-        mounted() {
+        created() {
             this.getItem();
-            this.getWindturbineData();
             this.getWindturbineSettings();
+            this.getWindturbineData();
             this.getWindfarms();
         },
         computed: {
@@ -188,6 +189,27 @@
             getWindturbineSettings() {
                 axios.get('/webapi/windturbine-settings/?windturbine=' + this.id).then(response => {
                     this.windturbine_settings = response.data[0];
+                    if(this.windturbine_settings.id) {
+                        this.windturbine_settings_form = new Form({
+                            id: this.windturbine_settings.id,
+                            state: this.windturbine_settings.state,
+                            max_rpm_generator: this.windturbine_settings.max_rpm_generator,
+                            max_temp_gearbox: this.windturbine_settings.max_temp_gearbox,
+                            max_temp_generator: this.windturbine_settings.max_temp_generator,
+                            windturbine: this.windturbine_settings.id,
+                            brake: this.windturbine_settings.brake,
+                            wing_angle: this.windturbine_settings.wing_angle
+                        });
+                    }
+                    else {
+                        this.windturbine_settings_form = new Form({
+                            state: "",
+                            max_rpm_generator: "",
+                            max_temp_gearbox: "",
+                            max_temp_generator: "",
+                            windturbine: this.id
+                        });
+                    }
                 }).catch(error => {
                     console.log(error);
                 })
