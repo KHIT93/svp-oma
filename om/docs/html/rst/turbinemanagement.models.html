@@ -95,6 +95,26 @@ object the first time, the query is executed.</p>
 <code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#turbinemanagement.models.windfarm.WindFarm.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="turbinemanagement.models.windfarm.WindFarm.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/models/windfarm.html#WindFarm.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.models.windfarm.WindFarm.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override for the save method on django.db.models.Model to initiate sync of settings to control system</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> – <p>Additional positional arguments</p>
+</li>
+<li><strong>**kwargs</strong> – <p>Additional named arguments /keyword arguments</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="turbinemanagement.models.windfarm.WindFarm.windturbine_set">
 <code class="descname">windturbine_set</code><a class="headerlink" href="#turbinemanagement.models.windfarm.WindFarm.windturbine_set" title="Permalink to this definition">¶</a></dt>
@@ -151,6 +171,13 @@ as this is the reference to the actual hardware installed in the windturbines.</
 </dd></dl>
 
 <dl class="attribute">
+<dt id="turbinemanagement.models.windturbine.WindTurbine.api_token">
+<code class="descname">api_token</code><a class="headerlink" href="#turbinemanagement.models.windturbine.WindTurbine.api_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="turbinemanagement.models.windturbine.WindTurbine.id">
 <code class="descname">id</code><a class="headerlink" href="#turbinemanagement.models.windturbine.WindTurbine.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
@@ -189,6 +216,26 @@ object the first time, the query is executed.</p>
 <dt id="turbinemanagement.models.windturbine.WindTurbine.objects">
 <code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#turbinemanagement.models.windturbine.WindTurbine.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="turbinemanagement.models.windturbine.WindTurbine.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/models/windturbine.html#WindTurbine.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.models.windturbine.WindTurbine.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override for the save method on django.db.models.Model to initiate sync of settings to control system</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> – <p>Additional positional arguments</p>
+</li>
+<li><strong>**kwargs</strong> – <p>Additional named arguments /keyword arguments</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="turbinemanagement.models.windturbine.WindTurbine.windfarm">
@@ -279,6 +326,8 @@ class built by <code class="docutils literal"><span class="pre">create_forward_m
 <li><strong>temp_generator</strong> – Temperature reading in degrees Celcius from the generator</li>
 <li><strong>rpm_generator</strong> – Reading of the current RPM registered at the generator</li>
 <li><strong>wind_speed</strong> – Current reading of the wind speed at the windturbine</li>
+<li><strong>wing_angle</strong> – The angle of the turbine wings</li>
+<li><strong>brake</strong> – Defines if the brakes are active</li>
 </ul>
 </td>
 </tr>
@@ -294,6 +343,13 @@ class built by <code class="docutils literal"><span class="pre">create_forward_m
 <dt id="turbinemanagement.models.windturbine_data.WindTurbineData.MultipleObjectsReturned">
 <em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#turbinemanagement.models.windturbine_data.WindTurbineData.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.models.windturbine_data.WindTurbineData.brake">
+<code class="descname">brake</code><a class="headerlink" href="#turbinemanagement.models.windturbine_data.WindTurbineData.brake" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="method">
@@ -380,6 +436,13 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 object the first time, the query is executed.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="turbinemanagement.models.windturbine_data.WindTurbineData.wing_angle">
+<code class="descname">wing_angle</code><a class="headerlink" href="#turbinemanagement.models.windturbine_data.WindTurbineData.wing_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -427,8 +490,8 @@ object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="turbinemanagement.models.windturbine_error.WindTurbineError.error_messge">
-<code class="descname">error_messge</code><a class="headerlink" href="#turbinemanagement.models.windturbine_error.WindTurbineError.error_messge" title="Permalink to this definition">¶</a></dt>
+<dt id="turbinemanagement.models.windturbine_error.WindTurbineError.error_message">
+<code class="descname">error_message</code><a class="headerlink" href="#turbinemanagement.models.windturbine_error.WindTurbineError.error_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -511,6 +574,8 @@ object the first time, the query is executed.</p>
 <li><strong>max_rpm_generator</strong> – The highest allowed RPM for the generator</li>
 <li><strong>max_temp_gearbox</strong> – The highest allowed temperature in degrees Celcius for the gearbox</li>
 <li><strong>max_temp_generator</strong> – The highest allowed temperature in degrees Celcius for the generator</li>
+<li><strong>brake</strong> – Defines if the brakes are active</li>
+<li><strong>wing_angle</strong> – The angle of the turbine wings</li>
 </ul>
 </td>
 </tr>
@@ -526,6 +591,13 @@ object the first time, the query is executed.</p>
 <dt id="turbinemanagement.models.windturbine_setting.WindTurbineSetting.MultipleObjectsReturned">
 <em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.models.windturbine_setting.WindTurbineSetting.brake">
+<code class="descname">brake</code><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.brake" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -561,6 +633,26 @@ object the first time, the query is executed.</p>
 <code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="turbinemanagement.models.windturbine_setting.WindTurbineSetting.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/models/windturbine_setting.html#WindTurbineSetting.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override for the save method on django.db.models.Model to initiate sync of settings to control system</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> – <p>Additional positional arguments</p>
+</li>
+<li><strong>**kwargs</strong> – <p>Additional named arguments /keyword arguments</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="turbinemanagement.models.windturbine_setting.WindTurbineSetting.state">
 <code class="descname">state</code><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.state" title="Permalink to this definition">¶</a></dt>
@@ -584,6 +676,13 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <dl class="attribute">
 <dt id="turbinemanagement.models.windturbine_setting.WindTurbineSetting.windturbine_id">
 <code class="descname">windturbine_id</code><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.windturbine_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="turbinemanagement.models.windturbine_setting.WindTurbineSetting.wing_angle">
+<code class="descname">wing_angle</code><a class="headerlink" href="#turbinemanagement.models.windturbine_setting.WindTurbineSetting.wing_angle" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>

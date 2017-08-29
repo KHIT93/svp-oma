@@ -41,13 +41,18 @@
   <h1>Source code for appcore.serializers.audit_log_serializer</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="k">import</span> <span class="n">serializers</span>
 <span class="kn">from</span> <span class="nn">appcore.models.audit_log</span> <span class="k">import</span> <span class="n">AuditLog</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># === Serializer for serializing the data from appcore.models.audit_log.AuditLog ===</span>
 
 <div class="viewcode-block" id="AuditLogSerializer"><a class="viewcode-back" href="../../../rst/appcore.serializers.html#appcore.serializers.audit_log_serializer.AuditLogSerializer">[docs]</a><span class="k">class</span> <span class="nc">AuditLogSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">display_name</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">SerializerMethodField</span><span class="p">()</span>
 <div class="viewcode-block" id="AuditLogSerializer.Meta"><a class="viewcode-back" href="../../../rst/appcore.serializers.html#appcore.serializers.audit_log_serializer.AuditLogSerializer.Meta">[docs]</a>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">AuditLog</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;__all__&#39;</span><span class="p">)</span></div></div>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;__all__&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AuditLogSerializer.get_display_name"><a class="viewcode-back" href="../../../rst/appcore.serializers.html#appcore.serializers.audit_log_serializer.AuditLogSerializer.get_display_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())))</span></div></div>
 </pre></div>
 
           </div>

@@ -36,6 +36,14 @@ appcore\.migrations\.0004\_auto\_20170825\_0818 module
     :undoc-members:
     :show-inheritance:
 
+appcore\.migrations\.0005\_auto\_20170828\_1255 module
+------------------------------------------------------
+
+.. automodule:: appcore.migrations.0005_auto_20170828_1255
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
