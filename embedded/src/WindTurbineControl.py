@@ -83,7 +83,7 @@ while True:
 
 	# Read RPM
 	rpm = ir_sensor.read_rpm()
-	print(rpm)
+	
 	# Prepare the insertion data, then insert into database and commit
 	data_data = (windturbine.windturbine_id, time.localtime(), windturbine.state, temperature, temperature, rpm, windspeed)
 	cursor.execute(add_data, data_data)
