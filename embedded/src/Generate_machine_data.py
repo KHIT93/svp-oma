@@ -114,7 +114,7 @@ for x in range(1,10000):
 
 for x in range(1,10000):
 	temp = np.random.uniform(15.0, 29)
-	rpm = np.random.randint(0, 1200)
+	rpm = np.random.randint(0, 950)
 	wing_angle = np.random.uniform(2.0,10.0)
 	wind_speed = np.random.uniform((rpm / 80) + wing_angle, (rpm / 80) + wing_angle + 5)
 	brake = 0
