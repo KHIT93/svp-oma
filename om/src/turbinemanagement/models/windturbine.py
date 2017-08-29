@@ -52,5 +52,6 @@ class WindTurbine(BaseModel):
             message = "New windturbine created in windfarm " + str(self.windfarm)
             new = True
         super(WindTurbine, self).save(*args, **kwargs)
-        self.windturbinesetting_set.create(windturbine=self.id, state=0, max_rpm_generator=1000, max_temp_gearbox=30.0, max_temp_generator=30.0, brake=False, wing_angle=0)
+        if new:
+            self.windturbinesetting_set.create(windturbine=self.id, state=0, max_rpm_generator=1000, max_temp_gearbox=30.0, max_temp_generator=30.0, brake=False, wing_angle=0)
         AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message)

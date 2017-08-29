@@ -50,7 +50,7 @@ class WindTurbineSetting(BaseModel):
         """
         super(WindTurbineSetting, self).save(*args, **kwargs)
 
-        if self.windturbine.ip_address == "0.0.0.0" or self.windturbine.api_token == None:
+        if self.windturbine.ip_address == "0.0.0.0" or self.windturbine.api_token == None or self.windturbine.api_token == "":
             message = "The windturbine " + str(self.windturbine) + " has no IP-address or API token and therefore no configuration was sent"
             print(message)
             AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message)
