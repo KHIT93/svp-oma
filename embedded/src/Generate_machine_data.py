@@ -7,10 +7,10 @@ cnx = pymysql.connect(user='root', password='P@ssw0rd',
                               database='control_db')
 cursor = cnx.cursor()
 
-#DROPTABLE = ("DROP TABLE test")
+DROPTABLE = ("DROP TABLE test")
 
-#cursor.execute(DROPTABLE)
-#cnx.commit()
+cursor.execute(DROPTABLE)
+cnx.commit()
 
 TABLE = ("CREATE TABLE `test` (`id` int(10) NOT NULL AUTO_INCREMENT,`rpm` int(5) NOT NULL,`temp` float(4) NOT NULL,`wind_speed` float(2) NOT NULL,`wing_angle` float(2) NOT NULL,`brake` int(1) NOT NULL,`error_code` int(4) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB")
 
@@ -135,9 +135,8 @@ for x in range(1,10000):
 	error_code = 300
 
 	data_data = (rpm, round(temp, 4), round(wind_speed, 1), round(wing_angle,1), brake, error_code)
+	cursor.execute(add_data, data_data)
 
-
-cursor.execute(add_data, data_data)
 cnx.commit()
 
 
