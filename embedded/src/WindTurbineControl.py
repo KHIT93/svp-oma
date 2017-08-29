@@ -74,7 +74,8 @@ while True:
 			row = cursor.fetchone()
 			current_config = row['id']
 
-		windturbine.changesettings(row, windspeed)
+		if row:
+			windturbine.changesettings(row, windspeed)
 
 	# Read temperature
 	temperature = adc.readtemperature()
@@ -83,7 +84,7 @@ while True:
 
 	# Read RPM
 	rpm = ir_sensor.read_rpm()
-	
+
 	# Prepare the insertion data, then insert into database and commit
 	data_data = (windturbine.windturbine_id, time.localtime(), windturbine.state, temperature, temperature, rpm, windspeed)
 	cursor.execute(add_data, data_data)
