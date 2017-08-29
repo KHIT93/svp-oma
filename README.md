@@ -197,7 +197,7 @@ I mappen `_build/html` ligger dokumentationen nu klar. Problemet er dog at denne
 Kopier indholdet af `_build/html` til `html` og commit til VCS.
 
 ### Opdatering af eksisterende dokumentation
-For at opdatere eksisterende dokumentation afvikles følgende:
+For at opdatere eksisterende dokumentation  slettes indholdet af `docs/rst` og herefter køres nedenstående kommandoer imens man står i `docs` mappen.
 ```
 sphinx-apidoc -o /Users/kenneth/Code/svp-oma/om/docs/rst/ /Users/kenneth/Code/svp-oma/om/src/
 
