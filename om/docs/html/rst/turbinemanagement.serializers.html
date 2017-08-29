@@ -162,7 +162,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <dl class="attribute">
 <dt id="turbinemanagement.serializers.windturbine_data_serializer.WindturbineDataSerializer.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('id', 'windturbine', 'timestamp', 'state', 'temp_gearbox', 'temp_generator', 'rpm_generator', 'wind_speed')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_data_serializer.WindturbineDataSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('id', 'windturbine', 'timestamp', 'state', 'temp_gearbox', 'temp_generator', 'rpm_generator', 'wind_speed', 'wing_angle', 'brake')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_data_serializer.WindturbineDataSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -226,7 +226,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <dl class="attribute">
 <dt id="turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'api_token')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -236,6 +236,11 @@
 </dd></dl>
 
 </dd></dl>
+
+<dl class="method">
+<dt id="turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.get_brakes_active">
+<code class="descname">get_brakes_active</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turbinemanagement/serializers/windturbine_serializer.html#WindturbineSerializer.get_brakes_active"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.get_brakes_active" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.get_display_name">
@@ -259,7 +264,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <dl class="attribute">
 <dt id="turbinemanagement.serializers.windturbine_serializer.WindturbineSerializerWtihRelationships.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'windturbinedata_set', 'windturbineerror_set', 'windturbinesetting_set')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_serializer.WindturbineSerializerWtihRelationships.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'windturbinedata_set', 'windturbineerror_set', 'windturbinesetting_set', 'api_token')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_serializer.WindturbineSerializerWtihRelationships.Meta.fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -291,7 +296,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <dl class="attribute">
 <dt id="turbinemanagement.serializers.windturbine_setting_serializer.WindturbineSettingSerializer.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ('id', 'windturbine', 'state', 'max_rpm_generator', 'max_temp_gearbox', 'max_temp_generator')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_setting_serializer.WindturbineSettingSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ('id', 'windturbine', 'state', 'max_rpm_generator', 'max_temp_gearbox', 'max_temp_generator', 'brake', 'wing_angle')</em><a class="headerlink" href="#turbinemanagement.serializers.windturbine_setting_serializer.WindturbineSettingSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">

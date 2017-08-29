@@ -30,6 +30,14 @@ appcore\.apps module
     :undoc-members:
     :show-inheritance:
 
+appcore\.middleware module
+--------------------------
+
+.. automodule:: appcore.middleware
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 appcore\.tests module
 ---------------------
 

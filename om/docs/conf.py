@@ -20,6 +20,9 @@
 import os
 import sys
 import django
+cwd = os.getcwd()
+parent = os.path.dirname(cwd)
+sys.path.append(os.path.join(parent, "src"))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "om.settings")
 django.setup()
 

@@ -103,6 +103,26 @@ object the first time, the query is executed.</p>
 <code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#errors.models.error_code.ErrorCode.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="errors.models.error_code.ErrorCode.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/errors/models/error_code.html#ErrorCode.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#errors.models.error_code.ErrorCode.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override for the save method on django.db.models.Model to initiate sync of settings to control system</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> – <p>Additional positional arguments</p>
+</li>
+<li><strong>**kwargs</strong> – <p>Additional named arguments /keyword arguments</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="errors.models.error_code.ErrorCode.severity">
 <code class="descname">severity</code><a class="headerlink" href="#errors.models.error_code.ErrorCode.severity" title="Permalink to this definition">¶</a></dt>

@@ -236,7 +236,8 @@
             },
             deleteItem() {
                 this.form.delete('/webapi/windturbines/' + this.windturbine.id + '/').then(response => {
-                    router.push('home');
+                    //router.push('home');
+                    window.location.href = "/";
                 }).catch(error => {
                     console.log(error);
                 })

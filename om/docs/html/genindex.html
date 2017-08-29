@@ -72,13 +72,15 @@
 </li>
       <li><a href="rst/errors.migrations.html#errors.migrations.0002_seed_error_codes.add_error_codes">add_error_codes() (in module errors.migrations.0002_seed_error_codes)</a>
 </li>
-      <li><a href="rst/appcore.models.html#appcore.models.audit_log.AuditLog.api_response">api_response (appcore.models.audit_log.AuditLog attribute)</a>
+      <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine.WindTurbine.api_token">api_token (turbinemanagement.models.windturbine.WindTurbine attribute)</a>
 </li>
       <li><a href="rst/appcore.html#module-appcore">appcore (module)</a>
 </li>
       <li><a href="rst/appcore.html#module-appcore.admin">appcore.admin (module)</a>
 </li>
       <li><a href="rst/appcore.html#module-appcore.apps">appcore.apps (module)</a>
+</li>
+      <li><a href="rst/appcore.html#module-appcore.middleware">appcore.middleware (module)</a>
 </li>
       <li><a href="rst/appcore.migrations.html#module-appcore.migrations">appcore.migrations (module)</a>
 </li>
@@ -90,16 +92,18 @@
 </li>
       <li><a href="rst/appcore.migrations.html#module-appcore.migrations.0004_auto_20170825_0818">appcore.migrations.0004_auto_20170825_0818 (module)</a>
 </li>
+      <li><a href="rst/appcore.migrations.html#module-appcore.migrations.0005_auto_20170828_1255">appcore.migrations.0005_auto_20170828_1255 (module)</a>
+</li>
       <li><a href="rst/appcore.models.html#module-appcore.models">appcore.models (module)</a>
 </li>
       <li><a href="rst/appcore.models.html#module-appcore.models.audit_log">appcore.models.audit_log (module)</a>
 </li>
       <li><a href="rst/appcore.models.html#module-appcore.models.base_model">appcore.models.base_model (module)</a>
 </li>
-      <li><a href="rst/appcore.serializers.html#module-appcore.serializers">appcore.serializers (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rst/appcore.serializers.html#module-appcore.serializers">appcore.serializers (module)</a>
+</li>
       <li><a href="rst/appcore.serializers.html#module-appcore.serializers.audit_log_serializer">appcore.serializers.audit_log_serializer (module)</a>
 </li>
       <li><a href="rst/appcore.serializers.html#module-appcore.serializers.group_serializer">appcore.serializers.group_serializer (module)</a>
@@ -138,10 +142,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/appcore.models.html#appcore.models.base_model.BaseModel">BaseModel (class in appcore.models.base_model)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/appcore.models.html#appcore.models.base_model.BaseModel.Meta">BaseModel.Meta (class in appcore.models.base_model)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_data.WindTurbineData.brake">brake (turbinemanagement.models.windturbine_data.WindTurbineData attribute)</a>
+
+      <ul>
+        <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_setting.WindTurbineSetting.brake">(turbinemanagement.models.windturbine_setting.WindTurbineSetting attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -185,6 +195,8 @@
 </li>
         <li><a href="rst/appcore.migrations.html#appcore.migrations.0004_auto_20170825_0818.Migration.dependencies">(appcore.migrations.0004_auto_20170825_0818.Migration attribute)</a>
 </li>
+        <li><a href="rst/appcore.migrations.html#appcore.migrations.0005_auto_20170828_1255.Migration.dependencies">(appcore.migrations.0005_auto_20170828_1255.Migration attribute)</a>
+</li>
         <li><a href="rst/errors.migrations.html#errors.migrations.0001_initial.Migration.dependencies">(errors.migrations.0001_initial.Migration attribute)</a>
 </li>
         <li><a href="rst/errors.migrations.html#errors.migrations.0002_seed_error_codes.Migration.dependencies">(errors.migrations.0002_seed_error_codes.Migration attribute)</a>
@@ -209,6 +221,14 @@
 </li>
         <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0010_windturbineerror_resolved.Migration.dependencies">(turbinemanagement.migrations.0010_windturbineerror_resolved.Migration attribute)</a>
 </li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0011_auto_20170828_0746.Migration.dependencies">(turbinemanagement.migrations.0011_auto_20170828_0746.Migration attribute)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0012_auto_20170828_0841.Migration.dependencies">(turbinemanagement.migrations.0012_auto_20170828_0841.Migration attribute)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0013_auto_20170828_1011.Migration.dependencies">(turbinemanagement.migrations.0013_auto_20170828_1011.Migration attribute)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0014_windturbine_api_token.Migration.dependencies">(turbinemanagement.migrations.0014_windturbine_api_token.Migration attribute)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -218,7 +238,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_error.WindTurbineError.error_code">error_code (turbinemanagement.models.windturbine_error.WindTurbineError attribute)</a>
 </li>
-      <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_error.WindTurbineError.error_messge">error_messge (turbinemanagement.models.windturbine_error.WindTurbineError attribute)</a>
+      <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_error.WindTurbineError.error_message">error_message (turbinemanagement.models.windturbine_error.WindTurbineError attribute)</a>
 </li>
       <li><a href="rst/errors.models.html#errors.models.error_code.ErrorCode">ErrorCode (class in errors.models.error_code)</a>
 </li>
@@ -302,9 +322,13 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rst/turbinemanagement.serializers.html#turbinemanagement.serializers.windfarm_serializer.WindfarmSerializer.get_display_name">get_display_name() (turbinemanagement.serializers.windfarm_serializer.WindfarmSerializer method)</a>
+      <li><a href="rst/turbinemanagement.serializers.html#turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer.get_brakes_active">get_brakes_active() (turbinemanagement.serializers.windturbine_serializer.WindturbineSerializer method)</a>
+</li>
+      <li><a href="rst/appcore.serializers.html#appcore.serializers.audit_log_serializer.AuditLogSerializer.get_display_name">get_display_name() (appcore.serializers.audit_log_serializer.AuditLogSerializer method)</a>
 
       <ul>
+        <li><a href="rst/turbinemanagement.serializers.html#turbinemanagement.serializers.windfarm_serializer.WindfarmSerializer.get_display_name">(turbinemanagement.serializers.windfarm_serializer.WindfarmSerializer method)</a>
+</li>
         <li><a href="rst/turbinemanagement.serializers.html#turbinemanagement.serializers.windfarm_serializer.WindfarmSerializerWithNestedRelationships.get_display_name">(turbinemanagement.serializers.windfarm_serializer.WindfarmSerializerWithNestedRelationships method)</a>
 </li>
         <li><a href="rst/turbinemanagement.serializers.html#turbinemanagement.serializers.windfarm_serializer.WindfarmSerializerWithRelationships.get_display_name">(turbinemanagement.serializers.windfarm_serializer.WindfarmSerializerWithRelationships method)</a>
@@ -340,6 +364,8 @@
         <li><a href="rst/turbinemanagement.views.html#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.get_queryset">(turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset method)</a>
 </li>
       </ul></li>
+      <li><a href="rst/appcore.html#appcore.middleware.get_request">get_request() (in module appcore.middleware)</a>
+</li>
       <li><a href="rst/appcore.serializers.html#appcore.serializers.group_serializer.GroupSerializer">GroupSerializer (class in appcore.serializers.group_serializer)</a>
 </li>
       <li><a href="rst/appcore.serializers.html#appcore.serializers.group_serializer.GroupSerializer.Meta">GroupSerializer.Meta (class in appcore.serializers.group_serializer)</a>
@@ -431,6 +457,8 @@
 </li>
         <li><a href="rst/appcore.migrations.html#appcore.migrations.0004_auto_20170825_0818.Migration">(class in appcore.migrations.0004_auto_20170825_0818)</a>
 </li>
+        <li><a href="rst/appcore.migrations.html#appcore.migrations.0005_auto_20170828_1255.Migration">(class in appcore.migrations.0005_auto_20170828_1255)</a>
+</li>
         <li><a href="rst/errors.migrations.html#errors.migrations.0001_initial.Migration">(class in errors.migrations.0001_initial)</a>
 </li>
         <li><a href="rst/errors.migrations.html#errors.migrations.0002_seed_error_codes.Migration">(class in errors.migrations.0002_seed_error_codes)</a>
@@ -454,6 +482,14 @@
         <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0009_windturbine_ip_address.Migration">(class in turbinemanagement.migrations.0009_windturbine_ip_address)</a>
 </li>
         <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0010_windturbineerror_resolved.Migration">(class in turbinemanagement.migrations.0010_windturbineerror_resolved)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0011_auto_20170828_0746.Migration">(class in turbinemanagement.migrations.0011_auto_20170828_0746)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0012_auto_20170828_0841.Migration">(class in turbinemanagement.migrations.0012_auto_20170828_0841)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0013_auto_20170828_1011.Migration">(class in turbinemanagement.migrations.0013_auto_20170828_1011)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0014_windturbine_api_token.Migration">(class in turbinemanagement.migrations.0014_windturbine_api_token)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -551,6 +587,8 @@
 </li>
         <li><a href="rst/appcore.migrations.html#appcore.migrations.0004_auto_20170825_0818.Migration.operations">(appcore.migrations.0004_auto_20170825_0818.Migration attribute)</a>
 </li>
+        <li><a href="rst/appcore.migrations.html#appcore.migrations.0005_auto_20170828_1255.Migration.operations">(appcore.migrations.0005_auto_20170828_1255.Migration attribute)</a>
+</li>
         <li><a href="rst/errors.migrations.html#errors.migrations.0001_initial.Migration.operations">(errors.migrations.0001_initial.Migration attribute)</a>
 </li>
         <li><a href="rst/errors.migrations.html#errors.migrations.0002_seed_error_codes.Migration.operations">(errors.migrations.0002_seed_error_codes.Migration attribute)</a>
@@ -575,6 +613,14 @@
 </li>
         <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0010_windturbineerror_resolved.Migration.operations">(turbinemanagement.migrations.0010_windturbineerror_resolved.Migration attribute)</a>
 </li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0011_auto_20170828_0746.Migration.operations">(turbinemanagement.migrations.0011_auto_20170828_0746.Migration attribute)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0012_auto_20170828_0841.Migration.operations">(turbinemanagement.migrations.0012_auto_20170828_0841.Migration attribute)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0013_auto_20170828_1011.Migration.operations">(turbinemanagement.migrations.0013_auto_20170828_1011.Migration attribute)</a>
+</li>
+        <li><a href="rst/turbinemanagement.migrations.html#turbinemanagement.migrations.0014_windturbine_api_token.Migration.operations">(turbinemanagement.migrations.0014_windturbine_api_token.Migration attribute)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -592,6 +638,10 @@
         <li><a href="rst/turbinemanagement.views.html#turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset.pagination_class">(turbinemanagement.views.windturbine_setting_api_viewset.WindturbineSettingAPIViewset attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rst/appcore.html#appcore.middleware.RequestMiddleware.process_request">process_request() (appcore.middleware.RequestMiddleware method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -626,9 +676,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/errors.migrations.html#errors.migrations.0002_seed_error_codes.remove_error_codes">remove_error_codes() (in module errors.migrations.0002_seed_error_codes)</a>
 </li>
+      <li><a href="rst/appcore.html#appcore.middleware.RequestMiddleware">RequestMiddleware (class in appcore.middleware)</a>
+</li>
+      <li><a href="rst/appcore.html#appcore.middleware.RequestNotFound">RequestNotFound</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_error.WindTurbineError.resolved">resolved (turbinemanagement.models.windturbine_error.WindTurbineError attribute)</a>
+</li>
+      <li><a href="rst/appcore.models.html#appcore.models.audit_log.AuditLog.result">result (appcore.models.audit_log.AuditLog attribute)</a>
 </li>
       <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_data.WindTurbineData.rpm_generator">rpm_generator (turbinemanagement.models.windturbine_data.WindTurbineData attribute)</a>
 </li>
@@ -638,6 +694,16 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rst/errors.models.html#errors.models.error_code.ErrorCode.save">save() (errors.models.error_code.ErrorCode method)</a>
+
+      <ul>
+        <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windfarm.WindFarm.save">(turbinemanagement.models.windfarm.WindFarm method)</a>
+</li>
+        <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine.WindTurbine.save">(turbinemanagement.models.windturbine.WindTurbine method)</a>
+</li>
+        <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_setting.WindTurbineSetting.save">(turbinemanagement.models.windturbine_setting.WindTurbineSetting method)</a>
+</li>
+      </ul></li>
       <li><a href="rst/appcore.views.html#appcore.views.audit_log_viewset.AuditLogViewset.serializer_class">serializer_class (appcore.views.audit_log_viewset.AuditLogViewset attribute)</a>
 
       <ul>
@@ -748,9 +814,17 @@
 </li>
       <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0009_windturbine_ip_address">turbinemanagement.migrations.0009_windturbine_ip_address (module)</a>
 </li>
+      <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0010_windturbineerror_resolved">turbinemanagement.migrations.0010_windturbineerror_resolved (module)</a>
+</li>
+      <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0011_auto_20170828_0746">turbinemanagement.migrations.0011_auto_20170828_0746 (module)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0010_windturbineerror_resolved">turbinemanagement.migrations.0010_windturbineerror_resolved (module)</a>
+      <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0012_auto_20170828_0841">turbinemanagement.migrations.0012_auto_20170828_0841 (module)</a>
+</li>
+      <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0013_auto_20170828_1011">turbinemanagement.migrations.0013_auto_20170828_1011 (module)</a>
+</li>
+      <li><a href="rst/turbinemanagement.migrations.html#module-turbinemanagement.migrations.0014_windturbine_api_token">turbinemanagement.migrations.0014_windturbine_api_token (module)</a>
 </li>
       <li><a href="rst/turbinemanagement.models.html#module-turbinemanagement.models">turbinemanagement.models (module)</a>
 </li>
@@ -876,10 +950,10 @@
       </ul></li>
       <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windfarm.WindFarm.windturbine_set">windturbine_set (turbinemanagement.models.windfarm.WindFarm attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/turbinemanagement.views.html#turbinemanagement.views.windturbine_api_viewset.WindturbineAPIViewset">WindturbineAPIViewset (class in turbinemanagement.views.windturbine_api_viewset)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_data.WindTurbineData">WindTurbineData (class in turbinemanagement.models.windturbine_data)</a>
 </li>
       <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_data.WindTurbineData.DoesNotExist">WindTurbineData.DoesNotExist</a>
@@ -932,6 +1006,12 @@
 </li>
       <li><a href="rst/turbinemanagement.views.html#turbinemanagement.views.windturbine_api_viewset.WindturbineWithRelationshipsAPIView">WindturbineWithRelationshipsAPIView (class in turbinemanagement.views.windturbine_api_viewset)</a>
 </li>
+      <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_data.WindTurbineData.wing_angle">wing_angle (turbinemanagement.models.windturbine_data.WindTurbineData attribute)</a>
+
+      <ul>
+        <li><a href="rst/turbinemanagement.models.html#turbinemanagement.models.windturbine_setting.WindTurbineSetting.wing_angle">(turbinemanagement.models.windturbine_setting.WindTurbineSetting attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

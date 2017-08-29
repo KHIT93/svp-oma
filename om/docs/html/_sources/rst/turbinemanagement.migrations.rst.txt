@@ -84,6 +84,38 @@ turbinemanagement\.migrations\.0010\_windturbineerror\_resolved module
     :undoc-members:
     :show-inheritance:
 
+turbinemanagement\.migrations\.0011\_auto\_20170828\_0746 module
+----------------------------------------------------------------
+
+.. automodule:: turbinemanagement.migrations.0011_auto_20170828_0746
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+turbinemanagement\.migrations\.0012\_auto\_20170828\_0841 module
+----------------------------------------------------------------
+
+.. automodule:: turbinemanagement.migrations.0012_auto_20170828_0841
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+turbinemanagement\.migrations\.0013\_auto\_20170828\_1011 module
+----------------------------------------------------------------
+
+.. automodule:: turbinemanagement.migrations.0013_auto_20170828_1011
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+turbinemanagement\.migrations\.0014\_windturbine\_api\_token module
+-------------------------------------------------------------------
+
+.. automodule:: turbinemanagement.migrations.0014_windturbine_api_token
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
