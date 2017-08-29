@@ -43611,7 +43611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this4.windturbine_settings = response.data[0];
                 if (_this4.windturbine_settings.id) {
                     _this4.windturbine_settings_form = new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */]({
-                        id: _this4.windturbine_settings.id,
+                        //id: this.windturbine_settings.id,
                         state: _this4.windturbine_settings.state,
                         max_rpm_generator: _this4.windturbine_settings.max_rpm_generator,
                         max_temp_gearbox: _this4.windturbine_settings.max_temp_gearbox,
@@ -43626,6 +43626,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         max_rpm_generator: "",
                         max_temp_gearbox: "",
                         max_temp_generator: "",
+                        brake: false,
+                        wing_angle: 0,
                         windturbine: _this4.id
                     });
                 }

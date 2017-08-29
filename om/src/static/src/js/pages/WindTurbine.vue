@@ -191,7 +191,7 @@
                     this.windturbine_settings = response.data[0];
                     if(this.windturbine_settings.id) {
                         this.windturbine_settings_form = new Form({
-                            id: this.windturbine_settings.id,
+                            //id: this.windturbine_settings.id,
                             state: this.windturbine_settings.state,
                             max_rpm_generator: this.windturbine_settings.max_rpm_generator,
                             max_temp_gearbox: this.windturbine_settings.max_temp_gearbox,
@@ -207,6 +207,8 @@
                             max_rpm_generator: "",
                             max_temp_gearbox: "",
                             max_temp_generator: "",
+                            brake: false,
+                            wing_angle: 0,
                             windturbine: this.id
                         });
                     }
