@@ -3,6 +3,10 @@ from turbinemanagement.models.windturbine import WindTurbine
 from turbinemanagement.serializers.windturbine_data_serializer import WindturbineDataSerializer
 from appcore.models.audit_log import AuditLog
 import requests
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 # === Command to handle data sync between Control and O&M ===
 
@@ -42,6 +46,7 @@ class Command(BaseCommand):
                             message = "The data recieved from windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned invalid data. The response data has been saved to the audit log for troubleshotting purposes"
                             AuditLog.objects.create(name="System", message=message, result=response.json())
                             print(message)
+                            logger.error(serializer.errors)
 
                     else:
                         message = "The windturbine " + str(windturbine) + " at " + str(windturbine.ip_address) + " returned error with status " + str(response.status_code)
