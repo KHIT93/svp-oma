@@ -102,7 +102,7 @@
                 readonly: true,
             }
         },
-        mounted() {
+        created() {
             if(this.windturbinesettings.id) {
                 this.form = new Form({
                     id: this.windturbinesettings.id,

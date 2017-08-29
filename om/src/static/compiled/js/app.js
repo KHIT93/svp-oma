@@ -43916,7 +43916,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             readonly: true
         };
     },
-    mounted: function mounted() {
+    created: function created() {
         if (this.windturbinesettings.id) {
             this.form = new __WEBPACK_IMPORTED_MODULE_0__classes_Form__["a" /* default */]({
                 id: this.windturbinesettings.id,
