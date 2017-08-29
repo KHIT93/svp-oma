@@ -64,4 +64,5 @@ class WindTurbineSetting(BaseModel):
             logger.info(response.status_code)
             #logger.info(response.json())
             logger.info(message)
-            AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message, result=response.json())
+            #AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message, result=response.json())
+            AuditLog.objects.create(name=get_request().user.username, user=get_request().user, message=message)
