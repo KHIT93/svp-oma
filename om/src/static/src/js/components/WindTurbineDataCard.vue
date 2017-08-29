@@ -26,7 +26,14 @@
 
 <script>
     export default {
-        props: ['windturbinedata', 'windturbine'],
+        props: {
+            windturbine: {
+                default: {}
+            },
+            windturbinedata: {
+                default: {}
+            },
+        },
         methods: {
 
             moment(str) {

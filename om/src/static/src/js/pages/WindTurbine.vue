@@ -124,7 +124,7 @@
         data: () => {
             return {
                 windturbine: {},
-                form: null,
+                form: new Form({}),
                 dialog: false,
                 readonly: true,
                 windfarms: [],

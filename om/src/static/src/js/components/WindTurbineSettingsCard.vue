@@ -98,8 +98,7 @@
         },
         data: () => {
             return {
-                //form: null,
-                form: new Form(),
+                form: new Form({}),
                 readonly: true,
             }
         },

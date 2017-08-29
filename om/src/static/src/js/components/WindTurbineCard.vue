@@ -28,7 +28,11 @@
 <script>
     import Form from '../classes/Form';
     export default {
-        props: ['item'],
+        props: {
+            item: {
+                default: {}
+            }
+        },
         data: () =>  {
             return {
                 form: new Form(this.item),

@@ -9,10 +9,9 @@
 
 <script>
     export default {
-        props: ['windfarm'],
-        data: () => {
-            return {
-
+        props: {
+            windfarm: {
+                default: {}
             }
         }
     }
