@@ -10,7 +10,7 @@ class IRSensor:
 		self.ir_pin = ir_pin
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(ir_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-		GPIO.add_event_detect(ir_pin, GPIO.FALLING, callback=callback, bouncetime=10)
+		GPIO.add_event_detect(ir_pin, GPIO.FALLING, callback=callback, bouncetime=8)
 
 	
 	def read_rpm(self):
