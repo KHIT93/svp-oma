@@ -4,7 +4,7 @@ import numpy as np
 
 cnx = pymysql.connect(user='root', password='P@ssw0rd',
                               host='127.0.0.1',
-                              database='SensorData')
+                              database='control_db')
 cursor = cnx.cursor()
 
 DROPTABLE = ("DROP TABLE test")
