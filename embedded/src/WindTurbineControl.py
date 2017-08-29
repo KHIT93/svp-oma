@@ -9,18 +9,20 @@ import pymysql.cursors
 
 class Windturbine():
 	"""docstring for Windturbine"""
-	def __init__(self, motor, state, brake, wind_speed, wing_angle):
+	def __init__(self, motor, state, brake, wind_speed, wing_angle, windturbine_id):
 		self.motor = motor
 		self.state = state
 		self.brake = brake
 		self.wind_speed = wind_speed
 		self.wing_angle = wing_angle
+		self.windturbine_id = windturbine_id
 
 	def changesettings(self, sqlrow, windspeed):
 		self.state = row['state']
 		self.brake = row['brake']
 		self.wind_speed = windspeed
 		self.wing_angle = row['wing_angle']
+		self.windturbine_id = row['windturbine']
 		self.motor.changespeed(self.wind_speed, self.wing_angle)
 		
 		if self.brake:
@@ -43,7 +45,7 @@ ir_sensor = IRSensor.IRSensor(7)
 # PWM pin, Standby pin, AIN1 pin, PWM Frequincy, Duty
 motor = Motor.Motor(3,5,11,1000, 0)
 # Motor, state, brake, wind_speed, wing_angle
-windturbine = Windturbine(motor, 0, 0, 0.0, 0.0)
+windturbine = Windturbine(motor, 0, 0, 0.0, 0.0, 0)
 
 # Database connection
 cnx = pymysql.connect(user='root', password='P@ssw0rd', host='127.0.0.1', database='control_db')
@@ -57,7 +59,7 @@ get_settings = ("SELECT * FROM windturbine_settings_windturbinesetting WHERE id 
 # Variables initialized for later
 temperature = 0
 rpm = 0.0
-get_config_count = 8
+get_config_count = 4
 current_config = 0
 row = {}
 windspeed = 0.0
@@ -71,7 +73,7 @@ while True:
 			# Fetch row and send it to change settings. Then save the id of this new config
 			row = cursor.fetchone()
 			current_config = row['id']
-			print(row['id'])
+
 		windturbine.changesettings(row, windspeed)
 
 	# Read temperature
@@ -83,7 +85,7 @@ while True:
 	rpm = ir_sensor.read_rpm()
 
 	# Prepare the insertion data, then insert into database and commit
-	data_data = (1, time.localtime(), 1, temperature, temperature, rpm, windspeed)
+	data_data = (windturbine.windturbine_id, time.localtime(), windturbine.state, temperature, temperature, rpm, windspeed)
 	cursor.execute(add_data, data_data)
 	cnx.commit()
 
