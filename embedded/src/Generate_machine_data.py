@@ -1,8 +1,8 @@
-import mysql.connector
+import pymysql.cursors
 import numpy as np
 
 
-cnx = mysql.connector.connect(user='root', password='P@ssw0rd',
+cnx = pymysql.connect(user='root', password='P@ssw0rd',
                               host='127.0.0.1',
                               database='SensorData')
 cursor = cnx.cursor()
