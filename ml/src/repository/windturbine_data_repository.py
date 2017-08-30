@@ -5,7 +5,7 @@ class WindturbineDataRepo(object):
 	"""docstring for WindturbineDataRepo"""
 
 	def __init__(self):
-		self.windturbine_data = {}
+		self.windturbine_data = []
 		self.last_record = 0
 
 		self.DATABASE = 'svp-oma'
