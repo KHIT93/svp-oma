@@ -29,7 +29,7 @@ class_names = ['0', '100', '110', '120', '130', '200', '210', '220', '300']
 # Run dot -Tpng test.dot -o tree.png in C:/tmp to convert the file into an image
 
 # Save model as a pickle
-pickle_file = 'dtc_windturbine.pkl'
+pickle_file = '../dtc_windturbine.pkl'
 model_pkl = open(pickle_file, 'wb')
 pickle.dump(dtc, model_pkl)
 model_pkl.close()
