@@ -16,4 +16,5 @@ model = pickle.load(model_pkl)
 model_pkl.close()
 
 windturbineDataRepo.getNew()
-print(windturbineDataRepo.windturbine_data)
+
+print(model.predict(windturbineDataRepo.windturbine_data))
