@@ -33,9 +33,9 @@ prediction = model.predict(machinelearningarray)
 i = 0
 for x in prediction:
 	print(x)
-	if x not 0:
+	if x > 0:
 		error = np.array(errorCodeRepo.get(x))
 		windturbine_error = WindturbineError(dataarray[i,7], dataarray[i,1], error[0,1], x, False)
 		windturbineErrorRepo.save(windturbine_error)
-
+	
 	i += 1
