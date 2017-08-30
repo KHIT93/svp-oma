@@ -39,7 +39,6 @@
                                 left
                                 @click.native="getLogItems"
                                 :loading="loading"
-                                :disabled="loading"
                             >
                             <v-icon>cached</v-icon>
                           </v-btn>
@@ -101,13 +100,15 @@
         },
         methods: {
             getLogItems() {
-                this.loading = true;
-                axios.get('/webapi/auditlog/').then(response => {
-                    this.items = response.data;
-                    this.loading = false;
-                }).catch(error => {
-                    console.log(error);
-                });
+                if(!this.loading) {
+                    this.loading = true;
+                    axios.get('/webapi/auditlog/').then(response => {
+                        this.items = response.data;
+                        this.loading = false;
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                }
             },
             getDetail(item) {
                 this.selected_entry = item;
