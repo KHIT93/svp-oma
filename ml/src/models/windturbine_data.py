@@ -1,6 +1,6 @@
 import base_model
 
-class WindTurbineData(base_model.BaseModel):
+class WindTurbineData():
 	"""
     The WindTurbineData class defines the format in which we store the sensor information that has been recieved from the windturbines.
 
@@ -23,7 +23,6 @@ class WindTurbineData(base_model.BaseModel):
     :param wind_speed: Current reading of the wind speed at the windturbine
 	"""
 	def __init__(self, windturbine_id, timestamp, state, temp_gearbox, temp_generator, rpm_generator, wind_speed):
-		super(WindTurbineData, self).__init__()
         self.windturbine_id = windturbine_id
     	self.timestamp = timestamp
     	self.state = state

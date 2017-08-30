@@ -16,7 +16,7 @@ class ErrorCodeRepo(object):
 		self.cursor = self.conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
 	def get(self, code):
-		if not error_codes:
+		if not self.error_codes:
 			self.getAll()
 		return list(filter(lambda x:x[2]==code,self.error_codes))
 		
