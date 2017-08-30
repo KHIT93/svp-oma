@@ -12,9 +12,9 @@ from sql.connector import Connector
 conn = Connector()
 # init repositories
 audit_log_repo = AuditLogRepo()
-error_code_repo = ErrorCodeRepo(conn)
+error_code_repo = ErrorCodeRepo()
 windturbine_data_repo = WindturbineDataRepo()
-windturbine_error_repo = WindturbineErrorRepo()
+windturbine_error_repo = WindturbineErrorRepo(conn)
 
 # get the saved model
 pickle_file = 'dtc_windturbine.pkl'
