@@ -1,4 +1,3 @@
-import windturbine_data
 import psycopg2
 import psycopg2.extras
 

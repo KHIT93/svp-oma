@@ -1,5 +1,6 @@
-import windturbine_error
 import time
+import psycopg2
+import psycopg2.extras
 
 class WindturbineErrorRepo(object):
 	"""docstring for ErrorCodeRepo"""
