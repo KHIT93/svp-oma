@@ -25,7 +25,7 @@ class AuditLog(models.Model):
     """
     class Meta:
         db_table = "audit_log"
-        ordering = ('timestamp',)
+        ordering = ('-timestamp',)
 
     timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, models.SET_NULL, null=True, blank=True)

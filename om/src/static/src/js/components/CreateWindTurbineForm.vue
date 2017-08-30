@@ -15,7 +15,7 @@
         <v-text-field label="Latitude" v-model="form.latitude" required></v-text-field>
         <v-text-field label="IP Address" v-model="form.ip_address"></v-text-field>
         <v-text-field label="API token" v-model="form.api_token"></v-text-field>
-        <v-btn flat primary @click.native="save">Save</v-btn>
+        <v-btn flat primary @click.native="save" :loading="processing"><v-icon v-if="processing">loading</v-icon> <span v-else>Save</span></v-btn>
     </v-card-text>
 </template>
 
@@ -32,7 +32,8 @@ import Form from '../classes/Form';
                     ip_address: "0.0.0.0",
                     api_token: ""
                 }),
-                windfarms: []
+                windfarms: [],
+                processing: false,
             }
         },
         created() {
@@ -46,11 +47,14 @@ import Form from '../classes/Form';
                 });
             },
             save() {
+                this.processing = true;
                 this.form.post('/webapi/windturbines/').then(response => {
                     this.$emit('saved');
+                    this.processing = false;
                 }).catch(error => {
                     console.log('Error while posting to server from create-windturbine-form');
                     console.log(error);
+                    this.processing = false;
                 });
             }
         }

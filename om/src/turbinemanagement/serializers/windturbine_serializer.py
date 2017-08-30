@@ -8,12 +8,13 @@ class WindturbineSerializer(serializers.ModelSerializer):
     last_connection = serializers.SerializerMethodField()
     display_name = serializers.SerializerMethodField()
     brakes_active = serializers.SerializerMethodField()
+
     class Meta:
         model = WindTurbine
-        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'api_token')
+        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'api_token',)
     def get_last_connection(self, obj):
         if obj.windturbinedata_set.count():
-            return obj.windturbinedata_set.last().timestamp
+            return obj.windturbinedata_set.first().timestamp
         else:
             return str('Never')
 
@@ -22,10 +23,9 @@ class WindturbineSerializer(serializers.ModelSerializer):
 
     def get_brakes_active(self, obj):
         if obj.windturbinedata_set.count():
-            return obj.windturbinedata_set.last().brake
+            return obj.windturbinedata_set.first().brake
         else:
             return False
-
 
 
 class WindturbineSerializerWtihRelationships(WindturbineSerializer):
@@ -34,11 +34,18 @@ class WindturbineSerializerWtihRelationships(WindturbineSerializer):
     windturbinesetting_set = WindturbineSettingSerializer(many=True, read_only=True)
     class Meta:
         model = WindTurbine
-        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'windturbinedata_set', 'windturbineerror_set', 'windturbinesetting_set', 'api_token')
-
-
-    @staticmethod
-    def setup_eager_loading(queryset):
-        """ Perform necessary eager loading of data. """
-        queryset = queryset.prefetch_related('windfarm')
-        return queryset
+        fields = (
+        'id',
+        'name',
+        'display_name',
+        'longtitude',
+        'latitude',
+        'windfarm',
+        'ip_address',
+        'last_connection',
+        'brakes_active',
+        'windturbinedata_set',
+        'windturbineerror_set',
+        'windturbinesetting_set',
+        'api_token',
+        )

@@ -27,6 +27,26 @@
                             <td class="text-xs-left" @click="getDetail(props.item)">{{ props.item.message }}</td>
                         </template>
                     </v-data-table>
+                    <v-card-text>
+                        <v-fab-transition>
+                            <v-btn
+                                class="green"
+                                fab
+                                dark
+                                small
+                                absolute
+                                bottom
+                                left
+                                @click.native="getLogItems"
+                                :disabled="loading"
+                            >
+                            <span slot="loader" class="custom-loader">
+                                <v-icon light>cached</v-icon>
+                            </span>
+                            <v-icon v-if="!loading">cached</v-icon>
+                          </v-btn>
+                        </v-fab-transition>
+                    </v-card-text>
                 </v-card>
             </v-flex>
         </v-layout>

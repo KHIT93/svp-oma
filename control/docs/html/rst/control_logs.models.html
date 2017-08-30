@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>control_logs.models package &#8212; Windturbine Control Application 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="control-logs-models-package">
+<h1>control_logs.models package<a class="headerlink" href="#control-logs-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-control_logs.models.control_log">
+<span id="control-logs-models-control-log-module"></span><h2>control_logs.models.control_log module<a class="headerlink" href="#module-control_logs.models.control_log" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="control_logs.models.control_log.ControlLog">
+<em class="property">class </em><code class="descclassname">control_logs.models.control_log.</code><code class="descname">ControlLog</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/control_logs/models/control_log.html#ControlLog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#control_logs.models.control_log.ControlLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>The ControlLog class is responsible for logs about a specific WindTurbine.</p>
+<p>Each entry holds the following information:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> – Unique identifier for the logs of the WindTurbine</li>
+<li><strong>timestamp</strong> – Timestamp for the entry in the log</li>
+<li><strong>sensor_type_data</strong> – Which kind of sensor, there is logged</li>
+<li><strong>current_value</strong> – The current value for the specific sensor</li>
+<li><strong>windmill_state</strong> – The state the WindTurbine was in</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="control_logs.models.control_log.ControlLog.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="control_logs.models.control_log.ControlLog.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="control_logs.models.control_log.ControlLog.current_value">
+<code class="descname">current_value</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.current_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="control_logs.models.control_log.ControlLog.get_next_by_timestamp">
+<code class="descname">get_next_by_timestamp</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#control_logs.models.control_log.ControlLog.get_next_by_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="control_logs.models.control_log.ControlLog.get_previous_by_timestamp">
+<code class="descname">get_previous_by_timestamp</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#control_logs.models.control_log.ControlLog.get_previous_by_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="control_logs.models.control_log.ControlLog.id">
+<code class="descname">id</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="control_logs.models.control_log.ControlLog.objects">
+<code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#control_logs.models.control_log.ControlLog.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="control_logs.models.control_log.ControlLog.sensor_type_data">
+<code class="descname">sensor_type_data</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.sensor_type_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="control_logs.models.control_log.ControlLog.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="control_logs.models.control_log.ControlLog.windmill_state">
+<code class="descname">windmill_state</code><a class="headerlink" href="#control_logs.models.control_log.ControlLog.windmill_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-control_logs.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-control_logs.models" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Windturbine Control Application</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kenneth Hansen, Dennis Asmussen, Daniel M. Nielsen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rst/control_logs.models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
