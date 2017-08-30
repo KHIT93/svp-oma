@@ -247,9 +247,15 @@
             },
             startWindTurbine() {
                 console.log('sending command to start the turbine');
+                axios.patch('/webapi/windturbine-settings/' + this.windturbine_settings.id + '/', { 'state': 1 }).then(response => {
+                    this.getWindturbineSettings();
+                });
             },
             stopWindTurbine() {
                 console.log('sending command to stop the turbine');
+                axios.patch('/webapi/windturbine-settings/' + this.windturbine_settings.id + '/', { 'state': 0 }).then(response => {
+                    this.getWindturbineSettings();
+                });
             }
         }
     }

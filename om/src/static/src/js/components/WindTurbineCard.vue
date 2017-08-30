@@ -53,11 +53,24 @@
                     console.log(error);
                 })
             },
+            getSettingsId() {
+                axios.get('/webapi/windturbine-settings/?windturbine=' + this.id).then(response => {
+                    return response.data[0].id;
+                }).catch(error => {
+                    console.log(error);
+                })
+            }
             startWindTurbine() {
                 console.log('sending command to start the turbine');
+                axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 1 }).then(response => {
+                    console.log('Start command has been sent');
+                });
             },
             stopWindTurbine() {
                 console.log('sending command to stop the turbine');
+                axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 0 }).then(response => {
+                    console.log('Stop command has been sent');
+                });
             }
         }
     }
