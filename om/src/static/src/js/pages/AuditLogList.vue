@@ -38,13 +38,9 @@
                                 bottom
                                 left
                                 @click.native="getLogItems"
-                                :disabled="loading"
                                 :loading="loading"
                             >
                             <v-icon>cached</v-icon>
-                            <span slot="loader" class="custom-loader">
-                                <v-icon light>cached</v-icon>
-                            </span>
                           </v-btn>
                         </v-fab-transition>
                     </v-card-text>
@@ -104,13 +100,15 @@
         },
         methods: {
             getLogItems() {
-                this.loading = true;
-                axios.get('/webapi/auditlog/').then(response => {
-                    this.items = response.data;
-                    this.loading = false;
-                }).catch(error => {
-                    console.log(error);
-                });
+                if(!this.loading) {
+                    this.loading = true;
+                    axios.get('/webapi/auditlog/').then(response => {
+                        this.items = response.data;
+                        this.loading = false;
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                }
             },
             getDetail(item) {
                 this.selected_entry = item;
