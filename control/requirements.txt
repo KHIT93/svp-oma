@@ -6,6 +6,7 @@ colorama==0.3.9
 Django==1.11.2
 djangorestframework==3.6.3
 docutils==0.14
+gunicorn==19.7.1
 idna==2.6
 imagesize==0.7.1
 Jinja2==2.9.6
@@ -19,5 +20,5 @@ six==1.10.0
 snowballstemmer==1.2.1
 Sphinx==1.6.3
 sphinxcontrib-websupport==1.0.1
+typing==3.6.2
 urllib3==1.22
-gunicorn==19.7.1
