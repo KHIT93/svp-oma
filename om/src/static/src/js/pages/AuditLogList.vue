@@ -89,7 +89,7 @@
                     }
                 ],
                 items: [],
-                loading: true,
+                loading: false,
                 search: null,
                 dialog: false,
                 selected_entry: {}
