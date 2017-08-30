@@ -20,7 +20,7 @@ windturbineDataRepo.getNew()
 print(windturbineDataRepo.windturbine_data)
 order = [5, 3, 6, 9, 8, 0, 1, 2, 4, 7]
 i = np.argsort(order)
-test = windturbineDataRepo.windturbine_data[i]
-test = test[5]
+test = windturbineDataRepo.windturbine_data[:,5]
+#test = test[:,5]
 print(test[10])
 print(model.predict(test))
