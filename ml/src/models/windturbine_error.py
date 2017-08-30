@@ -1,6 +1,6 @@
 import base_model
 
-class WindturbineError(base_model.BaseModel):
+class WindturbineError():
 	"""
     The WindTurbineError class defines the logging format for errors registered at windturbines
 
@@ -19,7 +19,6 @@ class WindturbineError(base_model.BaseModel):
     :param resolved: Indicates if this incident has been resolved. The audit log will contain information about who/what solved the incident
     """
 	def __init__(self, windturbine_id, timestamp, error_message, error_code, resolved):
-		super(WindTurbineError, self).__init__()
         self.windturbine_id = windturbine_id
         self.timestamp = timestamp
         self.error_message = error_message

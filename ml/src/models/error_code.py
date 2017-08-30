@@ -1,6 +1,6 @@
 import base_model
 
-class ErrorCode(base_model.BaseModel):
+class ErrorCode():
     """
     The ErrorCode class defines the format used for error codes and their severity
     Each entry includes these fields:
@@ -15,7 +15,6 @@ class ErrorCode(base_model.BaseModel):
 
     """
     def __init__(self, code, message, severity):
-        super(ErrorCode, self).__init__()
         self.code = code
         self.message = message
         self.severity = severity
