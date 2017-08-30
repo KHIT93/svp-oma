@@ -1,4 +1,5 @@
-
+import psycopg2
+import psycopg2.extras
 
 class Connector(object):
 	"""docstring for Connector"""
