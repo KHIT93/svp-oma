@@ -17,10 +17,10 @@ model = pickle.load(model_pkl)
 model_pkl.close()
 
 windturbineDataRepo.getNew()
-print(windturbineDataRepo.windturbine_data)
+print(windturbineDataRepo.windturbine_data[10])
 order = [5, 3, 6, 9, 8, 0, 1, 2, 4, 7]
 i = np.argsort(order)
-test = windturbineDataRepo.windturbine_data[:,5]
+test = windturbineDataRepo.windturbine_data[5,5]
 #test = test[:,5]
-print(test[10])
+print(test)
 print(model.predict(test))
