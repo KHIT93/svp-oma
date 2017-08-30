@@ -22,7 +22,7 @@ i = np.argsort(order)
 myarray = np.array(windturbineDataRepo.windturbine_data)
 print(type(myarray))
 print(myarray[0])
-test = myarray[:,i]
+test = myarray[:,order]
 print(test[0])
 test = test[:,:5]
 print(test[0])
