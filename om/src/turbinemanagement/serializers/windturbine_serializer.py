@@ -14,7 +14,7 @@ class WindturbineSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'api_token',)
     def get_last_connection(self, obj):
         if obj.windturbinedata_set.count():
-            return obj.windturbinedata_set.last().timestamp
+            return obj.windturbinedata_set.first().timestamp
         else:
             return str('Never')
 
@@ -23,7 +23,7 @@ class WindturbineSerializer(serializers.ModelSerializer):
 
     def get_brakes_active(self, obj):
         if obj.windturbinedata_set.count():
-            return obj.windturbinedata_set.last().brake
+            return obj.windturbinedata_set.first().brake
         else:
             return False
 
