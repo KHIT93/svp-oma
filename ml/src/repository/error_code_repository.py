@@ -15,8 +15,10 @@ class ErrorCodeRepo(object):
 		self.conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s port=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD, self.HOST, self.PORT))
 		self.cursor = self.conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
-	def get(self, id):
-		return self.error_codes[id]
+	def get(self, code):
+		if not error_codes:
+			self.getAll()
+		return list(filter(lambda x:x[2]==code,self.error_codes))
 		
 	def getAll(self):
 		sqlstatement = ("SELECT * FROM errors_errorcode")

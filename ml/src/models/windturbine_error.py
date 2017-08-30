@@ -1,6 +1,6 @@
 import base_model
 
-class WindTurbineError(base_model.BaseModel):
+class WindturbineError(base_model.BaseModel):
 	"""
     The WindTurbineError class defines the logging format for errors registered at windturbines
 
