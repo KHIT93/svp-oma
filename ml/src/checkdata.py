@@ -1,7 +1,7 @@
-from repository.audit_log_repository import AuditLogRepo
-from repository.error_code_repository import ErrorCodeRepo
-from repository.windturbine_data_repository import WindturbineDataRepo
-from repository.windturbine_error_repository import WindturbineErrorRepo
+from audit_log_repository import AuditLogRepo
+from error_code_repository import ErrorCodeRepo
+from windturbine_data_repository import WindturbineDataRepo
+from windturbine_error_repository import WindturbineErrorRepo
 import pickle
 from sklearn import tree
 
@@ -17,4 +17,3 @@ model_pkl.close()
 
 windturbineDataRepo.getNew()
 print(windturbineDataRepo.windturbine_data)
-
