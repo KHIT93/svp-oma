@@ -14,7 +14,7 @@ class WindturbineErrorRepo(object):
 		self.PORT = '5432'
 
 		self.conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s port=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD, self.HOST, self.PORT))
-		self.cursor = conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+		self.cursor = self.conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
 	def get(self, id):
 		return self.windturbine_errors[id]

@@ -13,7 +13,7 @@ class AuditLogRepo(object):
 		self.PORT = '5432'
 
 		self.conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s port=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD, self.HOST, self.PORT))
-		self.cursor = conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+		self.cursor = self.conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
 	def save(self, audit_log):
 		sqlstatement = ("INSERT INTO audit_log (timestamp, name, message, api_response, user_id) VALUES (%s, %s, %s, %s, %s) RETURNING id")
