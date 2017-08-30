@@ -17,5 +17,11 @@ model_pkl.close()
 
 windturbineDataRepo.getNew()
 
-print(windturbineDataRepo.windturbine_data[10])
-#print(model.predict(windturbineDataRepo.windturbine_data))
+print()
+
+order = [5, 3, 6, 9, 8, 0, 1, 2, 4, 7]
+test = [ windturbineDataRepo.windturbine_data[10][i] for i in order ]
+print(test)
+test2 = test[:,:5]
+print(test2)
+print(model.predict(test2))
