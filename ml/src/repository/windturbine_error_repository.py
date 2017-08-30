@@ -10,8 +10,10 @@ class WindturbineErrorRepo(object):
 		self.DATABASE = 'svp-oma'
 		self.USERNAME = 'postgres'
 		self.PASSWORD = 'postgres'
+		self.HOST = '10.135.17.153'
+		self.PORT = '5432'
 
-		self.conn = psycopg2.connect("dbname=%s user=%s password=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD))
+		self.conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s port=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD, self.HOST, self.PORT))
 		self.cursor = conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
 	def get(self, id):
