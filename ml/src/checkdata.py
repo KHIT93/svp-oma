@@ -22,6 +22,6 @@ i = np.argsort(order)
 myarray = np.array(windturbineDataRepo.windturbine_data)
 print(type(myarray))
 test = myarray[:,i]
-#test = test[:,5]
+test = test[:,:5]
 print(test)
 print(model.predict(test))
