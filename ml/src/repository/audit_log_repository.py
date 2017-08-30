@@ -2,7 +2,9 @@ import psycopg2
 import psycopg2.extras
 
 class AuditLogRepo(object):
-	"""docstring for AuditLogRepo"""
+	"""
+	The AuditLogRepo class is a repository with connection to the audit_log table
+	"""
 	def __init__(self):
 		self.audit_logs = {}
 

@@ -2,8 +2,9 @@ import psycopg2
 import psycopg2.extras
 
 class WindturbineDataRepo(object):
-	"""docstring for WindturbineDataRepo"""
-
+	"""
+	The WindturbineDataRepo class is a repository with connection to the turbinemanagement_windturbinedata table
+	"""
 	def __init__(self):
 		self.windturbine_data = []
 		self.last_record = 0

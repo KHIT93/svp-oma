@@ -6,8 +6,6 @@ class WindturbineError():
 
 	Each entry includes these fields:
 
-	:param id: Unique identifier of this specific error/incident
-
 	:param windturbine_id: Relationship to the windturbine that registered the error.
 
 	:param timestamp: Timestamp in ISO8601 for when the error was registered at the windturbine
