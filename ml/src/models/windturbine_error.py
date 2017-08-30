@@ -18,10 +18,9 @@ class WindturbineError():
 
     :param resolved: Indicates if this incident has been resolved. The audit log will contain information about who/what solved the incident
     """
-	def __init__(self, windturbine_id, timestamp, error_message, error_code, resolved):
+    def __init__(self, windturbine_id, timestamp, error_message, error_code, resolved):
         self.windturbine_id = windturbine_id
         self.timestamp = timestamp
         self.error_message = error_message
         self.error_code = error_codes
         self.resolved = resolved
-		
