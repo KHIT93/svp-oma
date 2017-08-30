@@ -22,7 +22,7 @@ class WindturbineDataRepo(object):
 
 	def getNew(self):
 		sqlstatement = ("SELECT * FROM turbinemanagement_windturbinedata WHERE id > %s ORDER BY id")
-		self.cursor.execute(sqlstatement, last_record)
+		self.cursor.execute(sqlstatement, self.last_record)
 		self.windturbine_data = self.cursor.fetchall()
 
 	def dispose(self):
