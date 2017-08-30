@@ -4,6 +4,7 @@ from repository.windturbine_data_repository import WindturbineDataRepo
 from repository.windturbine_error_repository import WindturbineErrorRepo
 import pickle
 from sklearn import tree
+import numpy as np
 
 auditLogRepo = AuditLogRepo()
 errorCodeRepo = ErrorCodeRepo()
@@ -17,11 +18,9 @@ model_pkl.close()
 
 windturbineDataRepo.getNew()
 
-print()
-
 order = [5, 3, 6, 9, 8, 0, 1, 2, 4, 7]
-test = [ windturbineDataRepo.windturbine_data[10][i] for i in order ]
-print(test)
-test2 = test[:5]
-print(test2)
-print(model.predict(test2.reshape(1, -1)))
+i = np.argsort(order)
+test = windturbineDataRepo.windturbine_data[:,i]
+test = test[:,5]
+print(test[10])
+print(model.predict(test))
