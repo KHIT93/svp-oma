@@ -24,4 +24,4 @@ test = [ windturbineDataRepo.windturbine_data[10][i] for i in order ]
 print(test)
 test2 = test[:5]
 print(test2)
-print(model.predict(test2))
+print(model.predict(test2.reshape(1, -1)))
