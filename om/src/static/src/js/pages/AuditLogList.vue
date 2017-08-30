@@ -39,6 +39,7 @@
                                 left
                                 @click.native="getLogItems"
                                 :loading="loading"
+                                :disbled="loading"
                             >
                             <v-icon>cached</v-icon>
                           </v-btn>
