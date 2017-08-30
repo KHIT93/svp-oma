@@ -59,7 +59,7 @@
                 }).catch(error => {
                     console.log(error);
                 })
-            }
+            },
             startWindTurbine() {
                 console.log('sending command to start the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 1 }).then(response => {
