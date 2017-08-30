@@ -31,5 +31,5 @@ class_names = ['0', '100', '110', '120', '130', '200', '210', '220', '300']
 # Save model as a pickle
 pickle_file = 'dtc_windturbine.pkl'
 model_pkl = open(pickle_file, 'wb')
-pickle.dumb(dtc, model_pkl)
+pickle.dump(dtc, model_pkl)
 model_pkl.close()
