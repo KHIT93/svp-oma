@@ -38,13 +38,10 @@
                                 bottom
                                 left
                                 @click.native="getLogItems"
-                                :disabled="loading"
                                 :loading="loading"
+                                :disabled="loading"
                             >
                             <v-icon>cached</v-icon>
-                            <span slot="loader" class="custom-loader">
-                                <v-icon light>cached</v-icon>
-                            </span>
                           </v-btn>
                         </v-fab-transition>
                     </v-card-text>
