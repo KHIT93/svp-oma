@@ -19,7 +19,7 @@ model_pkl.close()
 windturbineDataRepo.getNew()
 order = [5, 3, 6, 9, 8, 0, 1, 2, 4, 7]
 i = np.argsort(order)
-type(windturbineDataRepo.windturbine_data)
+print(type(windturbineDataRepo.windturbine_data))
 test = windturbineDataRepo.windturbine_data[:,i]
 #test = test[:,5]
 print(test)
