@@ -37,7 +37,7 @@ while True:
 	for x in prediction:
 		print(x)
 		if x > 0:
-			error = np.array(error_ode_epo.get(x))
+			error = np.array(error_code_repo.get(x))
 			windturbine_error = WindturbineError(data_array[i,7], data_array[i,1], error[0,1], x, False)
 			windturbine_error_repo.save(windturbine_error)
 		
