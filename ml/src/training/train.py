@@ -4,7 +4,7 @@ from sklearn import tree
 import pickle
 
 names = ['rpm', 'temp', 'wind_speed', 'wing_angle', 'brake', 'error_code']
-dataset = pandas.read_excel("book1.xlsx", names=names)
+dataset = pandas.read_excel("Book1.xlsx", names=names)
 
 # Split-out validation dataset
 array = dataset.values
@@ -24,12 +24,12 @@ dtc.fit(train_x, train_y)
 feature_names = ['rpm', 'temp', 'wind_speed', 'wing_angle', 'brake']
 class_names = ['0', '100', '110', '120', '130', '200', '210', '220', '300']
 
-# Generate a dot file with the tree structure
-dot_data = tree.export_graphviz(dtc, out_file='C:/tmp/test.dot', feature_names=feature_names, class_names=class_names, filled=True, rounded=True)
+# uncomment line below to generate a dot file with the tree structure if needed
+#dot_data = tree.export_graphviz(dtc, out_file='C:/tmp/test.dot', feature_names=feature_names, class_names=class_names, filled=True, rounded=True)
 # Run dot -Tpng test.dot -o tree.png in C:/tmp to convert the file into an image
 
 # Save model as a pickle
 pickle_file = 'dtc_windturbine.pkl'
 model_pkl = open(pickle_file, 'wb')
-pickle.dumb(dtc, model_pkl)
+pickle.dump(dtc, model_pkl)
 model_pkl.close()
