@@ -1,4 +1,5 @@
-import audit_log
+import psycopg2
+import psycopg2.extras
 
 class AuditLogRepo(object):
 	"""docstring for AuditLogRepo"""

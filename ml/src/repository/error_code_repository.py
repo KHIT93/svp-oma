@@ -1,4 +1,5 @@
-import error_code
+import psycopg2
+import psycopg2.extras
 
 class ErrorCodeRepo(object):
 	"""docstring for ErrorCodeRepo"""
