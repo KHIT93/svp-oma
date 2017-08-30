@@ -8,11 +8,9 @@ class AuditLog():
 
     Each entry has the following values:
 
-    :param id: Unique identifier for the specific log entry
-
     :param timestamp: Timestamp stored in ISO-8601
 
-    :param user: Reference to the application user that caused the entry to be created. This can be null if a system action is automatically performed
+    :param user: Reference to the application user that caused the entry to be created.
 
     :param name: The name of the user or system component that caused the entry to be created.
 

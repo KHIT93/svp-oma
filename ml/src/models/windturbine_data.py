@@ -6,8 +6,6 @@ class WindTurbineData():
 
     Each entry includes these fields:
 
-    :param id: Unique identifier for the specific sensor reading
-
     :param windturbine_id: Relationship to the windturbine that collected the sensor data.
 
     :param timestamp: Timestamp in ISO 8601 for when the data was registered at the windturbine

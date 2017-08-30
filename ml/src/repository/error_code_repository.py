@@ -2,7 +2,9 @@ import psycopg2
 import psycopg2.extras
 
 class ErrorCodeRepo(object):
-	"""docstring for ErrorCodeRepo"""
+	"""
+	The ErrorCodeRepo class is a repository with connection to the errors_errorcode table
+	"""
 	def __init__(self):
 		self.error_codes = {}
 
