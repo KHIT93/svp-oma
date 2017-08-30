@@ -21,8 +21,8 @@ class WindturbineError(base_model.BaseModel):
 	def __init__(self, windturbine_id, timestamp, error_message, error_code, resolved):
 		super(WindTurbineError, self).__init__()
         self.windturbine_id = windturbine_id
-	    self.timestamp = timestamp
-	    self.error_message = error_message
-	    self.error_code = error_codes
-	    self.resolved = resolved
+        self.timestamp = timestamp
+        self.error_message = error_message
+        self.error_code = error_codes
+        self.resolved = resolved
 		
