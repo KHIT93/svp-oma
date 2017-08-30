@@ -22,5 +22,5 @@ class WindturbineError():
 		self.windturbine_id = windturbine_id
 		self.timestamp = timestamp
 		self.error_message = error_message
-		self.error_code = error_codes
+		self.error_code = error_code
 		self.resolved = resolved
