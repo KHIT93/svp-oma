@@ -45,3 +45,4 @@ class WindTurbineData(BaseModel):
 
     class Meta:
         verbose_name_plural = "Windturbine data"
+        ordering = ('-timestamp',)

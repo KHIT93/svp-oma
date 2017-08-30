@@ -28,5 +28,8 @@ class WindTurbineError(BaseModel):
     error_code = models.IntegerField()
     resolved = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ('-timestamp',)
+
     def __str__(self):
         return str(self.windturbine)
