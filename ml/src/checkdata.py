@@ -17,4 +17,5 @@ model_pkl.close()
 
 windturbineDataRepo.getNew()
 
-print(model.predict(windturbineDataRepo.windturbine_data))
+print(WindturbineDataRepo.windturbine_data[10])
+#print(model.predict(windturbineDataRepo.windturbine_data))
