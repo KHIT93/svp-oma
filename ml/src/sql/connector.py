@@ -13,15 +13,13 @@ class Connector(object):
 		self.conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s port=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD, self.HOST, self.PORT))
 		self.cursor = self.conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
-	def execute(sqlstatement):
-		self.cursor.execute(sqlstatement)
-		self.conn.commit()
-
-		return self.cursor.fetchall()
-
-	def execute(sqlstatement, sqldata):
-		self.cursor.execute(sqlstatement, sqldata)
-		self.conn.commit()
+	def execute(sqlstatement, sqldata = None):
+		if sqldata is None:
+			self.cursor.execute(sqlstatement)
+			self.conn.commit()
+		else:
+			self.cursor.execute(sqlstatement, sqldata)
+			self.conn.commit()
 
 		return self.cursor.fetchall()
 
