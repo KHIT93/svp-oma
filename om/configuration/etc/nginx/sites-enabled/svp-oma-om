@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name 10.135.17.158;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+	autoindex on;
+        alias /home/appuser/svp-oma/om/src/static/dist/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/appuser/svp-oma/om/svp-oma-om.sock;
+    }
+    gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
+    gzip on;
+}
