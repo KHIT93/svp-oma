@@ -1,5 +1,16 @@
 # Svendeprøve projekt August 2017
 
+## Projekt struktur
+
+| Mappe        | Projekt            |
+| ------------- |:-------------:|
+| control | WindTurbine Control Application |
+| embedded | Embedded application |
+| ml | Machine Learning |
+| om | Operation & Maintenance platform |
+
+## Download og klargøring af projekter
+
 Når projeket klones fra github med `git clone` skal det virtuelle python miljø genoprettes.
 
 Dette gøres med `virtualenv -p python3 projektnavn`.
