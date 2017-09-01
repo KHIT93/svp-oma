@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name 10.135.25.66;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/pi/svp-oma/control/svp-oma-control.sock;
+    }
+}
