@@ -52,7 +52,7 @@
             }
             this.interval = setInterval(function () {
                 this.loadData();
-            }.bind(this), 5000);
+            }.bind(this), 1000);
         },
         beforeDestroy() {
             clearInterval(this.interval);

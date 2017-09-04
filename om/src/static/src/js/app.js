@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 import * as moment from 'moment';
 
 import AppNavigation from './components/AppNavigation.vue';
+import NotificationMessage from './components/Notification.vue';
 
 
 window.Vue = Vue;
@@ -62,9 +63,24 @@ if(process.env.NODE_ENV != "production") {
     });
 }
 
-function redirect(url) {
-    window.location.href = url;
+/**
+ * Global helper method to perform redirection inside the application
+ */
+window.redirect = function(url) {
+    router.push(url);
 }
+
+/**
+ * Vue instance that is only used for global event emission
+ */
+window.events = new Vue();
+
+/**
+ * Global helper function to emit the flash event to all of our JS
+ */
+window.flash = function (message, level = 'info') {
+    window.events.$emit('flash', { message, level });
+};
 
 window.moment = moment;
 
@@ -78,6 +94,7 @@ const app = new Vue({
     el: '#app',
     router,
     components: {
-        'v-oma-navigation': AppNavigation
+        'v-oma-navigation': AppNavigation,
+        'v-notification': NotificationMessage
     }
 });
