@@ -9,8 +9,8 @@
             </v-card-actions>
             <v-card-title primary-title>
                 <h3 class="headline mb-0 mr-2">Windturbine {{ windturbine.display_name }}</h3>
-                <small :title="last_connection">
-                    {{ (last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(last_connection).fromNow() }}
+                <small :title="windturbine.last_connection">
+                    {{ (windturbine.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(windturbine.last_connection).fromNow() }}
                 </small>
                 <small v-if="windturbine.brakes_active">
                     Brakes are currently active
@@ -141,11 +141,6 @@
             this.getWindturbineData();
             this.getWindfarms();
         },
-        mounted() {
-            this.interval = setInterval(function () {
-                this.refreshLastConnection();
-            }.bind(this), 1000);
-        },
         computed: {
             changed() {
                 if(this.form.changed()) {
@@ -223,15 +218,6 @@
                     flash('There was an error while getting the settings of the windturbine: ' + error.toString());
                     console.log(error);
                 })
-            },
-            refreshLastConnection() {
-                this.last_connection = '01-01-1970';
-                axios.get('/webapi/windturbines/' + this.id + '/').then(response => {
-                    this.last_connection = response.data.last_connection;
-                }).catch(error => {
-                    flash('There was an error while getting the last connection time of the windturbine: ' + error.toString());
-                    console.log(error);
-                });
             },
             moment(str) {
                 return window.moment(str);
