@@ -16,7 +16,6 @@ class WindturbineErrorRepo(object):
 
 	def save(self, windturbine_error):
 		sqlstatement = ("INSERT INTO turbinemanagement_windturbineerror (timestamp, error_message, error_code, windturbine_id, resolved) VALUES (%s, %s, %s, %s, %s) RETURNING id")
-		print(windturbine_error)
 		sqldata = (windturbine_error.timestamp, windturbine_error.error_message, windturbine_error.error_code, windturbine_error.windturbine_id, False)
 		result = self.connector.execute(sqlstatement, sqldata)
 		windturbine_error.id = np.array(result)[0,0]

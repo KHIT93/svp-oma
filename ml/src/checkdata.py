@@ -30,19 +30,22 @@ while True:
 	for windturbine in windturbine_repo.windturbine:
 		# Get new data
 		windturbine_data_repo.get_new(windturbine['id'])
-		# The order of the data for the machinelearning
-		order = [5, 3, 6, 9, 8]
-		# Convert from list to array
-		data_array = np.array(windturbine_data_repo.windturbine_data)
-		machinelearning_array = data_array[order]
-		# Run prediction
-		prediction = model.predict(machinelearning_array.reshape(1,-1))
+		# If any data was returned
+		if windturbine_data_repo.windturbine_data is not None:
+			# The order of the data for the machinelearning
+			order = [5, 3, 6, 9, 8]
+			# Convert from list to array
+			data_array = np.array(windturbine_data_repo.windturbine_data)
+			machinelearning_array = data_array[order]
+			# Run prediction
+			prediction = model.predict(machinelearning_array.reshape(1,-1))
 
-		print(prediction)
-		# If the prediction is not 0 (All OK)
-		if prediction > 0:
-			# Get the error based on the errorcode
-			error = np.array(error_code_repo.get(prediction))
-			# Create error object based on the arrays
-			windturbine_error = WindturbineError(data_array[7], data_array[1], error[0,1], prediction, False)
-			windturbine_error_repo.save(windturbine_error)
+			# If the prediction is not 0 (All OK)
+			if prediction[0] > 0:
+				# Get the error based on the errorcode
+				error = np.array(error_code_repo.get(prediction[0]))
+				# Create error object based on the arrays
+				windturbine_error = WindturbineError(data_array[7], data_array[1], error[0,1], prediction[0], False)
+				windturbine_error_repo.save(windturbine_error)
+
+	time.sleep(60)

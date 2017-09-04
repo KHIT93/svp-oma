@@ -28,5 +28,7 @@ class WindturbineDataRepo(object):
 			order = [0, 2, 3, 4, 5, 6, 7, 8, 9]
 			self.windturbine_data = np.average(np.array(self.windturbine_data)[:, order], axis=0)
 			self.windturbine_data = np.insert(self.windturbine_data, 1, mean_datetime)
-			self.windturbine_data
-		
+
+		else:
+			self.windturbine_data = None
+
