@@ -32,8 +32,10 @@ while True:
 		windturbine_data_repo.get_new(windturbine['id'])
 		# The order of the data for the machinelearning
 		order = [5, 3, 6, 9, 8]
+		print(windturbine_data_repo.windturbine_data)
 		# Convert from list to array
 		data_array = np.array(windturbine_data_repo.windturbine_data)
+		print(data_array)
 		# Create array with the correct order
 		machinelearning_array = data_array[:,order]
 		# Run prediction and save into an array
