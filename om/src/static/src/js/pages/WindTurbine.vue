@@ -225,7 +225,7 @@
                 })
             },
             refreshLastConnection() {
-                this.last_connection = null;
+                this.last_connection = '01-01-1970';
                 axios.get('/webapi/windturbines/' + this.id + '/').then(response => {
                     this.last_connection = response.data.last_connection;
                 }).catch(error => {
