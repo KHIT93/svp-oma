@@ -22,7 +22,8 @@ class WindturbineDataRepo(object):
 		self.windturbine_data = self.connector.execute(sqlstatement, sql_data)
 		self.windturbine_data = np.array(self.windturbine_data)
 		print(self.windturbine_data)
-		self.last_record = self.windturbine_data[-1,0]
+		self.last_record = self.windturbine_data[0]
+		print(self.last_record)
 		first_datetime = self.windturbine_data[0,1]
 		last_datetime = self.windturbine_data[-1,1]
 		mean_datetime = first_datetime + (last_datetime - first_datetime) / 2
