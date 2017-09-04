@@ -16,7 +16,7 @@ audit_log_repo = AuditLogRepo(conn)
 error_code_repo = ErrorCodeRepo(conn)
 windturbine_data_repo = WindturbineDataRepo(conn)
 windturbine_error_repo = WindturbineErrorRepo(conn)
-windturbine_repo = WindturbineRepo
+windturbine_repo = WindturbineRepo(conn)
 
 # get the saved model
 pickle_file = 'dtc_windturbine.pkl'
