@@ -4,18 +4,12 @@ import psycopg2.extras
 class ErrorCodeRepo(object):
 	"""
 	The ErrorCodeRepo class is a repository with connection to the errors_errorcode table
+	:type name: Connector
+	:param name: A initialized connector object
 	"""
-	def __init__(self):
+	def __init__(self, connector):
 		self.error_codes = {}
-
-		self.DATABASE = 'svp-oma'
-		self.USERNAME = 'postgres'
-		self.PASSWORD = 'postgres'
-		self.HOST = '10.135.17.153'
-		self.PORT = '5432'
-
-		self.conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s port=%s" % (self.DATABASE, self.USERNAME, self.PASSWORD, self.HOST, self.PORT))
-		self.cursor = self.conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+		self.connector = connector
 
 	def get(self, code):
 		if not self.error_codes:
@@ -24,6 +18,5 @@ class ErrorCodeRepo(object):
 		
 	def getAll(self):
 		sqlstatement = ("SELECT * FROM errors_errorcode")
-		self.cursor.execute(sqlstatement)
-		self.error_codes = self.cursor.fetchall()
+		self.error_codes = self.connector.execute(sqlstatement)
 		return self.error_codes

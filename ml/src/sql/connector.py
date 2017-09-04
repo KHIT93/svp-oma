@@ -23,3 +23,6 @@ class Connector(object):
 
 		return self.cursor.fetchall()
 
+	def dispose(self):
+		self.cursor.close()
+		self.conn.close()

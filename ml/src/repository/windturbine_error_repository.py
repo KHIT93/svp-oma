@@ -4,6 +4,8 @@ from sql.connector import Connector
 class WindturbineErrorRepo(object):
 	"""
 	The WindturbineErrorRepo class is a repository with connection to the turbinemanagement_windturbineerror table
+	:type name: Connector
+	:param name: A initialized connector object
 	"""
 	def __init__(self, connector):
 		self.windturbine_errors = {}
@@ -19,7 +21,3 @@ class WindturbineErrorRepo(object):
 		windturbine_error.id = np.array(result)[0,0]
 		self.windturbine_errors[windturbine_error.id] = windturbine_error
 		return windturbine_error
-
-	def dispose(self):
-		self.cursor.close()
-		self.conn.close()
