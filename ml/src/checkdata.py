@@ -29,7 +29,7 @@ while True:
 
 	for windturbine in windturbine_repo.windturbine:
 		# Get new data
-		windturbine_data_repo.get_new(windturbine.id)
+		windturbine_data_repo.get_new(windturbine['id'])
 		'''
 		# The order of the data for the machinelearning
 		order = [5, 3, 6, 9, 8]
