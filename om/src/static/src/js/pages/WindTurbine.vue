@@ -144,7 +144,6 @@
         mounted() {
             this.interval = setInterval(function () {
                 this.refreshLastConnection();
-                console.log(this.last_connection);
             }.bind(this), 1000);
         },
         computed: {
@@ -226,6 +225,7 @@
                 })
             },
             refreshLastConnection() {
+                this.last_connection = null;
                 axios.get('/webapi/windturbines/' + this.id + '/').then(response => {
                     this.last_connection = response.data.last_connection;
                 }).catch(error => {
