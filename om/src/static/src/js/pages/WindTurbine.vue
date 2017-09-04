@@ -140,8 +140,11 @@
             this.getWindturbineSettings();
             this.getWindturbineData();
             this.getWindfarms();
+        },
+        mounted() {
             this.interval = setInterval(function () {
                 this.refreshLastConnection();
+                console.log(this.last_connection);
             }.bind(this), 1000);
         },
         computed: {
