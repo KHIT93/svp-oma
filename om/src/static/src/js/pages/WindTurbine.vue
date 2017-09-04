@@ -182,7 +182,7 @@
             },
             getWindturbineData() {
                 axios.get('/webapi/windturbine-data/?windturbine=' + this.id).then(response => {
-                    this.windturbine_data = response.data;
+                    this.windturbine_data = response.data.results;
                 }).catch(error => {
                     console.log(error);
                 })
