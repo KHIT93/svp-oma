@@ -31,7 +31,7 @@ while True:
 		# Get new data
 		windturbine_data_repo.get_new(windturbine['id'])
 		# If any data was returned
-		if windturbine_data_repo.windturbine_data:
+		if windturbine_data_repo.windturbine_data.any():
 			# The order of the data for the machinelearning
 			order = [5, 3, 6, 9, 8]
 			# Convert from list to array
