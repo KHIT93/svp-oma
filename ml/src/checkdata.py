@@ -35,10 +35,10 @@ while True:
 		# Convert from list to array
 		data_array = np.array(windturbine_data_repo.windturbine_data)
 		machinelearning_array = data_array[order]
-		# Run prediction and save into an array
+		# Run prediction
 		prediction = model.predict(machinelearning_array.reshape(1,-1))
 
-		
+		print(prediction)
 		# If the prediction is not 0 (All OK)
 		if prediction > 0:
 			# Get the error based on the errorcode
