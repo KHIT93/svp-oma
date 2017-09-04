@@ -25,7 +25,7 @@
                 x: 'right',
                 y: 'bottom',
                 mode: 'vertical',
-                timeout: 3000
+                timeout: 5000
             }
         },
 

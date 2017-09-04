@@ -255,7 +255,6 @@
                 })
             },
             startWindTurbine() {
-                console.log('sending command to start the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.windturbine_settings.id + '/', { 'state': 1 }).then(response => {
                     flash('The command to start the windturbine has been succesfully sent');
                     this.getWindturbineSettings();
@@ -264,7 +263,6 @@
                 });
             },
             stopWindTurbine() {
-                console.log('sending command to stop the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.windturbine_settings.id + '/', { 'state': 0 }).then(response => {
                     flash('The command to start the windturbine has been succesfully sent');
                     this.getWindturbineSettings();
