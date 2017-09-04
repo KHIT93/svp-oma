@@ -20,8 +20,7 @@ class WindturbineDataRepo(object):
 		sqlstatement = ("SELECT * FROM turbinemanagement_windturbinedata WHERE id > %s AND windturbine_id = %s ORDER BY id")
 		sql_data = (self.last_record, windturbine_id)
 		self.windturbine_data = self.connector.execute(sqlstatement, sql_data)
-		self.windturbine_data = np.array(self.windturbine_data)
-		print(self.windturbine_data)
+		self.windturbine_data = self.windturbine_data
 		self.last_record = self.windturbine_data[0]
 		print(self.last_record)
 		first_datetime = self.windturbine_data[0,1]
