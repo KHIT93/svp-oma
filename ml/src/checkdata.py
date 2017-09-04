@@ -48,4 +48,4 @@ while True:
 				windturbine_error = WindturbineError(data_array[7], data_array[1], error[0,1], prediction[0], False)
 				windturbine_error_repo.save(windturbine_error)
 
-			print(prediction[0])
+	time.sleep(60)
