@@ -41,7 +41,7 @@ while True:
 		# If the prediction is not 0 (All OK)
 		if prediction > 0:
 			# Get the error based on the errorcode
-			error = np.array(error_code_repo.get(x))
+			error = np.array(error_code_repo.get(prediction))
 			# Create error object based on the arrays
-			windturbine_error = WindturbineError(data_array[i,7], data_array[i,1], error[0,1], x, False)
+			windturbine_error = WindturbineError(data_array[i,7], data_array[i,1], error[0,1], prediction, False)
 			windturbine_error_repo.save(windturbine_error)
