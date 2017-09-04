@@ -103,34 +103,10 @@
         },
         data: () => {
             return {
-                //form: new Form({}),
                 readonly: true,
                 max: 10,
                 processing: false
             }
-        },
-        mounted() {
-            /*if(this.windturbinesettings.id) {
-                this.form = new Form({
-                    id: this.windturbinesettings.id,
-                    state: this.windturbinesettings.state,
-                    max_rpm_generator: this.windturbinesettings.max_rpm_generator,
-                    max_temp_gearbox: this.windturbinesettings.max_temp_gearbox,
-                    max_temp_generator: this.windturbinesettings.max_temp_generator,
-                    windturbine: this.windturbine.id,
-                    brake: this.windturbinesettings.brake,
-                    wing_angle: this.windturbinesettings.wing_angle
-                });
-            }
-            else {
-                this.form = new Form({
-                    state: "",
-                    max_rpm_generator: "",
-                    max_temp_gearbox: "",
-                    max_temp_generator: "",
-                    windturbine: this.windturbine.id
-                });
-            }*/
         },
         computed: {
             changed() {
@@ -149,8 +125,10 @@
                     this.form.patch('/webapi/windturbine-settings/' + this.windturbinesettings.id + '/').then(response => {
                         this.readonly = true;
                         this.$emit('saved');
+                        flash('Settings have been updated');
                         this.processing = false;
                     }).catch(error => {
+                        flash('There was an error while saving the settings of the windturbine:<br>' + error);
                         console.log(error);
                         this.processing = false;
                     })
@@ -159,8 +137,10 @@
                     this.form.post('/webapi/windturbine-settings/').then(response => {
                         this.readonly = true;
                         this.$emit('saved');
+                        flash('Settings have been updated')
                         this.processing = false;
                     }).catch(error => {
+                        flash('There was an error while saving the settings of the windturbine:<br>' + error);
                         console.log(error);
                         this.processing = false;
                     })

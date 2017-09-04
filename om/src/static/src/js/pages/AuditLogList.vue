@@ -107,6 +107,7 @@
                         this.items = response.data;
                         this.loading = false;
                     }).catch(error => {
+                        flash('There was an error while getting the log entries:<br>' + error);
                         console.log(error);
                     });
                 }

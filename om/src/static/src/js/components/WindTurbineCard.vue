@@ -49,7 +49,9 @@
             deleteItem() {
                 this.form.delete('/webapi/windturbines/' + this.item.id + '/').then(response => {
                     this.$emit('deleted', this.item);
+                    flash('The windturbine has been deleted');
                 }).catch(error => {
+                    flash('There was an error while trying to delete the windturbine.<br/>' + error);
                     console.log(error);
                 })
             },
@@ -63,13 +65,19 @@
             startWindTurbine() {
                 console.log('sending command to start the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 1 }).then(response => {
+                    flash('Command to start the windturbine has been sent');
                     console.log('Start command has been sent');
+                }).catch(error => {
+                    flash('There was an error while trying to start the windturbine.<br/>' + error);
                 });
             },
             stopWindTurbine() {
                 console.log('sending command to stop the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 0 }).then(response => {
+                    flash('Command to stop the windturbine has been sent');
                     console.log('Stop command has been sent');
+                }).catch(error => {
+                    flash('There was an error while trying to stop the windturbine.<br/>' + error);
                 });
             }
         }

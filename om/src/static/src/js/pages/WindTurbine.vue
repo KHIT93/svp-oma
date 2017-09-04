@@ -169,6 +169,7 @@
                         api_token: this.windturbine.api_token
                     });
                 }).catch(error => {
+                    flash('There was an error while getting the details of the windturbine:<br>' + error.toString());
                     console.log(error);
                 });
             },
@@ -177,6 +178,7 @@
                     console.log(response);
                     this.windfarms = response.data.results;
                 }).catch(error => {
+                    flash('There was an error while getting the list of windfarms:<br>' + error.toString());
                     console.log(error);
                 })
             },
@@ -184,6 +186,7 @@
                 axios.get('/webapi/windturbine-data/?windturbine=' + this.id).then(response => {
                     this.windturbine_data = response.data.results;
                 }).catch(error => {
+                    flash('There was an error while getting the data for the windturbine:<br>' + error.toString());
                     console.log(error);
                 })
             },
@@ -213,6 +216,7 @@
                         });
                     }
                 }).catch(error => {
+                    flash('There was an error while getting the settings of the windturbine:<br>' + error.toString());
                     console.log(error);
                 })
             },
@@ -224,8 +228,10 @@
                     this.form.put('/webapi/windturbines/' + this.form.id + '/').then(response => {
                         this.readonly = true;
                         this.getItem();
+                        flash('Changes have been saved');
                         this.processing = false;
                     }).catch(error => {
+                        flash('Changes could not be saved. Please consult the logs for further details');
                         console.log(error);
                         this.processing = false;
                     })
@@ -240,21 +246,30 @@
             deleteItem() {
                 this.form.delete('/webapi/windturbines/' + this.windturbine.id + '/').then(response => {
                     //router.push('home');
-                    window.location.href = "/";
+                    flash('The windturbine was succesfully deleted');
+                    redirect('home');
+                    //window.location.href = "/";
                 }).catch(error => {
+                    flash('The windturbine could not be deleted. Please consult the logs for further details.');
                     console.log(error);
                 })
             },
             startWindTurbine() {
                 console.log('sending command to start the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.windturbine_settings.id + '/', { 'state': 1 }).then(response => {
+                    flash('The command to start the windturbine has been succesfully sent');
                     this.getWindturbineSettings();
+                }).catch( error => {
+                    flash('There was an error while trying to send a start command to the turbine. Please consult the log to find out what the issue is');
                 });
             },
             stopWindTurbine() {
                 console.log('sending command to stop the turbine');
                 axios.patch('/webapi/windturbine-settings/' + this.windturbine_settings.id + '/', { 'state': 0 }).then(response => {
+                    flash('The command to start the windturbine has been succesfully sent');
                     this.getWindturbineSettings();
+                }).catch( error => {
+                    flash('There was an error while trying to send a start command to the turbine. Please consult the log to find out what the issue is');
                 });
             }
         }

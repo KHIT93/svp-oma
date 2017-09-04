@@ -125,6 +125,9 @@
                     this.dialog = false;
                     this.new_windfarm_name = "";
                     this.form_processing = false;
+                    flash('The windfarm has been created');
+                }).catch(error => {
+                    flash('There was an error when trying to create the windturbine.<br/>' + error);
                 });
             }
         },
