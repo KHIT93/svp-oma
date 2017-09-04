@@ -21,5 +21,5 @@ class WindturbineDataRepo(object):
 		sql_data = (self.last_record, windturbine_id)
 		self.windturbine_data = self.connector.execute(sqlstatement, sql_data)
 		self.last_record = self.windturbine_data[-1]
-		self.windturbine_data = np.average(self.windturbine_data)
+		self.windturbine_data = np.average(self.windturbine_data, axis=0)
 		print(self.windturbine_data)
