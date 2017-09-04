@@ -9,8 +9,8 @@
             </v-card-actions>
             <v-card-title primary-title>
                 <h3 class="headline mb-0 mr-2">Windturbine {{ windturbine.display_name }}</h3>
-                <small :title="windturbine.last_connection">
-                    {{ (windturbine.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(windturbine.last_connection).fromNow() }}
+                <small :title="last_connection">
+                    {{ (last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(last_connection).fromNow() }}
                 </small>
                 <small v-if="windturbine.brakes_active">
                     Brakes are currently active
@@ -132,6 +132,7 @@
                 windturbine_settings: {},
                 windturbine_settings_form: new Form({}),
                 processing: false,
+                interval: null,
             }
         },
         created() {
@@ -139,6 +140,9 @@
             this.getWindturbineSettings();
             this.getWindturbineData();
             this.getWindfarms();
+            this.interval = setInterval(function () {
+                this.refreshLastConnection();
+            }.bind(this), 1000);
         },
         computed: {
             changed() {
@@ -157,7 +161,6 @@
         methods: {
             getItem() {
                 axios.get('/webapi/windturbines/' + this.id + '/').then(response => {
-                    console.log(response);
                     this.windturbine = response.data;
                     this.form = new Form({
                         id: this.windturbine.id,
@@ -169,16 +172,15 @@
                         api_token: this.windturbine.api_token
                     });
                 }).catch(error => {
-                    flash('There was an error while getting the details of the windturbine:<br>' + error.toString());
+                    flash('There was an error while getting the details of the windturbine: ' + error.toString());
                     console.log(error);
                 });
             },
             getWindfarms() {
                 axios.get('/webapi/windfarms/simple/').then(response => {
-                    console.log(response);
                     this.windfarms = response.data.results;
                 }).catch(error => {
-                    flash('There was an error while getting the list of windfarms:<br>' + error.toString());
+                    flash('There was an error while getting the list of windfarms: ' + error.toString());
                     console.log(error);
                 })
             },
@@ -186,7 +188,7 @@
                 axios.get('/webapi/windturbine-data/?windturbine=' + this.id).then(response => {
                     this.windturbine_data = response.data.results;
                 }).catch(error => {
-                    flash('There was an error while getting the data for the windturbine:<br>' + error.toString());
+                    flash('There was an error while getting the data for the windturbine: ' + error.toString());
                     console.log(error);
                 })
             },
@@ -216,9 +218,17 @@
                         });
                     }
                 }).catch(error => {
-                    flash('There was an error while getting the settings of the windturbine:<br>' + error.toString());
+                    flash('There was an error while getting the settings of the windturbine: ' + error.toString());
                     console.log(error);
                 })
+            },
+            refreshLastConnection() {
+                axios.get('/webapi/windturbines/' + this.id + '/').then(response => {
+                    this.last_connection = response.data.last_connection;
+                }).catch(error => {
+                    flash('There was an error while getting the last connection time of the windturbine: ' + error.toString());
+                    console.log(error);
+                });
             },
             moment(str) {
                 return window.moment(str);
@@ -247,7 +257,7 @@
                 this.form.delete('/webapi/windturbines/' + this.windturbine.id + '/').then(response => {
                     //router.push('home');
                     flash('The windturbine was succesfully deleted');
-                    redirect('home');
+                    redirect('/');
                     //window.location.href = "/";
                 }).catch(error => {
                     flash('The windturbine could not be deleted. Please consult the logs for further details.');
@@ -270,6 +280,9 @@
                     flash('There was an error while trying to send a stop command to the turbine. Please consult the log to find out what the issue is');
                 });
             }
+        },
+        beforeDestroy() {
+            clearInterval(this.interval);
         }
     }
 </script>
