@@ -33,7 +33,8 @@ while True:
 		# The order of the data for the machinelearning
 		order = [5, 3, 6, 9, 8]
 		# Convert from list to array
-		machinelearning_array = np.array(windturbine_data_repo.windturbine_data)[order]
+		data_array = np.array(windturbine_data_repo.windturbine_data)
+		machinelearning_array = data_array[order]
 		# Run prediction and save into an array
 		prediction = model.predict(machinelearning_array.reshape(1,-1))
 
@@ -43,5 +44,5 @@ while True:
 			# Get the error based on the errorcode
 			error = np.array(error_code_repo.get(prediction))
 			# Create error object based on the arrays
-			windturbine_error = WindturbineError(machinelearning_array[7], machinelearning_array[1], error[0,1], prediction, False)
+			windturbine_error = WindturbineError(data_array[7], data_array[1], error[0,1], prediction, False)
 			windturbine_error_repo.save(windturbine_error)
