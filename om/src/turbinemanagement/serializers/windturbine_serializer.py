@@ -9,10 +9,12 @@ class WindturbineSerializer(serializers.ModelSerializer):
     display_name = serializers.SerializerMethodField()
     brakes_active = serializers.SerializerMethodField()
     settings_id = serializers.SerializerMethodField()
+    errors_count = serializers.SerializerMethodField()
+    has_errors = serializers.SerializerMethodField()
 
     class Meta:
         model = WindTurbine
-        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'api_token', 'settings_id',)
+        fields = ('id', 'name', 'display_name', 'longtitude', 'latitude', 'windfarm', 'ip_address', 'last_connection', 'brakes_active', 'api_token', 'settings_id', 'errors_count', 'has_errors',)
     def get_last_connection(self, obj):
         if obj.windturbinedata_set.count():
             return obj.windturbinedata_set.first().timestamp
@@ -30,6 +32,12 @@ class WindturbineSerializer(serializers.ModelSerializer):
 
     def get_settings_id(self, obj):
         return obj.windturbinesetting_set.first().id;
+
+    def get_has_errors(self, obj):
+        return obj.windturbineerror_set.count() > 0
+
+    def get_errors_count(self, obj):
+        return obj.windturbineerror_set.count()
 
 
 class WindturbineSerializerWtihRelationships(WindturbineSerializer):
@@ -53,4 +61,6 @@ class WindturbineSerializerWtihRelationships(WindturbineSerializer):
         'windturbinesetting_set',
         'api_token',
         'settings_id',
+        'errors_count',
+        'has_errors',
         )
