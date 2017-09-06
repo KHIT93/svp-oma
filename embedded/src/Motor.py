@@ -37,4 +37,10 @@ class Motor:
 
 	def brake(self):
 		self.duty -= 10
+
+		if self.duty < 0:
+			self.duty = 0
+
+		if self.duty > 100:
+			self.duty = 100
 		self.pwm.ChangeDutyCycle(self.duty)
