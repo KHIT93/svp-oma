@@ -28,6 +28,11 @@ class Motor:
 
 	def changespeed(self, wind_speed, wing_angle): 
 		self.duty = Decimal(wind_speed) - Decimal(wing_angle)
+		if self.duty < 0:
+			self.duty = 0
+
+		if self.duty > 100:
+			self.duty = 100
 		self.pwm.ChangeDutyCycle(self.duty)
 
 	def brake(self):
