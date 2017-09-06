@@ -59,14 +59,14 @@ get_settings = ("SELECT * FROM windturbine_settings_windturbinesetting WHERE id 
 # Variables initialized for later
 temperature = 0
 rpm = 0.0
-get_config_count = 4
+get_config_count = 3
 current_config = 0
 row = {}
 windspeed = 0.0
 
 while True:
 	# Check for new config
-	if get_config_count > 4:
+	if get_config_count > 3:
 		get_config_count = 0
 		# If there is a new config
 		if cursor.execute(get_settings, current_config) > 0:
@@ -80,6 +80,7 @@ while True:
 	# Read temperature
 	temperature = adc.readtemperature()
 	
+	# divide by 25 to get  number that somehow satisfies what we need, this is just a simulated value
 	windspeed = adc2.readadc() / 25
 
 	# Read RPM
