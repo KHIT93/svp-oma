@@ -111,7 +111,7 @@
             </v-card>
         </v-dialog>
         <v-windturbine-data-card :windturbinedata="windturbine_data" :windturbine="windturbine"></v-windturbine-data-card>
-        <v-windturbine-errors-card @changed="toggleWindturbineErrors" :windturbineerrors="windturbine_errors" :windturbine="windturbine"></v-windturbine-errors-card>
+        <v-windturbine-errors-card @changed="toggleWindturbineErrors" @resolved="refresh" :windturbineerrors="windturbine_errors" :windturbine="windturbine"></v-windturbine-errors-card>
         <v-windturbine-settings-card @saved="getWindturbineSettings" :windturbine="windturbine" :windturbinesettings="windturbine_settings" :form="windturbine_settings_form"></v-windturbine-settings-card>
     </div>
 </template>
@@ -162,6 +162,10 @@
             'v-windturbine-settings-card': WindTurbineSettingsCard
         },
         methods: {
+            refresh() {
+                this.getWindturbineSettings();
+                this.getWindturbineErrors();
+            },
             getItem() {
                 axios.get('/webapi/windturbines/' + this.id + '/').then(response => {
                     this.windturbine = response.data;

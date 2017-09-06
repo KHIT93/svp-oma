@@ -34,10 +34,23 @@ import Form from '../classes/Form';
                 }),
                 windfarms: [],
                 processing: false,
+                interval: null,
             }
         },
         created() {
             this.getWindFarms();
+
+        },
+        mounted() {
+            if(!isNaN(+this.id) && isFinite(this.id)) {
+                this.getWindFarms();
+            }
+            this.interval = setInterval(function () {
+                this.getWindFarms();
+            }.bind(this), 1000);
+        },
+        beforeDestroy() {
+            clearInterval(this.interval);
         },
         methods: {
             getWindFarms() {
