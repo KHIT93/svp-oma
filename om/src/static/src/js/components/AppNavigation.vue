@@ -30,10 +30,6 @@
                         <v-list-tile-content>
                             <v-list-tile-title>
                                 Windfarm {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}
-                                <template v-if="item.info">
-                                    <v-chip v-if="item.info.error" class="red white--text chip--x--small">Error</v-chip>
-                                    <v-chip v-if="item.info.messages" class="orange white--text chip--x--small">{{ item.info.messages }}</v-chip>
-                                </template>
                             </v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
@@ -125,6 +121,9 @@
                     this.dialog = false;
                     this.new_windfarm_name = "";
                     this.form_processing = false;
+                    flash('The windfarm has been created');
+                }).catch(error => {
+                    flash('There was an error when trying to create the windturbine.<br/>' + error);
                 });
             }
         },

@@ -15,6 +15,7 @@
             return {
                 interval: null,
                 data: [],
+                has_error: false
             }
         },
         methods: {
@@ -22,6 +23,11 @@
                 console.log('Polling server from dashboard component');
                 axios.get('/webapi/windfarms/simple/').then(response => {
                     this.data = response.data.results;
+                }).catch(error => {
+                    console.log(error);
+                    if(!this.has_error) {
+                        flash(error.toString());
+                    }
                 })
             }
         },

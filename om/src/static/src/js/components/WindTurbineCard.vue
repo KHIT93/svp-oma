@@ -7,6 +7,7 @@
                 <v-btn flat title="Start" icon success @click.stop="startWindTurbine"><v-icon>power_settings_new</v-icon></v-btn>
                 <v-btn flat title="Stop" icon error @click.stop="stopWindTurbine"><v-icon>power_settings_new</v-icon></v-btn>
                 <v-btn flat title="Delete" icon @click.stop="dialog = true"><v-icon>delete</v-icon></v-btn>
+                <v-chip v-if="item.has_errors" class="red white--text chip--x--small">Alert</v-chip>
                 <small :title="item.last_connection">
                     {{ (item.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(item.last_connection).fromNow() }}
                 </small>
@@ -49,27 +50,24 @@
             deleteItem() {
                 this.form.delete('/webapi/windturbines/' + this.item.id + '/').then(response => {
                     this.$emit('deleted', this.item);
+                    flash('The windturbine has been deleted');
                 }).catch(error => {
-                    console.log(error);
-                })
-            },
-            getSettingsId() {
-                axios.get('/webapi/windturbine-settings/?windturbine=' + this.id).then(response => {
-                    return response.data[0].id;
-                }).catch(error => {
+                    flash('There was an error while trying to delete the windturbine:' + error.toString());
                     console.log(error);
                 })
             },
             startWindTurbine() {
-                console.log('sending command to start the turbine');
-                axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 1 }).then(response => {
-                    console.log('Start command has been sent');
+                axios.patch('/webapi/windturbine-settings/' + this.item.settings_id + '/', { 'state': 1 }).then(response => {
+                    flash('Command to start the windturbine has been sent');
+                }).catch(error => {
+                    flash(error.toString());
                 });
             },
             stopWindTurbine() {
-                console.log('sending command to stop the turbine');
-                axios.patch('/webapi/windturbine-settings/' + this.getSettingsId() + '/', { 'state': 0 }).then(response => {
-                    console.log('Stop command has been sent');
+                axios.patch('/webapi/windturbine-settings/' + this.item.settings_id + '/', { 'state': 0 }).then(response => {
+                    flash('Command to stop the windturbine has been sent');
+                }).catch(error => {
+                    flash(error.toString());
                 });
             }
         }

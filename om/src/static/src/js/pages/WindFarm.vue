@@ -36,6 +36,9 @@
                 if(!isNaN(+this.id) && isFinite(this.id)) {
                     axios.get('/webapi/windfarms/' + this.id + "/").then(response => {
                         this.data = response.data.windturbine_set;
+                    }).catch(error => {
+                        flash('There was an error while getting the details of the windfarm:<br>' + error.toString());
+                        console.log(error)
                     });
                 }
             },

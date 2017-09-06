@@ -50,9 +50,11 @@ import Form from '../classes/Form';
                 this.processing = true;
                 this.form.post('/webapi/windturbines/').then(response => {
                     this.$emit('saved');
+                    flash('The windturbine has been created');
                     this.processing = false;
                 }).catch(error => {
                     console.log('Error while posting to server from create-windturbine-form');
+                    flash('There was an error when trying to create the new windturbine.<br/>' + error);
                     console.log(error);
                     this.processing = false;
                 });
