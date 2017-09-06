@@ -34,10 +34,10 @@ class WindturbineSerializer(serializers.ModelSerializer):
         return obj.windturbinesetting_set.first().id;
 
     def get_has_errors(self, obj):
-        return obj.windturbineerror_set.count() > 0
+        return obj.windturbineerror_set.filter(resolved=False).count() > 0
 
     def get_errors_count(self, obj):
-        return obj.windturbineerror_set.count()
+        return obj.windturbineerror_set.filter(resolved=False).count()
 
 
 class WindturbineSerializerWtihRelationships(WindturbineSerializer):

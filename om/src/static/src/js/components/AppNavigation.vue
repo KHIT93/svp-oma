@@ -30,10 +30,6 @@
                         <v-list-tile-content>
                             <v-list-tile-title>
                                 Windfarm {{ (item.name) ? item.id + ' (' + item.name + ')' : item.id }}
-                                <template v-if="item.info">
-                                    <v-chip v-if="item.info.error" class="red white--text chip--x--small">Error</v-chip>
-                                    <v-chip v-if="item.info.messages" class="orange white--text chip--x--small">{{ item.info.messages }}</v-chip>
-                                </template>
                             </v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>

@@ -7,6 +7,7 @@
                 <v-btn flat title="Start" icon success @click.stop="startWindTurbine"><v-icon>power_settings_new</v-icon></v-btn>
                 <v-btn flat title="Stop" icon error @click.stop="stopWindTurbine"><v-icon>power_settings_new</v-icon></v-btn>
                 <v-btn flat title="Delete" icon @click.stop="dialog = true"><v-icon>delete</v-icon></v-btn>
+                <v-chip v-if="item.has_errors" class="red white--text chip--x--small">Alert</v-chip>
                 <small :title="item.last_connection">
                     {{ (item.last_connection == "Never") ? "No information has been recieved" : "Last connection was " + moment(item.last_connection).fromNow() }}
                 </small>

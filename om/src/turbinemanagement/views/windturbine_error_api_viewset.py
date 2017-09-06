@@ -12,7 +12,11 @@ class WindturbineErrorAPIViewset(viewsets.ModelViewSet):
     serializer_class = WindturbineErrorSerializer
 
     def get_queryset(self):
+        queryset = WindTurbineError.objects.all()
         if self.request.query_params.__contains__('windturbine'):
-            return WindTurbineError.objects.filter(windturbine=self.request.query_params.get('windturbine'))
-        else:
-            return WindTurbineError.objects.all()
+            queryset = queryset.filter(windturbine=self.request.query_params.get('windturbine'))
+
+        if self.request.query_params.__contains__('unhandled'):
+            queryset = queryset.filter(resolved=False)
+
+        return queryset

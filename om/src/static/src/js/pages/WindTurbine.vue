@@ -111,6 +111,7 @@
             </v-card>
         </v-dialog>
         <v-windturbine-data-card :windturbinedata="windturbine_data" :windturbine="windturbine"></v-windturbine-data-card>
+        <v-windturbine-errors-card @changed="toggleWindturbineErrors" :windturbineerrors="windturbine_errors" :windturbine="windturbine"></v-windturbine-errors-card>
         <v-windturbine-settings-card @saved="getWindturbineSettings" :windturbine="windturbine" :windturbinesettings="windturbine_settings" :form="windturbine_settings_form"></v-windturbine-settings-card>
     </div>
 </template>
@@ -119,6 +120,7 @@
     import Form from '../classes/Form';
     import WindTurbineDataCard from '../components/WindTurbineDataCard.vue';
     import WindTurbineSettingsCard from '../components/WindTurbineSettingsCard.vue';
+    import WindTurbineErrorCard from '../components/WindTurbineErrorCard.vue';
     export default {
         props: ['id'],
         data: () => {
@@ -129,16 +131,19 @@
                 readonly: true,
                 windfarms: [],
                 windturbine_data: [],
+                windturbine_errors: [],
                 windturbine_settings: {},
                 windturbine_settings_form: new Form({}),
                 processing: false,
                 interval: null,
+                show_all_errors: false,
             }
         },
         created() {
             this.getItem();
             this.getWindturbineSettings();
             this.getWindturbineData();
+            this.getWindturbineErrors();
             this.getWindfarms();
         },
         computed: {
@@ -153,6 +158,7 @@
         },
         components: {
             'v-windturbine-data-card': WindTurbineDataCard,
+            'v-windturbine-errors-card': WindTurbineErrorCard,
             'v-windturbine-settings-card': WindTurbineSettingsCard
         },
         methods: {
@@ -186,6 +192,18 @@
                     this.windturbine_data = response.data.results;
                 }).catch(error => {
                     flash('There was an error while getting the data for the windturbine: ' + error.toString());
+                    console.log(error);
+                })
+            },
+            getWindturbineErrors(all = false) {
+                let url = '/webapi/windturbine-errors/?windturbine=' + this.id;
+                if(!all) {
+                    url += '&unhandled';
+                }
+                axios.get(url).then(response => {
+                    this.windturbine_errors = response.data.results;
+                }).catch(error => {
+                    flash('There was an issue while getting the errors for the windturbine: ' + error.toString());
                     console.log(error);
                 })
             },
@@ -268,7 +286,11 @@
                 }).catch( error => {
                     flash('There was an error while trying to send a stop command to the turbine. Please consult the log to find out what the issue is');
                 });
-            }
+            },
+            toggleWindturbineErrors() {
+                this.show_all_errors = !this.show_all_errors;
+                this.getWindturbineErrors(this.show_all_errors);
+            },
         },
         beforeDestroy() {
             clearInterval(this.interval);
