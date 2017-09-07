@@ -35,12 +35,13 @@ while True:
 		windturbine_data_repo.get_new(windturbine['id'])
 		# If any data was returned
 		if windturbine_data_repo.windturbine_data is not None:
-			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + windturbine_data_repo.windturbine_data[0][7], '')
-			audit_log_repo.save(audit_entry)
+			
 			# The order of the data for the machinelearning
 			order = [5, 3, 6, 9, 8]
 			# Convert from list to array
 			data_array = np.array(windturbine_data_repo.windturbine_data)
+			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + data_array[7], '')
+			audit_log_repo.save(audit_entry)
 			machinelearning_array = data_array[order]
 			# Run prediction
 			prediction = model.predict(machinelearning_array.reshape(1,-1))
