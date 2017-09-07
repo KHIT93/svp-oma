@@ -4,6 +4,7 @@ from repository.windturbine_data_repository import WindturbineDataRepo
 from repository.windturbine_error_repository import WindturbineErrorRepo
 from repository.windturbine_repository import WindturbineRepo
 from models.windturbine_error import WindturbineError
+from models.audit_log import AuditLog
 import pickle
 from sklearn import tree
 import time
@@ -25,13 +26,17 @@ model = pickle.load(model_pkl)
 model_pkl.close()
 
 while True:
+	# Update repo with new turbines
 	windturbine_repo.get_turbines()
 
+	# For each turbine
 	for windturbine in windturbine_repo.windturbine:
 		# Get new data
 		windturbine_data_repo.get_new(windturbine['id'])
 		# If any data was returned
 		if windturbine_data_repo.windturbine_data is not None:
+			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + windturbine_data_repo.windturbine_data[0][7], '')
+			audit_log_repo.save(audit_entry)
 			# The order of the data for the machinelearning
 			order = [5, 3, 6, 9, 8]
 			# Convert from list to array
@@ -46,6 +51,10 @@ while True:
 				error = np.array(error_code_repo.get(prediction[0]))
 				# Create error object based on the arrays
 				windturbine_error = WindturbineError(data_array[7], data_array[1], error[0,1], prediction[0], False)
+				# Save error to db
 				windturbine_error_repo.save(windturbine_error)
+
+				audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Found error on windturbine ' + windturbine_data_repo.windturbine_data[0][7], '')
+				audit_log_repo.save(audit_entry)
 
 	time.sleep(60)

@@ -15,6 +15,8 @@ class AuditLogRepo(object):
 		sqlstatement = ("INSERT INTO audit_log (timestamp, name, message, api_response, user_id) VALUES (%s, %s, %s, %s, %s) RETURNING id")
 		sqldata = (audit_log.timestamp, audit_log.name, audit_log.message, audit_log.api_response, audit_log.user_id)
 		result = self.connector.execute(sqlstatement, sqldata)
+		# Get id of the created log
 		audit_log.id = np.array(result)[0,0]
+		# save the log in the repository
 		self.audit_logs[audit_log.id] = audit_log
 		return audit_log
