@@ -40,7 +40,7 @@ while True:
 			order = [5, 3, 6, 9, 8]
 			# Convert from list to array
 			data_array = np.array(windturbine_data_repo.windturbine_data)
-			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + data_array[7], '')
+			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + string(data_array[7]), '')
 			audit_log_repo.save(audit_entry)
 			machinelearning_array = data_array[order]
 			# Run prediction
