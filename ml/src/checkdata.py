@@ -55,7 +55,7 @@ while True:
 				# Save error to db
 				windturbine_error_repo.save(windturbine_error)
 
-				audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Found error on windturbine ' + str(data_array[7]), '')
+				audit_entry = AuditLog(time.utcnow(), 'machinelearning', 'machinelearning', 'Found error on windturbine ' + str(data_array[7]), '')
 				audit_log_repo.save(audit_entry)
 
 	time.sleep(60)
