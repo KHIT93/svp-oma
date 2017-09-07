@@ -13,7 +13,7 @@ class AuditLogRepo(object):
 
 	def save(self, audit_log):
 		sqlstatement = ("INSERT INTO audit_log (timestamp, name, message, api_response, user_id) VALUES (%s, %s, %s, %s, %s) RETURNING id")
-		sqldata = (audit_log.timestamp, audit_log.name, audit_log.message, audit_log.api_response, audit_log.user_id)
+		sqldata = (audit_log.timestamp, audit_log.name, audit_log.message, audit_log.api_response, audit_log.user)
 		result = self.connector.execute(sqlstatement, sqldata)
 		# Get id of the created log
 		audit_log.id = np.array(result)[0,0]
