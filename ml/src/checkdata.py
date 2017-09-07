@@ -40,7 +40,7 @@ while True:
 			order = [5, 3, 6, 9, 8]
 			# Convert from list to array
 			data_array = np.array(windturbine_data_repo.windturbine_data)
-			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + string(data_array[7]), '')
+			audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Running machinelearning on windturbine ' + str(data_array[7]), '')
 			audit_log_repo.save(audit_entry)
 			machinelearning_array = data_array[order]
 			# Run prediction
@@ -55,7 +55,7 @@ while True:
 				# Save error to db
 				windturbine_error_repo.save(windturbine_error)
 
-				audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Found error on windturbine ' + windturbine_data_repo.windturbine_data[0][7], '')
+				audit_entry = AuditLog(time.localtime(), 'machinelearning', 'machinelearning', 'Found error on windturbine ' + str(data_array[7]), '')
 				audit_log_repo.save(audit_entry)
 
 	time.sleep(60)
